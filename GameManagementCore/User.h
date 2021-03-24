@@ -2,14 +2,14 @@
 
 #include <string>
 
-class User
+class user
 {
-	public:
-		User(const std::string&, const std::string&, const std::string&);
-		virtual ~User();
-		const std::string& GetUsername() const;
-	private:
-		std::string username;
-		std::string password;
-		std::string created;  // TODO: replace with custom Date class, currently YYYY-MM-DD
+public:
+	user(const std::string&, const std::string&, const std::string&);
+	virtual ~user();
+	const std::string& get_username() const;
+private:
+	std::string username_;
+	std::string password_;
+	std::string created_; // TODO: replace with custom Date class, currently YYYY-MM-DD
 };

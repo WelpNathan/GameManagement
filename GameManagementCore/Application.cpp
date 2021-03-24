@@ -1,59 +1,59 @@
 #include "Application.h"
 
-Application::Application() : currentAccount(nullptr), currentUser(nullptr)
+application::application() : current_account_(nullptr), current_user_(nullptr)
 {
 }
 
-Application::~Application()
+application::~application()
 {
-	for (int i = 0; i < 1; ++i)
+	for (auto& account : accounts)
 	{
-		delete accounts[i];
+		delete account;
 	}
 }
 
-bool Application::IsUserLoggedIn() const
+bool application::is_user_logged_in() const
 {
-	return currentUser != nullptr;
+	return current_user_ != nullptr;
 }
 
-bool Application::IsAccountLoggedIn() const
+bool application::is_account_logged_in() const
 {
-	return currentAccount != nullptr;
+	return current_account_ != nullptr;
 }
 
-Account* Application::GetCurrentAccount() const
+account* application::get_current_account() const
 {
-	return currentAccount;
+	return current_account_;
 }
 
-User* Application::GetCurrentUser() const
+user* application::get_current_user() const
 {
-	return currentUser;
+	return current_user_;
 }
 
-Store& Application::GetStore()
+store& application::get_store()
 {
-	return store;
+	return store_;
 }
 
-bool Application::LoginAccount(const std::string& email, const std::string& password)
+bool application::login_account(const std::string& email, const std::string& password)
 {
 	// TODO: This currently always logs you in as the first account
-	currentAccount = accounts[0];
+	current_account_ = accounts[0];
 
 	return true;
 }
 
-bool Application::LoginUser(const std::string& username, const std::string& password)
+bool application::login_user(const std::string& username, const std::string& password)
 {
 	// TODO: This currently always logs you in as the first user
-	currentUser = currentAccount->users[0];
+	current_user_ = current_account_->users[0];
 
 	return true;
 }
 
-void Application::LogoutUser()
+void application::logout_user()
 {
-	currentUser = nullptr;
+	current_user_ = nullptr;
 }

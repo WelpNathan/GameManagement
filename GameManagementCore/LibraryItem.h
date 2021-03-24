@@ -2,12 +2,12 @@
 
 #include "Game.h"
 
-class LibraryItem
+class library_item
 {
-	public:
-		LibraryItem(const std::string&, Game*);
-		~LibraryItem();
-	private:
-		const Game *game;
-		const std::string purchased;  // TODO: replace with custom Date class, currently YYYY-MM-DD
+public:
+	library_item(const std::string&, game*);
+	~library_item();
+private:
+	const game* game_;
+	const std::string purchased_; // TODO: replace with custom Date class, currently YYYY-MM-DD
 };

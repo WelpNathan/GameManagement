@@ -1,10 +1,10 @@
 #include "Admin.h"
 
-Admin::Admin(const std::string& username, const std::string& password, const std::string& created)
-	: Player(username, password, created)
+admin::admin(const std::string& username, const std::string& password, const std::string& created)
+	: player(username, password, created)
 {
 }
 
-Admin::~Admin()
+admin::~admin()
 {
 }

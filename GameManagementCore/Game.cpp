@@ -1,25 +1,24 @@
 #include "Game.h"
 
-Game::Game(const std::string& name, const std::string& desc, int cost, int rating)
-	: name(name), description(desc), cost(cost), ageRating(rating)
+game::game(const std::string& name, const std::string& desc, const int cost, const int rating)
+	: name_(name), description_(desc), cost_(cost), age_rating_(rating)
 {
 }
 
-Game::~Game()
+game::~game()
+= default;
+
+const std::string& game::get_name() const
 {
+	return name_;
 }
 
-const std::string& Game::GetName() const
+const std::string& game::get_description() const
 {
-	return name;
+	return description_;
 }
 
-const std::string& Game::GetDescription() const
+int game::get_cost() const
 {
-	return description;
-}
-
-int Game::GetCost() const
-{
-	return cost;
+	return cost_;
 }

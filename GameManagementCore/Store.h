@@ -2,11 +2,11 @@
 
 #include "Game.h"
 
-class Store
+class store
 {
-	public:
-		Store();
-		~Store();
-		Game* games[9] = { }; // TODO: should be a dynamic collection
-	private:
+public:
+	store();
+	~store();
+	game* games[9] = {}; // TODO: should be a dynamic collection
+private:
 };

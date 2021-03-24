@@ -2,18 +2,18 @@
 
 #include <string>
 
-class Game
+class game
 {
-	public:
-		Game(const std::string&, const std::string&, int, int);
-		~Game();
+public:
+	game(const std::string&, const std::string&, int, int);
+	~game();
 
-		const std::string& GetName() const;
-		const std::string& GetDescription() const;
-		int GetCost() const;
-	private:
-		std::string name;
-		std::string description;
-		int cost;
-		int ageRating;
+	const std::string& get_name() const;
+	const std::string& get_description() const;
+	int get_cost() const;
+private:
+	std::string name_;
+	std::string description_;
+	int cost_;
+	int age_rating_;
 };

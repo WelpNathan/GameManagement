@@ -4,11 +4,11 @@
 #include "LibraryItem.h"
 #include "User.h"
 
-class Player : public User
+class player : public user
 {
-	public:
-		Player(const std::string&, const std::string&, const std::string&);
-		~Player();
-		LibraryItem* library[2] = { }; // TODO: replace with custom List<T> class
-	private:
+public:
+	player(const std::string&, const std::string&, const std::string&);
+	~player();
+	library_item* library[2] = {}; // TODO: replace with custom List<T> class
+private:
 };

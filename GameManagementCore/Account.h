@@ -3,14 +3,14 @@
 #include <string>
 #include "Player.h"
 
-class Account
+class account
 {
-	public:
-		Account(const std::string&, const std::string&, const std::string&);
-		~Account();
-		User* users[3] = { }; // TODO: replace with custom List<T> class
-	private:
-		std::string email;
-		std::string password;
-		std::string created;  // TODO: replace with custom Date class, currently YYYY-MM-DD
+public:
+	account(const std::string&, const std::string&, const std::string&);
+	~account();
+	user* users[3] = {}; // TODO: replace with custom List<T> class
+private:
+	std::string email_;
+	std::string password_;
+	std::string created_; // TODO: replace with custom Date class, currently YYYY-MM-DD
 };

@@ -1,13 +1,12 @@
 #include "Store.h"
 
-Store::Store()
-{
-}
+store::store()
+= default;
 
-Store::~Store()
+store::~store()
 {
-	for (int i = 0; i < 9; ++i)
+	for (auto& game : games)
 	{
-		delete games[i];
+		delete game;
 	}
 }

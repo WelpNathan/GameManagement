@@ -1,15 +1,14 @@
 #include "User.h"
 
-User::User(const std::string& username, const std::string& password, const std::string& created)
-	: username(username), password(password), created(created)
+user::user(const std::string& username, const std::string& password, const std::string& created)
+	: username_(username), password_(password), created_(created)
 {
 }
 
-User::~User()
-{
-}
+user::~user()
+= default;
 
-const std::string& User::GetUsername() const
+const std::string& user::get_username() const
 {
-	return username;
+	return username_;
 }

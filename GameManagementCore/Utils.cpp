@@ -1,13 +1,13 @@
 #include "Utils.h"
 
-std::string Utils::getLineFromUser()
+std::string utils::get_line_from_user()
 {
-    std::string input;
-    std::getline(std::cin, input);
-    return input;
+	std::string input;
+	std::getline(std::cin, input);
+	return input;
 }
 
-char Utils::getCharFromUser()
+char utils::get_char_from_user()
 {
-    return toupper(getLineFromUser()[0]);
+	return toupper(get_line_from_user()[0]);
 }
