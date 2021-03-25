@@ -6,10 +6,11 @@ application::application() : current_account_(nullptr), current_user_(nullptr)
 
 application::~application()
 {
-	for (auto& account : accounts)
-	{
-		delete account;
-	}
+	// TODO: implement deleting accounts in deconstructor
+	//for (auto& account : accounts)
+	//{
+	//	delete account;
+	//}
 }
 
 bool application::is_user_logged_in() const
