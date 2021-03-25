@@ -7,8 +7,9 @@ account::account(const std::string& email, const std::string& password, const st
 
 account::~account()
 {
-	for (auto& user : users)
-	{
-		delete user;
-	}
+	// TODO: add deleting users when deconstructing
+	//for (auto& user : users)
+	//{
+	//	delete user;
+	//}
 }
