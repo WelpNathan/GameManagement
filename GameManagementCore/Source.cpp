@@ -13,15 +13,15 @@ application app;
 void create_hardcoded_test_data()
 {
 	// Setup store with some games
-	app.get_store().games[0] = new game("The Witness", "Explore a nice island and solve puzzles.", 2999, 5);
-	app.get_store().games[1] = new game("Braid", "A time twisting puzzle game.", 499, 15);
-	app.get_store().games[2] = new game("Factorio", "Build a complicated factory in space.", 1599, 12);
-	app.get_store().games[3] = new game("LIMBO", "Watch out for that spider.", 299, 12);
-	app.get_store().games[4] = new game("INSIDE", "What are those scientists even doing?!", 1299, 15);
-	app.get_store().games[5] = new game("Portal 2", "Play around with physics. Shoot the moon.", 1999, 15);
-	app.get_store().games[6] = new game("Half Life 3", "It's never coming out.", 5999, 18);
-	app.get_store().games[7] = new game("NUVAVULT", "A game where 2D and 3D collide.", 299, 18);
-	app.get_store().games[8] = new game("Path", "Draw nice shapes between 2 big dots.", 299, 15);
+	app.get_store().games.addInFront(new game("The Witness", "Explore a nice island and solve puzzles.", 2999, 5));
+	app.get_store().games.addInFront(new game("Braid", "A time twisting puzzle game.", 499, 15));
+	app.get_store().games.addInFront(new game("Factorio", "Build a complicated factory in space.", 1599, 12));
+	app.get_store().games.addInFront(new game("LIMBO", "Watch out for that spider.", 299, 12));
+	app.get_store().games.addInFront(new game("INSIDE", "What are those scientists even doing?!", 1299, 15));
+	app.get_store().games.addInFront(new game("Portal 2", "Play around with physics. Shoot the moon.", 1999, 15));
+	app.get_store().games.addInFront(new game("Half Life 3", "It's never coming out.", 5999, 18));
+	app.get_store().games.addInFront(new game("NUVAVULT", "A game where 2D and 3D collide.", 299, 18));
+	app.get_store().games.addInFront(new game("Path", "Draw nice shapes between 2 big dots.", 299, 15));
 
 	// Create some users
 	player* u1 = new admin("Alice", "password", "2018-06-16");
@@ -73,7 +73,7 @@ char show_main_menu_and_get_user_choice()
 	return utils::get_char_from_user();
 }
 
-char showStoreMenuAndGetUserChoice()
+char show_store_menu_and_get_user_choice()
 {
 	system("CLS");
 	std::cout << "                    \n";
@@ -178,7 +178,7 @@ void store_menu()
 
 	while (ready_to_go_back == false)
 	{
-		const int choice = showStoreMenuAndGetUserChoice();
+		const int choice = show_store_menu_and_get_user_choice();
 
 		switch (choice)
 		{
