@@ -5,8 +5,9 @@ store::store()
 
 store::~store()
 {
-	for (auto& game : games)
-	{
-		delete game;
-	}
+	// TODO: fix
+	//for (auto& game : games)
+	//{
+	//	delete game;
+	//}
 }
