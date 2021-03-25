@@ -30,18 +30,20 @@ void create_hardcoded_test_data()
 	auto* u3 = new player("Charlie", "password", "2018-09-24");
 
 	// With some games in their library
-	u1->library[0] = new library_item("2018-06-17", store_games[7]);
-	u1->library[1] = new library_item("2018-06-18", store_games[1]);
-	u2->library[0] = new library_item("2018-09-19", store_games[2]);
-	u2->library[1] = new library_item("2018-09-19", store_games[3]);
-	u3->library[0] = new library_item("2018-09-24", store_games[3]);
-	u3->library[1] = new library_item("2018-09-30", store_games[6]);
+	u1->library.addAtEnd(new library_item("2018-06-17", store_games[7]));
+	u1->library.addAtEnd(new library_item("2018-06-18", store_games[1]));
+
+	u2->library.addAtEnd(new library_item("2018-09-19", store_games[2]));
+	u2->library.addAtEnd(new library_item("2018-09-19", store_games[3]));
+
+	u3->library.addAtEnd(new library_item("2018-09-24", store_games[3]));
+	u3->library.addAtEnd(new library_item("2018-09-30", store_games[6]));
 
 	// Make an account and attach the users
-	app.accounts[0] = new account("alice@shu.com", "password", "2018-06-16");
-	app.accounts[0]->users[0] = u1;
-	app.accounts[0]->users[1] = u2;
-	app.accounts[0]->users[2] = u3;
+	app.accounts.addInFront(new account("alice@shu.com", "password", "2018-06-16"));
+	app.accounts[0]->users.addAtEnd(u1);
+	app.accounts[0]->users.addAtEnd(u2);
+	app.accounts[0]->users.addAtEnd(u3);
 
 	// TODO: We need a login menu for accounts, for now we log in the only account
 	app.login_account("alice@shu.ac.uk", "password");
@@ -81,10 +83,11 @@ char show_store_menu_and_get_user_choice()
 	std::cout << "  -= STORE =-       \n";
 	std::cout << "                    \n";
 
-	// Output game list
-	for (auto i = 0; i < 9; i++) // TODO: Hardcoded, change when using List<T>
+	auto &game_store = app.get_store().games;
+
+	for (auto i = 0; i < game_store.length(); i++)
 	{
-		std::cout << "  " << (i + 1) << ") " << app.get_store().games[i]->get_name() << "\n";
+		std::cout << "  " << (i + 1) << ") " << game_store[i]->get_name() << "\n";
 	}
 
 	// TODO: Implement search store option
@@ -106,8 +109,7 @@ char show_login_user_menu_and_get_user_choice(account* account)
 	std::cout << "  -= LOGIN =-       \n";
 	std::cout << "                    \n";
 
-	// Output user list
-	for (auto i = 0; i < 3; i++) // TODO: Hardcoded, change when using List<T>
+	for (auto i = 0; i < account->users.length(); i++)
 	{
 		std::cout << "  " << (i + 1) << ") " << account->users[i]->get_username() << "\n";
 	}
