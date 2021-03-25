@@ -7,8 +7,9 @@ player::player(const std::string& username, const std::string& password, const s
 
 player::~player()
 {
-	for (auto& i : library)
-	{
-		delete i;
-	}
+	// TODO: implement deconstructor cleanup
+	//for (auto& i : library)
+	//{
+	//	delete i;
+	//}
 }
