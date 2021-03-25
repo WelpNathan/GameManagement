@@ -5,7 +5,7 @@ store::store()
 
 store::~store()
 {
-	// TODO: fix
+	// TODO: add deconstructor games
 	//for (auto& game : games)
 	//{
 	//	delete game;
