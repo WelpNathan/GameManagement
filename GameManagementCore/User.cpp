@@ -1,8 +1,11 @@
 #include "User.h"
+#include "date.h"
 
 user::user(const std::string& username, const std::string& password, const std::string& created)
 	: username_(username), password_(password), created_(created)
 {
+	
+
 }
 
 user::~user()
@@ -12,3 +15,4 @@ const std::string& user::get_username() const
 {
 	return username_;
 }
+
