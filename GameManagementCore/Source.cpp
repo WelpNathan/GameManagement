@@ -3,12 +3,14 @@
 #include "Application.h"
 #include "Account.h"
 #include "User.h"
+#include "MainMenu.h"
 #include "Player.h"
 #include "Admin.h"
 #include "Utils.h"
 
 // TODO: Remove from global scope once menu system is integrated
-application app;
+Application app;
+//MainMenu("MAIN MENU", &app);
 
 void create_hardcoded_test_data()
 {
