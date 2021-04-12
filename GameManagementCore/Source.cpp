@@ -15,7 +15,7 @@ Application app;
 void create_hardcoded_test_data()
 {
 	// Setup store with some games
-	auto &store_games = app.get_store().games;
+	auto &store_games = app.GetStore().games;
 	store_games.addInFront(new game("The Witness", "Explore a nice island and solve puzzles.", 2999, 5));
 	store_games.addInFront(new game("Braid", "A time twisting puzzle game.", 499, 15));
 	store_games.addInFront(new game("Factorio", "Build a complicated factory in space.", 1599, 12));
@@ -48,7 +48,7 @@ void create_hardcoded_test_data()
 	app.accounts[0]->users.addAtEnd(u3);
 
 	// TODO: We need a login menu for accounts, for now we log in the only account
-	app.login_account("alice@shu.ac.uk", "password");
+	app.LoginAccount("alice@shu.ac.uk", "password");
 }
 
 char show_main_menu_and_get_user_choice()
@@ -59,9 +59,9 @@ char show_main_menu_and_get_user_choice()
 	std::cout << "                    \n";
 	std::cout << "  S) Browse Store   \n";
 
-	if (app.is_user_logged_in())
+	if (app.IsUserLoggedIn())
 	{
-		std::cout << "  L) Logout of " << app.get_current_user()->get_username() << "\n";
+		std::cout << "  L) Logout of " << app.GetCurrentUser()->get_username() << "\n";
 		// TODO: User profile option
 	}
 	else
@@ -85,7 +85,7 @@ char show_store_menu_and_get_user_choice()
 	std::cout << "  -= STORE =-       \n";
 	std::cout << "                    \n";
 
-	auto &game_store = app.get_store().games;
+	auto &game_store = app.GetStore().games;
 
 	for (auto i = 0; i < game_store.length(); i++)
 	{
@@ -135,7 +135,7 @@ char show_game_menu_and_get_user_choice(game* game)
 	std::cout << "  " << game->get_description() << "\n";
 	std::cout << "                                  \n";
 
-	if (app.is_user_logged_in())
+	if (app.IsUserLoggedIn())
 	{
 		std::cout << "  P) Purchase for " << game->get_cost() / 100.0f << "\n";
 		std::cout << "                                                      \n";
@@ -161,7 +161,7 @@ void game_menu(game* game)
 		{
 		case 'P':
 			{
-				if (app.is_user_logged_in())
+				if (app.IsUserLoggedIn())
 				{
 					// TODO: Implement buying from the store
 				}
@@ -198,7 +198,7 @@ void store_menu()
 
 				if (index >= 0 && index < 9) // TODO: Hardcoded numbers, change when using List<T>
 				{
-					game_menu(app.get_store().games[index]);
+					game_menu(app.GetStore().games[index]);
 				}
 			}
 			break;
@@ -212,7 +212,7 @@ void login_user_menu()
 
 	while (ready_to_go_back == false)
 	{
-		const int choice = show_login_user_menu_and_get_user_choice(app.get_current_account());
+		const int choice = show_login_user_menu_and_get_user_choice(app.GetCurrentAccount());
 
 		switch (choice)
 		{
@@ -227,10 +227,10 @@ void login_user_menu()
 
 				if (index >= 0 && index < 3) // TODO: Hardcoded numbers, change when using List<T>
 				{
-					auto username = app.get_current_account()->users[index]->get_username();
+					auto username = app.GetCurrentAccount()->users[index]->get_username();
 
 					std::cout << "  Enter password for " << username << ": ";
-					if (app.login_user(username, utils::get_line_from_user()))
+					if (app.LoginUser(username, utils::get_line_from_user()))
 					{
 						ready_to_go_back = true;
 					}
@@ -258,9 +258,9 @@ void main_menu()
 			break;
 		case 'L':
 			{
-				if (app.is_user_logged_in())
+				if (app.IsUserLoggedIn())
 				{
-					app.logout_user();
+					app.LogoutUser();
 				}
 				else
 				{

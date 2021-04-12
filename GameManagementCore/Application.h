@@ -22,6 +22,7 @@ public:
 	void LogoutUser();
 
 	account* accounts[1] = { }; // TODO: this needs changing to a dynamic collection
+
 private:
 	store store;
 	account* currentAccount;
