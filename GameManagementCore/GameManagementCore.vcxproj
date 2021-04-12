@@ -147,10 +147,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\ConsoleApplication1\ConsoleApplication1\Date.cpp" />
     <ClCompile Include="Account.cpp" />
     <ClCompile Include="Admin.cpp" />
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Date.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LibraryItem.cpp" />
     <ClCompile Include="MainMenu.cpp" />
