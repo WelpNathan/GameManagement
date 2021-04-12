@@ -11,7 +11,7 @@ public:
 	~Application();
 
 	bool IsAccountLoggedIn() const;
-	bool IsUserLoggedIn() const;
+	bool IsUserLoggedIn();
 	account* GetCurrentAccount() const;
 	user* GetCurrentUser() const;
 
@@ -27,4 +27,5 @@ private:
 	store store;
 	account* currentAccount;
 	user* currentUser;
+	bool userIsLoggedIn = true;
 };

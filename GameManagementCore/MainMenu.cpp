@@ -35,14 +35,14 @@ bool MainMenu::HandleChoice(char choice)
 				std::string answer = Question("Are you sure?");
 				if (answer == "y" || answer == "Y")
 				{
-					app->LogOut();
+					app->LogoutUser();
 				}
 			}
 			else
 			{
 				// this would need to go to a LoginMenu - similar to StoreMenu
 				// instead we just set logged in to true on the main app object
-				app->LogIn();
+				//app->LoginUser();
 			}
 		} break;
 		case 'P':

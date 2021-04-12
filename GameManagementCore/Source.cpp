@@ -42,7 +42,7 @@ void create_hardcoded_test_data()
 	u3->library.addAtEnd(new library_item("2018-09-30", store_games[6]));
 
 	// Make an account and attach the users
-	app.accounts.addInFront(new account("alice@shu.com", "password", "2018-06-16"));
+	//app.accounts.addInFront(new account("alice@shu.com", "password", "2018-06-16"));
 	app.accounts[0]->users.addAtEnd(u1);
 	app.accounts[0]->users.addAtEnd(u2);
 	app.accounts[0]->users.addAtEnd(u3);
@@ -75,7 +75,7 @@ char show_main_menu_and_get_user_choice()
 	std::cout << "                    \n";
 	std::cout << "  >>> ";
 
-	return utils::get_char_from_user();
+	return utils::GetCharFromUser();
 }
 
 char show_store_menu_and_get_user_choice()
@@ -101,7 +101,7 @@ char show_store_menu_and_get_user_choice()
 	std::cout << "                    \n";
 	std::cout << "  >>> ";
 
-	return utils::get_char_from_user();
+	return utils::GetCharFromUser();
 }
 
 char show_login_user_menu_and_get_user_choice(account* account)
@@ -123,7 +123,7 @@ char show_login_user_menu_and_get_user_choice(account* account)
 	std::cout << "                    \n";
 	std::cout << "  >>> ";
 
-	return utils::get_char_from_user();
+	return utils::GetCharFromUser();
 }
 
 char show_game_menu_and_get_user_choice(game* game)
@@ -146,7 +146,7 @@ char show_game_menu_and_get_user_choice(game* game)
 	std::cout << "                            \n";
 	std::cout << "  >>> ";
 
-	return utils::get_char_from_user();
+	return utils::GetCharFromUser();
 }
 
 void game_menu(game* game)
@@ -230,7 +230,7 @@ void login_user_menu()
 					auto username = app.GetCurrentAccount()->users[index]->get_username();
 
 					std::cout << "  Enter password for " << username << ": ";
-					if (app.LoginUser(username, utils::get_line_from_user()))
+					if (app.LoginUser(username, utils::GetCharFromUser()))
 					{
 						ready_to_go_back = true;
 					}

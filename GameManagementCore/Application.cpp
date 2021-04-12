@@ -1,8 +1,7 @@
 #include "Application.h"
 
-#include "Application.h"
 
-Application::Application() : currentAccount(nullptr), currentUser(nullptr)
+Application::Application() : currentAccount(nullptr), currentUser(nullptr), userIsLoggedIn(true)
 {
 }
 
@@ -14,7 +13,7 @@ Application::~Application()
 	}
 }
 
-bool Application::IsUserLoggedIn() const
+bool Application::IsUserLoggedIn()
 {
 	return currentUser != nullptr;
 }
@@ -50,12 +49,15 @@ bool Application::LoginAccount(const std::string& email, const std::string& pass
 bool Application::LoginUser(const std::string& username, const std::string& password)
 {
 	// TODO: This currently always logs you in as the first user
-	currentUser = currentAccount->users[0];
+	//currentUser = currentAccount->users[0];
+	userIsLoggedIn = true;
 
 	return true;
 }
 
 void Application::LogoutUser()
 {
-	currentUser = nullptr;
+	//currentUser = nullptr;
+	userIsLoggedIn = false;
 }
+

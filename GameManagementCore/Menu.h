@@ -2,6 +2,7 @@
 
 #include "Utils.h"
 #include "Application.h"
+#include "Utils.h"
 
 #include <iostream>
 #include <string>
