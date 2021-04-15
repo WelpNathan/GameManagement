@@ -10,9 +10,8 @@ void LoginMenu::OutputOptions()
 {
 	for (int i = 0; i < 3; i++) // TODO: Hardcoded, change when using List<T>
 	{
-		std::cout << "  " << (i + 1) << ") " << account->users[i]->GetUsername() << "\n";
+		std::cout << "  " << (i + 1) << ") " << "user"<<i << "\n"; //TODO: change "user" to pull usernames from array.
 
-		
 	}
 
 }
@@ -39,9 +38,5 @@ bool LoginMenu::HandleChoice(char choice)
 	
 	return true;
 }
-
-//bool checkPassword(std::string& username, std::string& password, char choice) {
-//	return true;
-//}
 
 

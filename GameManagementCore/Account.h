@@ -11,6 +11,7 @@ public:
 	~account();
 	user* users[3] = { }; // TODO: replace with custom List<T> class
 	//List<user*> users;
+
 private:
 	std::string email_;
 	std::string password_;
