@@ -57,7 +57,7 @@ void main()
 	// TODO: app.Load();
 
 	Application app;
-	MainMenu("MAIN MENU", &app);
+	MainMenu thisMenu("MAIN MENU", &app);
 
 	// TODO: app.Save();
 }

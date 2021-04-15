@@ -26,7 +26,7 @@ bool MainMenu::HandleChoice(char choice)
 	{
 		case 'S':
 		{
-			StoreMenu("STORE", app);
+			StoreMenu thisStoreMenu("STORE", app);
 		} break;
 
 		case 'L':
@@ -43,7 +43,7 @@ bool MainMenu::HandleChoice(char choice)
 			{
 				// Goes to Login Menu
 				//accountMenu("LOGIN ACCOUNT", app);   // once more than one account...use this
-				LoginMenu("LOGIN ACCOUNT", app); //use while only 1 account to list users.
+				LoginMenu thisLoginMenu("LOGIN ACCOUNT", app); //use while only 1 account to list users.
 
 			}
 		} break;
