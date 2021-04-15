@@ -16,6 +16,7 @@ Application::~Application()
 bool Application::IsUserLoggedIn()
 {
 	return currentUser != nullptr;
+	return userIsLoggedIn;
 }
 
 bool Application::IsAccountLoggedIn() const
@@ -61,3 +62,13 @@ void Application::LogoutUser()
 	userIsLoggedIn = false;
 }
 
+
+void Application::LogOut()
+{
+	userIsLoggedIn = false;
+}
+
+void Application::LogIn()
+{
+	userIsLoggedIn = true;
+}

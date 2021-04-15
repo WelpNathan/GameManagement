@@ -21,6 +21,9 @@ public:
 	bool LoginUser(const std::string& username, const std::string& password);
 	void LogoutUser();
 
+	void LogIn();
+	void LogOut();
+
 	account* accounts[1] = { }; // TODO: this needs changing to a dynamic collection
 
 private:
