@@ -2,6 +2,7 @@
 
 #include "Menu.h"
 #include "StoreMenu.h"
+#include "LoginMenu.h"
 
 class MainMenu : public Menu
 {
@@ -9,6 +10,4 @@ class MainMenu : public Menu
 		MainMenu(const std::string& title, Application * app);
 		void OutputOptions() final;
 		bool HandleChoice(char choice) final;
-
-
 };

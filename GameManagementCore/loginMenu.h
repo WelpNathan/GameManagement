@@ -1,22 +1,16 @@
 #pragma once
-
 #include "Menu.h"
-#include <string>
-#include <vector>
-#include "Application.h"
+#include "StoreMenu.h"
+#include "account.h"
 
 
-class LoginMenu : public Menu
+
+class LoginMenu: public Menu
 {
-public:
-	LoginMenu(const std::string& title, Application* app);
-	void outputUsers();
-	
+	public:
+		LoginMenu(const std::string& title, Application* app);
+		void OutputOptions() final;
+		bool HandleChoice(char choice) final;
 
-private:
-	bool correctPassword(string& accountPassword, string inputPassword);
-	std::vector<std::string> registeredUsers = {"name1", "name2", "name3"}; 
-	     // change names given here to usernames imported from text file.
-	     // can also change from vector to list.
 };
 

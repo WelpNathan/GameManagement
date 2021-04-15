@@ -13,6 +13,4 @@ class StoreMenu : public Menu
 		bool HandleChoice(char choice) final;
 	private:
 		std::vector<std::string> games = { "Factorio", "The Witness", "INSIDE", "Brothers" };
-
-
 };

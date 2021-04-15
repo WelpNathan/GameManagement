@@ -28,6 +28,7 @@ bool MainMenu::HandleChoice(char choice)
 		{
 			StoreMenu("STORE", app);
 		} break;
+
 		case 'L':
 		{
 			if (app->IsUserLoggedIn())
@@ -40,9 +41,8 @@ bool MainMenu::HandleChoice(char choice)
 			}
 			else
 			{
-				// this would need to go to a LoginMenu - similar to StoreMenu
-				// instead we just set logged in to true on the main app object
-				app->LogIn();
+				// Goes to Login Menu
+				LoginMenu("LOGIN", app);
 			}
 		} break;
 		case 'P':
