@@ -10,4 +10,5 @@ class MainMenu : public Menu
 		void OutputOptions() final;
 		bool HandleChoice(char choice) final;
 
+
 };
