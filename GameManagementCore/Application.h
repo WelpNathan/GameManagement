@@ -24,11 +24,11 @@ public:
 	void LogIn();
 	void LogOut();
 
-	account* accounts[1] = { }; // TODO: this needs changing to a dynamic collection
+	account* accounts[2] = { }; // TODO: this needs changing to a dynamic collection
 
 private:
 	store store;
 	account* currentAccount;
 	user* currentUser;
-	bool userIsLoggedIn = true;
+	bool userIsLoggedIn = false;
 };

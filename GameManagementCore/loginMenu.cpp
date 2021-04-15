@@ -8,7 +8,12 @@ LoginMenu::LoginMenu(const std::string& title, Application* app) : Menu(title, a
 
 void LoginMenu::OutputOptions()
 {
-	// list valid users to choose from
+	for (int i = 0; i < 3; i++) // TODO: Hardcoded, change when using List<T>
+	{
+		std::cout << "  " << (i + 1) << ") " << account->users[i]->GetUsername() << "\n";
+
+		
+	}
 
 }
 
@@ -16,9 +21,27 @@ void LoginMenu::OutputOptions()
 
 bool LoginMenu::HandleChoice(char choice)
 {
+	int index = choice - '1';
 
-	//whichever choice, ask for password...and check that it matches.
+	if (index >= 0 && index < 3) // TODO: Hardcoded numbers, change when using List<T>
+	{
+		std::string username = app->GetCurrentAccount()->users[index]->get_username();
+
+		std::cout << "  Enter password for " << username << ": ";
+		if (app->LoginUser(username, utils::GetLineFromUser()))
+		{
+			
+			
+			/*return true;*/
+		}
+		return false;
+	}
+	
 	return true;
 }
+
+//bool checkPassword(std::string& username, std::string& password, char choice) {
+//	return true;
+//}
 
 
