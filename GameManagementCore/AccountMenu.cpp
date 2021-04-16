@@ -8,20 +8,27 @@ accountMenu::accountMenu(const std::string& title, Application* app) : Menu(titl
 
 void accountMenu::OutputOptions()
 {
-
-	//for (int i = 0; i < 3; i++) // TODO: Hardcoded, change when using List<T>
+	//for (int i = 0; i < 1; i++) // TODO: Hardcoded, change when using List<T>
 	//{
-	//	std::cout << "  " << (i + 1) << ") " << account->users[i]->GetUsername()
-	//		//<< "\n";
+	//	std::cout << "  " << (i + 1) << ") " << "alice@shu.ac.uk" << "\n"; //TODO: change to list collection of accounts
 	//}
-
-
 }
 
 
 
 bool accountMenu::HandleChoice(char choice)
-{
+{	
 
-	return true;
+	//std::string username = "alice@shu.ac.uk";
+	//
+	//std::cout << "  Enter password:" << username << ": ";
+	//if (app->LoginUser(username, utils::GetLineFromUser()))
+	//{
+	//	return true;
+	//}
+
+	return false;
 }
+
+
+

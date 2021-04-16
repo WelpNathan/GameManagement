@@ -8,35 +8,47 @@ LoginMenu::LoginMenu(const std::string& title, Application* app) : Menu(title, a
 
 void LoginMenu::OutputOptions()
 {
-	for (int i = 0; i < 3; i++) // TODO: Hardcoded, change when using List<T>
-	{
-		std::cout << "  " << (i + 1) << ") " << "user"<<i << "\n"; //TODO: change "user" to pull usernames from array.
-
-	}
-
+	///int choice = userList(app->GetCurrentAccount());
+	std::cout << "1) Alice" << "/n";
+	std::cout << "2) Bob" << "/n";
+	std::cout << "3) Charlie" << "/n";
 }
 
-
+char LoginMenu::userList(account* account)
+{
+	for (int i = 0; i < 3; i++) // TODO: Hardcoded, change when using List<T>
+	{
+		std::cout << "  " << (i + 1) << ") " << account->users[i]->get_username() << "\n";
+	}
+	return utils::GetCharFromUser();
+}
 
 bool LoginMenu::HandleChoice(char choice)
 {
-	int index = choice - '1';
+	std::string userNameChosen = app->accounts[0]->users[0]->get_username(); ;
 
-	if (index >= 0 && index < 3) // TODO: Hardcoded numbers, change when using List<T>
+	switch (choice)
 	{
-		std::string username = app->GetCurrentAccount()->users[index]->get_username();
-
-		std::cout << "  Enter password for " << username << ": ";
-		if (app->LoginUser(username, utils::GetLineFromUser()))
+		case '1':
 		{
-			
-			
-			/*return true;*/
-		}
-		return false;
+			//user 1 chosen
+
+			std::cout << "Enter Password for " << userNameChosen << ":";
+
+			return true;
+			//app.accounts[0]->users[1] = u2;
+		} break;
+		case '2':
+		{
+			//user 2 chosen
+			return true;
+		} break;
+		case '3':
+		{
+			//user 2 chosen
+			return true;
+		} break;
+		default: return false;
 	}
-	
-	return true;
+
 }
-
-

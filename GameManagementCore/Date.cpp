@@ -5,6 +5,7 @@ date::date() {
 	//default
 };
 
+
 date::date(std::string inputDate) {
 	int Day, Month, Year;
 
@@ -17,7 +18,8 @@ date::date(std::string inputDate) {
 };
 
 
-int splitDateString(std::string inputDate) {
+
+int date::splitDateString(std::string inputDate) {
 	//places 0-3 = year
 	int a = inputDate[0] * 1000;
 	int b = inputDate[1] * 100;

@@ -41,9 +41,8 @@ bool MainMenu::HandleChoice(char choice)
 			}
 			else
 			{
-				// Goes to Login Menu
-				//accountMenu("LOGIN ACCOUNT", app);   // once more than one account...use this
-				LoginMenu thisLoginMenu("LOGIN ACCOUNT", app); //use while only 1 account to list users.
+				//accountMenu thisAccountMenu("LOGIN ACCOUNT", app);
+				LoginMenu thisLoginMenu("LOGIN - USER", app);
 
 			}
 		} break;

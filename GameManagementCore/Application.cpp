@@ -1,6 +1,6 @@
 #include "Application.h"
 
-Application::Application() : currentAccount(nullptr), currentUser(nullptr), userIsLoggedIn(false)
+Application::Application() : currentAccount(GetCurrentAccount()), currentUser(nullptr), userIsLoggedIn(false)
 {
 }
 
@@ -49,14 +49,16 @@ bool Application::LoginAccount(const std::string& email, const std::string& pass
 
 bool Application::LoginUser(const std::string& username, const std::string& password)
 {
-	
-	//TODO: 
+	currentUser = currentAccount->users[0];
+//	LogIn();
 	return true;
 }
 
 void Application::LogoutUser()
+
 {
 	currentUser = nullptr;
+	userIsLoggedIn = false;
 }
 
 void Application::LogOut()
@@ -67,4 +69,5 @@ void Application::LogOut()
 void Application::LogIn()
 {
 	userIsLoggedIn = true;
+	currentAccount = accounts[0];
 }

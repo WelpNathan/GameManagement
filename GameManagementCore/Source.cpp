@@ -2,6 +2,7 @@ using namespace std;
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 
 #include "Application.h"
 #include "Account.h"
@@ -47,17 +48,21 @@ void createHardcodedTestData()
 	app.accounts[0]->users[0] = u1;
 	app.accounts[0]->users[1] = u2;
 	app.accounts[0]->users[2] = u3;
+
+	app.LoginAccount("alice@shu.ac.uk", "password");//TODO: remove this when more accounts are added.
 }
 
 void main()
 {
+	Application app;
 	// TODO: Remove call to dummy data, instead use Load and Save
+	
 	createHardcodedTestData();
 
-	// TODO: app.Load();
+	// TODO: app.Load(); load required data;
 
-	Application app;
+	
 	MainMenu thisMenu("MAIN MENU", &app);
 
-	// TODO: app.Save();
+	// TODO: app.Save(); save required data and close data.txt
 }
