@@ -14,14 +14,14 @@ void LoginMenu::OutputOptions()
 	std::cout << "3) Charlie" << "/n";
 }
 
-char LoginMenu::userList(account* account)
-{
-	for (int i = 0; i < 3; i++) // TODO: Hardcoded, change when using List<T>
-	{
-		std::cout << "  " << (i + 1) << ") " << account->users[i]->get_username() << "\n";
-	}
-	return utils::GetCharFromUser();
-}
+//char LoginMenu::userList(account* account)
+//{
+	//for (int i = 0; i < 3; i++) // TODO: Hardcoded, change when using List<T>
+	//{
+	//	std::cout << "  " << (i + 1) << ") " << account->users[i]->get_username() << "\n";
+	//}
+	//return utils::GetCharFromUser();
+//}
 
 bool LoginMenu::HandleChoice(char choice)
 {
