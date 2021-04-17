@@ -1,44 +1,44 @@
 #include "date.h"
 
-date::date() {
+date::date()
+{
 	day = 1, month = 1, year = 1900;
 	//default
 };
 
 
-date::date(std::string inputDate) {
-	int Day, Month, Year;
+date::date(const std::string input_date)
+{
+	// int Day, Month, Year;
 
-	splitDateString(inputDate);
+	split_date_string(input_date);
 
-	day = Day;
-	month = Month;
-	year = Year;
-
+	// day = Day;
+	// month = Month;
+	// year = Year;
 };
 
 
-
-int date::splitDateString(std::string inputDate) {
+int date::split_date_string(std::string input_date)
+{
 	//places 0-3 = year
-	int a = inputDate[0] * 1000;
-	int b = inputDate[1] * 100;
-	int c = inputDate[2] * 10;
-	int d = inputDate[3];
+	const int a = input_date[0] * 1000;
+	const int b = input_date[1] * 100;
+	const int c = input_date[2] * 10;
+	const int d = input_date[3];
 
-	int Year = a + b + c + d;
+	int year = a + b + c + d;
 
 	//places 5 and 6 = month
 
-	int e = inputDate[5] * 10;
-	int f = inputDate[6];
-	int Month = e + f;
+	const int e = input_date[5] * 10;
+	const int f = input_date[6];
+	int month = e + f;
 	//places 8 and 9 = day
 
-	int g = inputDate[8] * 10;
-	int h = inputDate[9];
-	int Day = g + h;
+	const int g = input_date[8] * 10;
+	const int h = input_date[9];
+	int day = g + h;
 
-	return (Year, Month, Day);
-
+	return (year, month, day);
 }

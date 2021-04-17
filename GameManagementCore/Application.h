@@ -4,31 +4,33 @@
 #include "User.h"
 #include "Store.h"
 
-class Application
+class application
 {
 public:
-	Application();
-	~Application();
+	application();
+	~application();
 
-	bool IsAccountLoggedIn() const;
-	bool IsUserLoggedIn();
-	account* GetCurrentAccount() const;
-	user* GetCurrentUser() const;
+	bool is_account_logged_in() const;
+	bool is_user_logged_in() const;
+	account* get_current_account() const;
+	user* get_current_user() const;
 
-	store& GetStore();
+	store* get_store() const;
 
-	bool LoginAccount(const std::string& email, const std::string& password);
-	bool LoginUser(const std::string& username, const std::string& password);
-	void LogoutUser();
+	bool login_account(const std::string& email, const std::string& password);
+	bool login_user(const std::string& username, const std::string& password);
+	void logout_user();
 
-	void LogIn();
-	void LogOut();
+	void log_in();
+	void log_out();
 
-	account* accounts[1] = { }; // TODO: this needs changing to a dynamic collection
+	List<account*> accounts;
 
 private:
-	store store;
-	account* currentAccount;
-	user* currentUser;
-	bool userIsLoggedIn = false;
+	store* store_;
+	account* current_account_;
+	user* current_user_;
+	bool user_is_logged_in_ = false;
+
+	void setup_data();
 };

@@ -1,71 +1,74 @@
 #include "Menu.h"
 
-Menu::Menu(const std::string& title, Application* app) : title(title), app(app)
+#include <utility>
+
+#include "Utils.h"
+
+menu::menu(std::string title, application* app) : app_(app), title_(std::move(title))
 {
 }
 
-void Menu::Paint()
+void menu::paint()
 {
-	bool readyToGoBack = false;
+	bool ready_to_go_back = false;
 
-	while (!readyToGoBack)
+	while (!ready_to_go_back)
 	{
-		Header();
-		OutputOptions();
-		Line();
-		Option('B', "Back");
-		Footer();
+		header();
+		output_options();
+		line();
+		option('B', "Back");
+		footer();
 
-		char choice = utils::GetCharFromUser();
+		const char choice = utils::get_char_from_user();
 
 		if (choice == 'B')
 		{
-			readyToGoBack = true;
+			ready_to_go_back = true;
 		}
 		else
 		{
-			readyToGoBack = HandleChoice(choice);
+			ready_to_go_back = handle_choice(choice);
 		}
 	}
 }
 
-void Menu::Line()
+void menu::line()
 {
 	std::cout << '\n';
 }
 
-void Menu::Line(const std::string& text)
+void menu::line(const std::string& text)
 {
 	std::cout << "  " << text << "\n";
 }
 
-void Menu::Option(char id, const std::string& option)
+void menu::option(const char id, const std::string& option)
 {
 	std::cout << "  " << id << ") " << option << '\n';
 }
 
-void Menu::Option(int id, const std::string& option)
+void menu::option(const int id, const std::string& option) const
 {
 	// shift the integer value up to the correct position in the ascii table
-	char ascii = id + '0';
-	Option(ascii, option);
+	const char ascii = id + '0';
+	this->option(ascii, option);
 }
 
-std::string Menu::Question(const std::string& question)
+std::string menu::question(const std::string& question)
 {
 	std::cout << "  " << question << ": ";
-	return utils::GetLineFromUser();
+	return utils::get_line_from_user();
 }
 
-void Menu::BlockingMessage(const std::string& message)
+void menu::blocking_message(const std::string& message)
 {
 	std::cout << "  " << message;
-	utils::GetLineFromUser();
+	utils::get_line_from_user();
 }
 
-void Menu::Header()
+void menu::header() const
 {
-
 #if defined _WIN32 || defined _WIN64
 	// we are running on windows so use CLS to clear the screen
 	system("CLS");
@@ -75,11 +78,11 @@ void Menu::Header()
 #endif
 
 	std::cout << '\n';
-	std::cout << "  -= " << title << " =-  \n";
+	std::cout << "  -= " << title_ << " =-  \n";
 	std::cout << '\n';
 }
 
-void Menu::Footer()
+void menu::footer()
 {
 	std::cout << '\n';
 	std::cout << '\n';

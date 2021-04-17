@@ -1,12 +1,12 @@
 #include "AccountMenu.h"
 
-accountMenu::accountMenu(const std::string& title, Application* app) : Menu(title, app)
+account_menu::account_menu(const std::string& title, application* app) : menu(title, app)
 {
-	Paint(); // required in constructor
+	paint(); // required in constructor
 }
 
 
-void accountMenu::OutputOptions()
+void account_menu::output_options()
 {
 	//for (int i = 0; i < 1; i++) // TODO: Hardcoded, change when using List<T>
 	//{
@@ -15,10 +15,8 @@ void accountMenu::OutputOptions()
 }
 
 
-
-bool accountMenu::HandleChoice(char choice)
-{	
-
+bool account_menu::handle_choice(char choice)
+{
 	//std::string username = "alice@shu.ac.uk";
 	//
 	//std::cout << "  Enter password:" << username << ": ";
@@ -29,6 +27,3 @@ bool accountMenu::HandleChoice(char choice)
 
 	return false;
 }
-
-
-

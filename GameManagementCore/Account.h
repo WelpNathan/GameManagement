@@ -7,9 +7,8 @@
 class account
 {
 public:
-	account(const std::string&, const std::string&, const std::string&);
+	account(std::string, std::string, std::string);
 	~account();
-	//user* users[3] = { }; // TODO: replace with custom List<T> class
 	List<user*> users;
 
 private:

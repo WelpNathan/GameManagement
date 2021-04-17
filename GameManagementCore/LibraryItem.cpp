@@ -1,7 +1,9 @@
 #include "LibraryItem.h"
 
-library_item::library_item(const std::string& date, game* game)
-	: game_(game), purchased_(date)
+#include <utility>
+
+library_item::library_item(std::string date, game* game)
+	: game_(game), purchased_(std::move(date))
 {
 }
 

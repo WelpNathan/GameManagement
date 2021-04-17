@@ -1,12 +1,12 @@
 #include "LoginMenu.h"
 
-LoginMenu::LoginMenu(const std::string& title, Application* app) : Menu(title, app)
+login_menu::login_menu(const std::string& title, application* app) : menu(title, app)
 {
-	Paint(); // required in constructor
+	paint(); // required in constructor
 }
 
 
-void LoginMenu::OutputOptions()
+void login_menu::output_options()
 {
 	///int choice = userList(app->GetCurrentAccount());
 	std::cout << "1) Alice" << "/n";
@@ -16,39 +16,38 @@ void LoginMenu::OutputOptions()
 
 //char LoginMenu::userList(account* account)
 //{
-	//for (int i = 0; i < 3; i++) // TODO: Hardcoded, change when using List<T>
-	//{
-	//	std::cout << "  " << (i + 1) << ") " << account->users[i]->get_username() << "\n";
-	//}
-	//return utils::GetCharFromUser();
+//for (int i = 0; i < 3; i++) // TODO: Hardcoded, change when using List<T>
+//{
+//	std::cout << "  " << (i + 1) << ") " << account->users[i]->get_username() << "\n";
+//}
+//return utils::GetCharFromUser();
 //}
 
-bool LoginMenu::HandleChoice(char choice)
+bool login_menu::handle_choice(const char choice)
 {
-	std::string userNameChosen = app->accounts[0]->users[0]->get_username(); ;
+	const std::string user_name_chosen = app_->accounts[0]->users[0]->get_username();
 
 	switch (choice)
 	{
-		case '1':
+	case '1':
 		{
 			//user 1 chosen
 
-			std::cout << "Enter Password for " << userNameChosen << ":";
+			std::cout << "Enter Password for " << user_name_chosen << ":";
 
 			return true;
 			//app.accounts[0]->users[1] = u2;
-		} break;
-		case '2':
+		}
+	case '2':
 		{
 			//user 2 chosen
 			return true;
-		} break;
-		case '3':
+		}
+	case '3':
 		{
 			//user 2 chosen
 			return true;
-		} break;
-		default: return false;
+		}
+	default: return false;
 	}
-
 }

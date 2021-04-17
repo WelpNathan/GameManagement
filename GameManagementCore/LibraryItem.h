@@ -5,7 +5,7 @@
 class library_item
 {
 public:
-	library_item(const std::string&, game*);
+	library_item(std::string, game*);
 	~library_item();
 private:
 	const game* game_;

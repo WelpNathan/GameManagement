@@ -6,5 +6,4 @@ admin::admin(const std::string& username, const std::string& password, const std
 }
 
 admin::~admin()
-{
-}
+= default;

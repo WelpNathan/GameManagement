@@ -5,7 +5,7 @@
 class game
 {
 public:
-	game(const std::string&, const std::string&, int, int);
+	game(std::string, std::string, int, int);
 	~game();
 
 	const std::string& get_name() const;
@@ -17,7 +17,3 @@ private:
 	int cost_;
 	int age_rating_;
 };
-
-
-
-

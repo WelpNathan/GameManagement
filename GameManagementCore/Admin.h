@@ -3,9 +3,9 @@
 #include <string>
 #include "Player.h"
 
-class admin : public player
+class admin final : public player
 {
 public:
 	admin(const std::string&, const std::string&, const std::string&);
-	~admin();
+	~admin() override;
 };

@@ -1,18 +1,12 @@
 #pragma once
+
 #include "Menu.h"
-#include "StoreMenu.h"
-#include "account.h"
-#include "Utils.h"
 
-
-
-class accountMenu : public Menu
+class account_menu final : public menu
 {
 public:
-	accountMenu(const std::string& title, Application* app);
-	void OutputOptions() final;
+	account_menu(const std::string& title, application* app);
+	void output_options() override;
 
-	bool HandleChoice(char choice) final;
-
+	bool handle_choice(char choice) override;
 };
-

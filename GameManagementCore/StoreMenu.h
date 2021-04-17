@@ -5,12 +5,12 @@
 #include <string>
 #include <vector>
 
-class StoreMenu : public Menu
+class store_menu final : public menu
 {
-	public:
-		StoreMenu(const std::string& title, Application * app);
-		void OutputOptions() final;
-		bool HandleChoice(char choice) final;
-	private:
-		std::vector<std::string> games = { "Factorio", "The Witness", "INSIDE", "Brothers" };
+public:
+	store_menu(const std::string& title, application* app);
+	void output_options() final;
+	bool handle_choice(char choice) final;
+private:
+	std::vector<std::string> games = {"Factorio", "The Witness", "INSIDE", "Brothers"};
 };

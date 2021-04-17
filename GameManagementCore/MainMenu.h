@@ -1,14 +1,11 @@
 #pragma once
 
 #include "Menu.h"
-#include "StoreMenu.h"
-#include "LoginMenu.h"
-#include "AccountMenu.h"
 
-class MainMenu : public Menu
+class main_menu final : public menu
 {
-	public:
-		MainMenu(const std::string& title, Application * app);
-		void OutputOptions() final;
-		bool HandleChoice(char choice) final;
+public:
+	main_menu(const std::string& title, application* app);
+	void output_options() final;
+	bool handle_choice(char choice) final;
 };

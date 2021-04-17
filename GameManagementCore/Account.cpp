@@ -1,7 +1,9 @@
 #include "Account.h"
 
-account::account(const std::string& email, const std::string& password, const std::string& created)
-	: email_(email), password_(password), created_(created)
+#include <utility>
+
+account::account(std::string email, std::string password, std::string created)
+	: email_(std::move(email)), password_(std::move(password)), created_(std::move(created))
 {
 }
 

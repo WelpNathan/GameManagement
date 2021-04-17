@@ -1,12 +1,11 @@
 #pragma once
 
 #include <string>
-#include "date.h"
 
 class user
 {
 public:
-	user(const std::string&, const std::string&, const std::string&);
+	user(std::string, std::string, std::string);
 	virtual ~user();
 
 	const std::string& get_username() const;

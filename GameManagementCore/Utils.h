@@ -6,8 +6,8 @@
 class utils
 {
 public:
-	static std::string GetLineFromUser(); 
-	static char GetCharFromUser();
+	static std::string get_line_from_user();
+	static char get_char_from_user();
 
 	// TODO: 2 versions of ToUpper
 };

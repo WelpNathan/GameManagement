@@ -1,23 +1,14 @@
 #pragma once
+
 #include "Menu.h"
-#include "StoreMenu.h"
-#include "Utils.h"
-#include "User.h"
-#include "Account.h"
 
-
-
-
-class LoginMenu: public Menu
+class login_menu final : public menu
 {
-	public:
-		LoginMenu(const std::string& title, Application* app);
-		void OutputOptions() final;
-		bool HandleChoice(char choice) final;
-		char userList(account* account);
-		
-	private:
+public:
+	login_menu(const std::string& title, application* app);
+	void output_options() final;
+	bool handle_choice(char choice) final;
+	// char user_list(account* account);
 
-
+private:
 };
-

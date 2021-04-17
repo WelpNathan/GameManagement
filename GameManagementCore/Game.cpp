@@ -1,7 +1,9 @@
 #include "Game.h"
 
-game::game(const std::string& name, const std::string& desc, const int cost, const int rating)
-	: name_(name), description_(desc), cost_(cost), age_rating_(rating)
+#include <utility>
+
+game::game(std::string name, std::string desc, const int cost, const int rating)
+	: name_(std::move(name)), description_(std::move(desc)), cost_(cost), age_rating_(rating)
 {
 }
 

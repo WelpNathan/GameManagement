@@ -1,60 +1,66 @@
 #include "MainMenu.h"
 
-MainMenu::MainMenu(const std::string& title, Application * app) : Menu(title, app)
+#include "LoginMenu.h"
+#include "StoreMenu.h"
+
+main_menu::main_menu(const std::string& title, application* app) : menu(title, app)
 {
-	Paint(); // required in constructor
+	paint(); // required in constructor
 }
 
-void MainMenu::OutputOptions()
+void main_menu::output_options()
 {
-	Option('S', "Browse Store");
+	option('S', "Browse Store");
 
-	if (app->IsUserLoggedIn())
+	if (app_->is_user_logged_in())
 	{
-		Option('P', "View Profile");
-		Option('L', "Logout");
+		option('P', "View Profile");
+		option('L', "Logout");
 	}
 	else
 	{
-		Option('L', "Login");
+		option('L', "Login");
 	}
 }
 
-bool MainMenu::HandleChoice(char choice)
+bool main_menu::handle_choice(const char choice)
 {
 	switch (choice)
 	{
-		case 'S':
+	case 'S':
 		{
-			StoreMenu thisStoreMenu("STORE", app);
-		} break;
+			store_menu this_store_menu("STORE", app_);
+		}
+		break;
 
-		case 'L':
+	case 'L':
 		{
-			if (app->IsUserLoggedIn())
+			if (app_->is_user_logged_in())
 			{
-				std::string answer = Question("Are you sure?");
+				const std::string answer = question("Are you sure?");
 				if (answer == "y" || answer == "Y")
 				{
-					app->LogOut();
+					app_->log_out();
 				}
 			}
 			else
 			{
 				//accountMenu thisAccountMenu("LOGIN ACCOUNT", app);
-				LoginMenu thisLoginMenu("LOGIN - USER", app);
-
+				login_menu this_login_menu("LOGIN - USER", app_);
 			}
-		} break;
-		case 'P':
+		}
+		break;
+	case 'P':
 		{
-			if (app->IsUserLoggedIn())
+			if (app_->is_user_logged_in())
 			{
-				BlockingMessage("Not implemented, press return to continue");
+				blocking_message("Not implemented, press return to continue");
 				// this needs to go to a profile page - similar to StoreMenu
 				// notice the if - this only works if somebody is logged in
 			}
-		} break;
+		}
+		break;
+	default: ;
 	}
 
 	return false;

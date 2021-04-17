@@ -50,7 +50,7 @@ public:
     List(const List<T>&);                    // copy constructor
     List(const T&);                          // constructor to make a list from an item
     ~List();                                 // destructor
-	
+
     List<T>& operator = (const List<T>&);    // copy assignment operator
     bool operator == (const List<T>&) const; // compare with content of another list
 
@@ -67,7 +67,7 @@ public:
         Node<T>* node = get_index(head, i);
         return node->item;
     }
-	
+
     bool isEmpty() const;                    // check if list is empty
     const T first() const;                   // return first item (MUST be non-empty)
     const T last() const;                    // return last item (MUST be non-empty)
@@ -89,7 +89,7 @@ private:
 template <class T>
 Node<T>* List<T>::get_index(Node<T>* node_head, const int n)
 {
-	if (node_head == nullptr)
+    if (node_head == nullptr)
         return nullptr;
 
     if (n == 0)
