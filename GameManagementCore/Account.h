@@ -16,3 +16,4 @@ private:
 	std::string password_;
 	std::string created_; // TODO: replace with custom Date class, currently YYYY-MM-DD
 };
+

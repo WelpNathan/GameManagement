@@ -8,7 +8,8 @@ public:
 	login_menu(const std::string& title, application* app);
 	void output_options() final;
 	bool handle_choice(char choice) final;
-	// char user_list(account* account);
+	bool check_password(std::string this_username, std::string stored_password);
 
 private:
+	
 };

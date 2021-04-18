@@ -52,7 +52,7 @@ bool application::login_account(const std::string& email, const std::string& pas
 bool application::login_user(const std::string& username, const std::string& password)
 {
 	current_user_ = current_account_->users[0];
-	//	LogIn();
+	log_in();
 	return true;
 }
 

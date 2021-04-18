@@ -40,7 +40,7 @@ bool main_menu::handle_choice(const char choice)
 				const std::string answer = question("Are you sure?");
 				if (answer == "y" || answer == "Y")
 				{
-					app_->log_out();
+					app_->logout_user();
 				}
 			}
 			else

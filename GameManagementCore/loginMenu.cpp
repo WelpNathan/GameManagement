@@ -8,46 +8,57 @@ login_menu::login_menu(const std::string& title, application* app) : menu(title,
 
 void login_menu::output_options()
 {
-	///int choice = userList(app->GetCurrentAccount());
-	std::cout << "1) Alice" << "/n";
-	std::cout << "2) Bob" << "/n";
-	std::cout << "3) Charlie" << "/n";
+	for (int i = 0; i < 3; i++) // TODO: Hardcoded, change when using List<T>
+	{
+		std::string this_username = app_->get_current_account()->users[i]->get_username();
+		option((i+1), this_username);
+	}
 }
-
-//char LoginMenu::userList(account* account)
-//{
-//for (int i = 0; i < 3; i++) // TODO: Hardcoded, change when using List<T>
-//{
-//	std::cout << "  " << (i + 1) << ") " << account->users[i]->get_username() << "\n";
-//}
-//return utils::GetCharFromUser();
-//}
 
 bool login_menu::handle_choice(const char choice)
 {
-	const std::string user_name_chosen = app_->accounts[0]->users[0]->get_username();
+	std::string stored_password = "password";//TODO: change to link to stored password for each player
+	switch (choice) {
 
-	switch (choice)
-	{
-	case '1':
+		case '1': // TODO: refine this process
 		{
-			//user 1 chosen
-
-			std::cout << "Enter Password for " << user_name_chosen << ":";
-
-			return true;
-			//app.accounts[0]->users[1] = u2;
+			std::string this_username = app_->get_current_account()->users[0]->get_username();
+			check_password(this_username, stored_password);
 		}
-	case '2':
+	
+			break;
+		case '2': // TODO: refine this process
 		{
-			//user 2 chosen
-			return true;
+			std::string this_username = app_->get_current_account()->users[1]->get_username();
+			login_menu::check_password(this_username, stored_password);
 		}
-	case '3':
+		break;
+		case '3': // TODO: refine this process
 		{
-			//user 2 chosen
-			return true;
+			std::string this_username = app_->get_current_account()->users[2]->get_username();
+			login_menu::check_password(this_username, stored_password);
 		}
-	default: return false;
+		break;
+		default:;
 	}
+	return false;
+}					
+
+
+bool login_menu::check_password(std::string this_username, std::string stored_password) {
+	std::string entered_password;
+	std::cout << "Enter password for " << this_username << ": ";
+	std::cin >> entered_password;
+
+	if (entered_password == stored_password) {
+		
+		app_->login_user(this_username, entered_password);
+		return true;
+	}
+	else 
+	{
+		std::cout << "Password incorrect";
+		return false; //invalid password
+	}
+
 }
