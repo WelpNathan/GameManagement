@@ -31,6 +31,6 @@ private:
 	account* current_account_;
 	user* current_user_;
 	bool user_is_logged_in_ = false;
-
+	bool account_is_logged_in_ = false;
 	void setup_data();
 };

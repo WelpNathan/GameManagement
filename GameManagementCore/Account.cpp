@@ -15,3 +15,8 @@ account::~account()
 	//	delete user;
 	//}
 }
+
+const std::string& account::get_account_name() const
+{
+	return email_;
+}

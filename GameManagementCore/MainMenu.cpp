@@ -1,5 +1,5 @@
 #include "MainMenu.h"
-
+#include "AccountMenu.h"
 #include "LoginMenu.h"
 #include "StoreMenu.h"
 
@@ -45,8 +45,9 @@ bool main_menu::handle_choice(const char choice)
 			}
 			else
 			{
-				//accountMenu thisAccountMenu("LOGIN ACCOUNT", app);
-				login_menu this_login_menu("LOGIN - USER", app_);
+				
+				account_menu this_account_menu("LOGIN - ACCOUNT", app_);
+				
 			}
 		}
 		break;

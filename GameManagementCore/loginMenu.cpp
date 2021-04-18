@@ -18,14 +18,14 @@ void login_menu::output_options()
 bool login_menu::handle_choice(const char choice)
 {
 	std::string stored_password = "password";//TODO: change to link to stored password for each player
+
 	switch (choice) {
 
 		case '1': // TODO: refine this process
 		{
 			std::string this_username = app_->get_current_account()->users[0]->get_username();
-			check_password(this_username, stored_password);
+			login_menu::check_password(this_username, stored_password);		
 		}
-	
 			break;
 		case '2': // TODO: refine this process
 		{
@@ -41,6 +41,7 @@ bool login_menu::handle_choice(const char choice)
 		break;
 		default:;
 	}
+	
 	return false;
 }					
 
@@ -53,6 +54,7 @@ bool login_menu::check_password(std::string this_username, std::string stored_pa
 	if (entered_password == stored_password) {
 		
 		app_->login_user(this_username, entered_password);
+		main_menu this_menu("MAIN MENU", app_);
 		return true;
 	}
 	else 

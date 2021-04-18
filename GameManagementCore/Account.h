@@ -11,6 +11,8 @@ public:
 	~account();
 	List<user*> users;
 
+	const std::string& get_account_name() const;
+
 private:
 	std::string email_;
 	std::string password_;

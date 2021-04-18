@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Menu.h"
+#include "MainMenu.h"
 
 class login_menu final : public menu
 {

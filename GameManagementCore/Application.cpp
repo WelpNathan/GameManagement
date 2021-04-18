@@ -45,7 +45,7 @@ bool application::login_account(const std::string& email, const std::string& pas
 {
 	// TODO: This currently always logs you in as the first account
 	current_account_ = accounts[0];
-
+	account_is_logged_in_ = true;
 	return true;
 }
 
@@ -53,6 +53,7 @@ bool application::login_user(const std::string& username, const std::string& pas
 {
 	current_user_ = current_account_->users[0];
 	log_in();
+	user_is_logged_in_ = true;
 	return true;
 }
 
@@ -104,12 +105,10 @@ void application::setup_data()
 	this->accounts[0]->users.addAtEnd(u1);
 	this->accounts[0]->users.addAtEnd(u2);
 	this->accounts[0]->users.addAtEnd(u3);
-
-	this->login_account("alice@shu.ac.uk", "password"); //TODO: remove this when more accounts are added.
+	//this->login_account("alice@shu.ac.uk", "password"); //TODO: remove this when more accounts are added.
 }
 
 void application::log_in()
 {
 	user_is_logged_in_ = true;
-	current_account_ = accounts[0];
 }
