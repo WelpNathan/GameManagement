@@ -8,4 +8,6 @@ public:
 	profile(const std::string& title, application* app);
 	void output_options() final;
 	bool handle_choice(char choice) final;
+	float purchase_credits(float balance, float add);
+
 };

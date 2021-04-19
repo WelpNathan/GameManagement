@@ -21,8 +21,7 @@ public:
 	bool login_user(int i, const std::string& username, const std::string& password);
 	void logout_user();
 	void logout_account();
-
-	void log_in();
+	bool is_user_admin() const;
 	void log_out();
 
 	List<account*> accounts;

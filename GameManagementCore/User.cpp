@@ -21,3 +21,10 @@ const std::string& user::get_username() const
 const float& user::get_credbalance() const {
 	return credbalance_;
 }
+
+float& user::set_credbalance(float new_balance) {
+
+	//set credbalance as new value
+	credbalance_ = new_balance;
+	return credbalance_;
+}

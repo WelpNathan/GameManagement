@@ -10,6 +10,7 @@ public:
 
 	const std::string& get_username() const;
 	const float& get_credbalance() const;
+	float& set_credbalance(float new_balance);
 
 
 private:

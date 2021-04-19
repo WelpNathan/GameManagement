@@ -25,6 +25,14 @@ bool application::is_account_logged_in() const
 	return current_account_ != nullptr;
 }
 
+bool application::is_user_admin() const
+{
+	if (current_user_ == current_account_->users[0]) {
+		return true;
+	}
+	else { return false; }
+}
+
 
 account* application::get_current_account() const
 {
@@ -114,4 +122,6 @@ void application::setup_data()
 	this->accounts[0]->users.addAtEnd(u3);
 	//this->login_account("alice@shu.ac.uk", "password"); //TODO: remove this when more accounts are added.
 }
+
+
 
