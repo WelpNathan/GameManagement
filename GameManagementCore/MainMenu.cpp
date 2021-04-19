@@ -2,6 +2,7 @@
 #include "AccountMenu.h"
 #include "LoginMenu.h"
 #include "StoreMenu.h"
+#include "Profile.h"
 
 main_menu::main_menu(const std::string& title, application* app) : menu(title, app)
 {
@@ -14,8 +15,11 @@ void main_menu::output_options()
 
 	if (app_->is_user_logged_in())
 	{
-		option('P', "View Profile");
-		option('L', "Logout");
+		std::string this_username = app_->get_current_user()->get_username();
+
+		option('P', "View Profile for " + this_username);
+		
+		option('L', "Logout of " + this_username );
 	}
 	else
 	{
@@ -55,9 +59,10 @@ bool main_menu::handle_choice(const char choice)
 		{
 			if (app_->is_user_logged_in())
 			{
-				blocking_message("Not implemented, press return to continue");
-				// this needs to go to a profile page - similar to StoreMenu
-				// notice the if - this only works if somebody is logged in
+				std::string profile_title = utils::string_to_upper((app_->get_current_user()->get_username())) + "'S PROFILE";;
+
+				profile this_profile(profile_title, app_);
+			
 			}
 		}
 		break;

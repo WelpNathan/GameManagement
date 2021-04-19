@@ -1,21 +1,16 @@
 #include "date.h"
 
-date::date()
-{
-	day = 1, month = 1, year = 1900;
-	//default
-};
 
 
-date::date(const std::string input_date)
+date::date(std::string input_date, int day, int month, int year) 
+	: input_date_(std::move(input_date)), day_(day), month_(month), year_(year)
 {
-	// int Day, Month, Year;
 
 	split_date_string(input_date);
 
-	// day = Day;
-	// month = Month;
-	// year = Year;
+	day = day_;
+	month = month_;
+	year = year_;
 };
 
 
@@ -40,5 +35,17 @@ int date::split_date_string(std::string input_date)
 	const int h = input_date[9];
 	int day = g + h;
 
-	return (year, month, day);
+	return (day, month, year);
+}
+
+const int date::get_day() const{
+	return day_;
+}
+
+const int date::get_month() const {
+	return month_;
+}
+
+const int date::get_year() const {
+	return year_;
 }

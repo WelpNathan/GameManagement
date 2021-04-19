@@ -46,7 +46,7 @@ bool account_menu::handle_choice(const char choice)
 
 bool account_menu::check_password(std::string this_username, std::string stored_password) {
 	std::string entered_password;
-	std::cout << "Enter password for " << this_username << ": ";
+	std::cout << "  Enter password for " << this_username << ": ";
 	std::cin >> entered_password;
 
 	if (entered_password == stored_password) {

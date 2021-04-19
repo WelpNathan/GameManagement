@@ -2,7 +2,7 @@
 
 #include "Admin.h"
 
-application::application() : current_account_(get_current_account()), current_user_(nullptr), user_is_logged_in_(false)
+application::application() : current_account_(get_current_account()), current_user_(get_current_user()), user_is_logged_in_(false)
 {
 	setup_data();
 }
@@ -49,10 +49,10 @@ bool application::login_account(const std::string& email, const std::string& pas
 	return true;
 }
 
-bool application::login_user(const std::string& username, const std::string& password)
+bool application::login_user(int i, const std::string& username, const std::string& password)
 {
-	current_user_ = current_account_->users[0];
-	log_in();
+	// TODO: This currently always logs you in as the first user
+	current_user_ = current_account_->users[i];
 	user_is_logged_in_ = true;
 	return true;
 }
@@ -62,6 +62,13 @@ void application::logout_user()
 {
 	current_user_ = nullptr;
 	user_is_logged_in_ = false;
+}
+
+void application::logout_account()
+
+{
+	current_account_ = nullptr;
+	account_is_logged_in_ = false;
 }
 
 void application::log_out()
@@ -86,9 +93,9 @@ void application::setup_data()
 	store_games.addInFront(new game("Path", "Draw nice shapes between 2 big dots.", 299, 15));
 
 	// Create some users
-	player* u1 = new admin("Alice", "password", "2018-06-16");
-	auto* u2 = new player("Bob", "password", "2018-09-19");
-	auto* u3 = new player("Charlie", "password", "2018-09-24");
+	player* u1 = new admin("Alice", "password", "2018-06-16", 5.00);
+	auto* u2 = new player("Bob", "password", "2018-09-19", 6.00);
+	auto* u3 = new player("Charlie", "password", "2018-09-24", 7.00);
 
 	// With some games in their library
 	u1->library.addAtEnd(new library_item("2018-06-17", store_games[7]));
@@ -108,7 +115,3 @@ void application::setup_data()
 	//this->login_account("alice@shu.ac.uk", "password"); //TODO: remove this when more accounts are added.
 }
 
-void application::log_in()
-{
-	user_is_logged_in_ = true;
-}

@@ -18,8 +18,9 @@ public:
 	store* get_store() const;
 
 	bool login_account(const std::string& email, const std::string& password);
-	bool login_user(const std::string& username, const std::string& password);
+	bool login_user(int i, const std::string& username, const std::string& password);
 	void logout_user();
+	void logout_account();
 
 	void log_in();
 	void log_out();
