@@ -9,6 +9,7 @@ public:
 	virtual ~user();
 
 	const std::string& get_username() const;
+	const std::string& get_password() const;
 	const float& get_credbalance() const;
 	float& set_credbalance(float new_balance);
 

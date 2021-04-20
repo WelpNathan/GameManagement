@@ -28,3 +28,8 @@ float& user::set_credbalance(float new_balance) {
 	credbalance_ = new_balance;
 	return credbalance_;
 }
+
+const std::string& user::get_password() const
+{
+	return password_;
+}

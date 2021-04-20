@@ -22,7 +22,7 @@ void account_menu::output_options()
 bool account_menu::handle_choice(const char choice)
 {
 	std::string stored_password = "password";//TODO: change to link to stored password for each account
-
+	
 	switch (choice) {
 
 	case '1': // TODO: refine this process

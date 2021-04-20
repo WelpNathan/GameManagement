@@ -1,4 +1,4 @@
-#include "LoginMenu.h"
+ #include "LoginMenu.h"
 
 login_menu::login_menu(const std::string& title, application* app) : menu(title, app)
 {
@@ -18,14 +18,13 @@ void login_menu::output_options()
 
 bool login_menu::handle_choice(const char choice)
 {
-	std::string stored_password = "password";//TODO: change to link to stored password for each player
-
 	switch (choice) {
 
 		case '1': 
 		{
 			int i = 0;
 			std::string this_username = app_->get_current_account()->users[i]->get_username();
+			std::string stored_password = app_->get_current_account()->users[i]->get_password();
 			login_menu::check_password(i, this_username, stored_password);		
 		}
 			break;
@@ -33,6 +32,7 @@ bool login_menu::handle_choice(const char choice)
 		{
 			int i = 1;
 			std::string this_username = app_->get_current_account()->users[i]->get_username();
+			std::string stored_password = app_->get_current_account()->users[i]->get_password();
 			login_menu::check_password(i, this_username, stored_password);
 		}
 		break;
@@ -40,6 +40,7 @@ bool login_menu::handle_choice(const char choice)
 		{
 			int i = 2;
 			std::string this_username = app_->get_current_account()->users[i]->get_username();
+			std::string stored_password = app_->get_current_account()->users[i]->get_password();
 			login_menu::check_password(i, this_username, stored_password);
 		}
 		break;
@@ -51,21 +52,22 @@ bool login_menu::handle_choice(const char choice)
 
 
 bool login_menu::check_password(int i, std::string this_username, std::string stored_password) {
+	
+	int count = 0;
 	std::string entered_password;
-	std::cout << "  Enter password for " << this_username << ": ";
-	std::cin >> entered_password;
 
-	if (entered_password == stored_password) {
-		
-		app_->login_user(i, this_username, entered_password);
-		app_->get_current_user();
-		main_menu this_menu("MAIN MENU", app_);
-		return true;
-	}
-	else 
-	{
-		std::cout << "Password incorrect";
-		return false; //invalid password
-	}
+		std::cout << "  Enter password for " << this_username << ": ";
+		std::cin >> entered_password;
 
+		if (entered_password == stored_password) {
+			app_->login_user(i, this_username, entered_password);
+			app_->get_current_user();
+			main_menu this_menu("MAIN MENU", app_);
+			return true;
+		}
+		else
+		{
+			return false; //invalid password
+		}
+	return false;
 }
