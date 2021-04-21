@@ -18,8 +18,8 @@ void main_menu::output_options()
 		std::string this_username = app_->get_current_user()->get_username();
 
 		option('P', "View Profile for " + this_username);
-		
-		option('L', "Logout of " + this_username );
+
+		option('L', "Logout of " + this_username);
 	}
 	else
 	{
@@ -49,9 +49,7 @@ bool main_menu::handle_choice(const char choice)
 			}
 			else
 			{
-				
 				account_menu this_account_menu("LOGIN - ACCOUNT", app_);
-				
 			}
 		}
 		break;
@@ -59,10 +57,10 @@ bool main_menu::handle_choice(const char choice)
 		{
 			if (app_->is_user_logged_in())
 			{
-				std::string profile_title = utils::string_to_upper((app_->get_current_user()->get_username())) + "'S PROFILE";;
+				std::string profile_title = utils::string_to_upper((app_->get_current_user()->get_username())) +
+					"'S PROFILE";
 
 				profile this_profile(profile_title, app_);
-			
 			}
 		}
 		break;

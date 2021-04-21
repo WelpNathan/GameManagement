@@ -12,7 +12,6 @@ profile::profile(const std::string& title, application* app) : menu(title, app)
 
 void profile::output_options()
 {
-	
 	float balance = app_->get_current_user()->get_credbalance();
 	std::cout.precision(2);
 	std::cout.setf(std::ios::fixed);
@@ -30,24 +29,22 @@ void profile::output_options()
 
 	std::cout << "\n\n";
 
-	if (app_->is_user_admin()==true)
+	if (app_->is_user_admin() == true)
 	{
-		std::cout << "  ADMINISTRATOR" <<"\n";
+		std::cout << "  ADMINISTRATOR" << "\n";
 		option('A', "Add new user");
 		option('R', "Remove user");
 		option('G', "Guest per-game access");
 	}
 
 	std::cout << "\n\n";
-
-
 }
 
 bool profile::handle_choice(const char choice)
 {
 	switch (choice)
 	{
-		case 'I':
+	case 'I':
 		{
 			float add = 1.00;
 			float balance = app_->get_current_user()->get_credbalance();
@@ -55,7 +52,7 @@ bool profile::handle_choice(const char choice)
 			balance = new_balance;
 		}
 		break;
-		case 'O':
+	case 'O':
 		{
 			float add = 10.00;
 			float balance = app_->get_current_user()->get_credbalance();
@@ -63,7 +60,7 @@ bool profile::handle_choice(const char choice)
 			balance = new_balance;
 		}
 		break;
-		case 'P':
+	case 'P':
 		{
 			float add = 100.00;
 			float balance = app_->get_current_user()->get_credbalance();
@@ -73,36 +70,37 @@ bool profile::handle_choice(const char choice)
 		break;
 
 		//LIBRARY OPTIONS.
-		
+
 
 		//ADMIN OPTIONS
 		if (app_->is_user_admin() == true)
 		{
-			case 'A':
+		case 'A':
 			{
 				//add new user
 			}
 			break;
-			case 'R':
+		case 'R':
 			{
 				//remove user
 			}
 			break;
-			case 'G':
+		case 'G':
 			{
 				//guest per-game access
 			}
 			break;
 		}
 	}
-	
+
 	return false;
 }
 
 
-float profile::purchase_credits(float balance, float add) {
+float profile::purchase_credits(float balance, float add)
+{
 	std::cout << "  You have chosen to purchase " << add << " credit.";
 	float new_balance = balance + add;
-	float set_new =app_->get_current_user()->set_credbalance(new_balance);
+	float set_new = app_->get_current_user()->set_credbalance(new_balance);
 	return set_new;
 }

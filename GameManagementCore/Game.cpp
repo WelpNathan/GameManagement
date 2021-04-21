@@ -24,3 +24,8 @@ int game::get_cost() const
 {
 	return cost_;
 }
+
+int game::get_rating() const
+{
+	return age_rating_;
+}

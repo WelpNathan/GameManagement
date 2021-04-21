@@ -7,10 +7,9 @@ class login_menu final : public menu
 {
 public:
 	login_menu(const std::string& title, application* app);
-	void output_options() final;
-	bool handle_choice(char choice) final;
+	void output_options();
+	bool handle_choice(char choice);
 	bool check_password(int i, std::string this_username, std::string stored_password);
 
 private:
-	
 };

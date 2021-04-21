@@ -151,6 +151,7 @@
     <ClCompile Include="AccountMenu.cpp" />
     <ClCompile Include="Admin.cpp" />
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Data.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LibraryItem.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="AccountMenu.h" />
     <ClInclude Include="Admin.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Data.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="LibraryItem.h" />
@@ -183,9 +185,6 @@
     <ClInclude Include="StoreMenu.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="Utils.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="data.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

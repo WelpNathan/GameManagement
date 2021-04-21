@@ -6,8 +6,7 @@ class profile final : public menu
 {
 public:
 	profile(const std::string& title, application* app);
-	void output_options() final;
-	bool handle_choice(char choice) final;
+	void output_options();
+	bool handle_choice(char choice);
 	float purchase_credits(float balance, float add);
-
 };

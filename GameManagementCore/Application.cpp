@@ -1,8 +1,11 @@
 #include "Application.h"
 
+#include <iostream>
+
 #include "Admin.h"
 
-application::application() : current_account_(get_current_account()), current_user_(get_current_user()), user_is_logged_in_(false)
+application::application() : current_account_(get_current_account()), current_user_(get_current_user()),
+                             user_is_logged_in_(false)
 {
 	setup_data();
 }
@@ -27,10 +30,11 @@ bool application::is_account_logged_in() const
 
 bool application::is_user_admin() const
 {
-	if (current_user_ == current_account_->users[0]) {
+	if (current_user_ == current_account_->users[0])
+	{
 		return true;
 	}
-	else { return false; }
+	return false;
 }
 
 
@@ -87,18 +91,22 @@ void application::log_out()
 void application::setup_data()
 {
 	store_ = new store();
-	
+	data_ = new data();
+
+	// get stored game memory list
 	auto& store_games = store_->games;
-	// Setup store with some games
-	store_games.addInFront(new game("The Witness", "Explore a nice island and solve puzzles.", 2999, 5));
-	store_games.addInFront(new game("Braid", "A time twisting puzzle game.", 499, 15));
-	store_games.addInFront(new game("Factorio", "Build a complicated factory in space.", 1599, 12));
-	store_games.addInFront(new game("LIMBO", "Watch out for that spider.", 299, 12));
-	store_games.addInFront(new game("INSIDE", "What are those scientists even doing?!", 1299, 15));
-	store_games.addInFront(new game("Portal 2", "Play around with physics. Shoot the moon.", 1999, 15));
-	store_games.addInFront(new game("Half Life 3", "It's never coming out.", 5999, 18));
-	store_games.addInFront(new game("NUVAVULT", "A game where 2D and 3D collide.", 299, 18));
-	store_games.addInFront(new game("Path", "Draw nice shapes between 2 big dots.", 299, 15));
+
+	// loop through data.txt and add games from
+	List<game*> saved_games = data_->get_games();
+	for (int i = 0; i < saved_games.length(); ++i)
+	{
+		const auto new_game = saved_games[i];
+		const std::string& name = new_game->get_name();
+		const std::string& desc = new_game->get_description();
+		const int cost = new_game->get_cost();
+		const int rating = new_game->get_rating();
+		store_games.addInFront(new game(name, desc, cost, rating));
+	}
 
 	// Create some users
 	player* u1 = new admin("Alice", "password", "2018-06-16", 5.00);
@@ -108,10 +116,10 @@ void application::setup_data()
 	// With some games in their library
 	u1->library.addAtEnd(new library_item("2018-06-17", store_games[7]));
 	u1->library.addAtEnd(new library_item("2018-06-18", store_games[1]));
-	
+
 	u2->library.addAtEnd(new library_item("2018-09-19", store_games[2]));
 	u2->library.addAtEnd(new library_item("2018-09-19", store_games[3]));
-	
+
 	u3->library.addAtEnd(new library_item("2018-09-24", store_games[3]));
 	u3->library.addAtEnd(new library_item("2018-09-30", store_games[6]));
 
@@ -122,6 +130,3 @@ void application::setup_data()
 	this->accounts[0]->users.addAtEnd(u3);
 	//this->login_account("alice@shu.ac.uk", "password"); //TODO: remove this when more accounts are added.
 }
-
-
-

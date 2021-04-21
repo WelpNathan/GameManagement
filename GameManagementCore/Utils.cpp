@@ -19,7 +19,7 @@ std::string utils::string_to_upper(std::string data)
 	while (data[i])
 	{
 		char c = data[i];
-		data[i]=(toupper(c));
+		data[i] = (toupper(c));
 		i++;
 	}
 	return data;

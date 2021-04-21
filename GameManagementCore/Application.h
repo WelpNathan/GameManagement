@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Account.h"
+#include "Data.h"
 #include "User.h"
 #include "Store.h"
 
@@ -27,9 +28,10 @@ public:
 	List<account*> accounts;
 
 private:
-	store* store_;
+	store* store_{};
 	account* current_account_;
 	user* current_user_;
+	data* data_;
 	bool user_is_logged_in_ = false;
 	bool account_is_logged_in_ = false;
 	void setup_data();

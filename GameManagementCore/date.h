@@ -12,7 +12,7 @@ public:
 	const int get_year() const;
 
 private:
-	static auto split_date_string(std::string input_date) -> int;
+	static int split_date_string(std::string input_date);
 	std::string input_date_;
 	int day_;
 	int month_;

@@ -11,6 +11,7 @@ public:
 	const std::string& get_name() const;
 	const std::string& get_description() const;
 	int get_cost() const;
+	int get_rating() const;
 private:
 	std::string name_;
 	std::string description_;
