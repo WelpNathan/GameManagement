@@ -29,7 +29,7 @@ std::string utils::string_to_upper(std::string data)
 //recurrsive string to upper
 std::string string_to_upper_rec(std::string data)
 {
-	int len = data.length(); 
+	size_t len = data.length(); 
 
 	if (len != 0)
 	{

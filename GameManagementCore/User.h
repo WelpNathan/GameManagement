@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "ListT.h"
 
 class user
 {
@@ -12,6 +13,7 @@ public:
 	const std::string& get_password() const;
 	const float& get_credbalance() const;
 	float& set_credbalance(float new_balance);
+	//List<player*> players;
 
 private:
 	std::string username_;

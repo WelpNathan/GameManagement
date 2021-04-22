@@ -70,6 +70,7 @@ bool application::login_user(int i, const std::string& username, const std::stri
 {
 	current_user_ = current_account_->users[i];
 	//current_player_;
+	//current_player_ = current_user_->players[i];
 	
 	user_is_logged_in_ = true;
 	return true;

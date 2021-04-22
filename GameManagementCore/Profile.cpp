@@ -26,11 +26,12 @@ void profile::output_options()
 
 	//list of library items
 
-	int library_size = 3; // app_->get_current_player()->library.length();
+
+
+	int library_size = app_->get_current_player()->library.length(); // app_->get_current_player()->library.length();
 	for (int i = 0; i < library_size ; i++)
 	{
-		std::string str = "Game";
-		//std::string this_library_item = "Game" +(i+1); //app_->get_current_player()->library[i]->get_game()->get_name();
+		std::string str = "game" /*app_->get_current_player()->library[i]->get_game()->get_name()*/;
 		option((i + 1), str);
 	}
 	
