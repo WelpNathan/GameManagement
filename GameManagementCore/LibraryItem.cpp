@@ -9,3 +9,8 @@ library_item::library_item(std::string date, game* game)
 
 library_item::~library_item()
 = default;
+
+const game* library_item::get_game() const
+{
+	return game_;
+}

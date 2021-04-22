@@ -48,6 +48,11 @@ user* application::get_current_user() const
 	return current_user_;
 }
 
+player* application::get_current_player()
+{
+	return current_player_;
+}
+
 store* application::get_store() const
 {
 	return store_;
@@ -63,14 +68,14 @@ bool application::login_account(const std::string& email, const std::string& pas
 
 bool application::login_user(int i, const std::string& username, const std::string& password)
 {
-	// TODO: This currently always logs you in as the first user
 	current_user_ = current_account_->users[i];
+	//current_player_;
+	
 	user_is_logged_in_ = true;
 	return true;
 }
 
 void application::logout_user()
-
 {
 	current_user_ = nullptr;
 	user_is_logged_in_ = false;
@@ -128,5 +133,6 @@ void application::setup_data()
 	this->accounts[0]->users.addAtEnd(u1);
 	this->accounts[0]->users.addAtEnd(u2);
 	this->accounts[0]->users.addAtEnd(u3);
-	//this->login_account("alice@shu.ac.uk", "password"); //TODO: remove this when more accounts are added.
 }
+
+

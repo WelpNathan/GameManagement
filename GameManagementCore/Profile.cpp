@@ -22,10 +22,19 @@ void profile::output_options()
 	option('P', "Purchase 100 credits");
 
 
-	std::cout << "\n\n" << "  GAMES";
+	std::cout << "\n\n" << "  GAMES" << "\n";
 
-	//list of library items
+	//list of library items  pseudocode
 
+	int library_size = app_->get_current_player()->library.length();
+
+		int x = 3; //library_list_length
+		for (int i = 0; i < library_size ; i++)
+		{
+			//std::string this_library_item = app_->get_current_player()->library[i]->get_game()->get_name();
+			//option((i + 1), this_library_item);
+		}
+	
 
 	std::cout << "\n\n";
 

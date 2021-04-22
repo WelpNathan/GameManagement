@@ -14,3 +14,6 @@ player::~player()
 	//	delete i;
 	//}
 }
+
+
+

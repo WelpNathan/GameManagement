@@ -15,7 +15,7 @@ public:
 	bool is_user_logged_in() const;
 	account* get_current_account() const;
 	user* get_current_user() const;
-
+	player* get_current_player();
 	store* get_store() const;
 
 	bool login_account(const std::string& email, const std::string& password);
@@ -24,6 +24,7 @@ public:
 	void logout_account();
 	bool is_user_admin() const;
 	void log_out();
+	
 
 	List<account*> accounts;
 
@@ -31,7 +32,8 @@ private:
 	store* store_{};
 	account* current_account_;
 	user* current_user_;
-	data* data_;
+	player* current_player_;
+	data* data_;	
 	bool user_is_logged_in_ = false;
 	bool account_is_logged_in_ = false;
 	void setup_data();

@@ -33,3 +33,8 @@ const std::string& user::get_password() const
 {
 	return password_;
 }
+
+
+
+
+
