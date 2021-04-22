@@ -24,16 +24,15 @@ void profile::output_options()
 
 	std::cout << "\n\n" << "  GAMES" << "\n";
 
-	//list of library items  pseudocode
+	//list of library items
 
-	int library_size = app_->get_current_player()->library.length();
-
-		int x = 3; //library_list_length
-		for (int i = 0; i < library_size ; i++)
-		{
-			//std::string this_library_item = app_->get_current_player()->library[i]->get_game()->get_name();
-			//option((i + 1), this_library_item);
-		}
+	int library_size = 3; // app_->get_current_player()->library.length();
+	for (int i = 0; i < library_size ; i++)
+	{
+		std::string str = "Game";
+		//std::string this_library_item = "Game" +(i+1); //app_->get_current_player()->library[i]->get_game()->get_name();
+		option((i + 1), str);
+	}
 	
 
 	std::cout << "\n\n";
