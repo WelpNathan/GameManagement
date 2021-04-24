@@ -48,11 +48,6 @@ user* application::get_current_user() const
 	return current_user_;
 }
 
-player* application::get_current_player()
-{
-	return current_player_;
-}
-
 store* application::get_store() const
 {
 	return store_;
@@ -69,9 +64,6 @@ bool application::login_account(const std::string& email, const std::string& pas
 bool application::login_user(int i, const std::string& username, const std::string& password)
 {
 	current_user_ = current_account_->users[i];
-	//current_player_;
-	//current_player_ = current_user_->players[i];
-	
 	user_is_logged_in_ = true;
 	return true;
 }
