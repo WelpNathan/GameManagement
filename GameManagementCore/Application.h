@@ -23,12 +23,13 @@ public:
 	bool is_user_admin() const;
 	void log_out();
 	List<account*> accounts;
+	void save();
 
 private:
 	store* store_{};
 	account* current_account_;
 	user* current_user_;
-	data* data_;	
+	data* data_;
 	bool user_is_logged_in_ = false;
 	bool account_is_logged_in_ = false;
 	void setup_data();

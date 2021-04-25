@@ -9,8 +9,8 @@ class store_menu final : public menu
 {
 public:
 	store_menu(const std::string& title, application* app);
-	void output_options();
-	bool handle_choice(char choice);
+	void output_options() override;
+	bool handle_choice(char choice) override;
 private:
 	std::vector<std::string> games = {"Factorio", "The Witness", "INSIDE", "Brothers"};
 };

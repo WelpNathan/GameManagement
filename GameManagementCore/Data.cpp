@@ -127,7 +127,8 @@ List<player*> data::get_players()
 			if (text == "ACCOUNT-PLAYER")
 			{
 				players.addAtEnd(new player(name, password, date, std::stof(credit)));
-			} else
+			}
+			else
 			{
 				players.addAtEnd(new admin(name, password, date, std::stof(credit)));
 			}

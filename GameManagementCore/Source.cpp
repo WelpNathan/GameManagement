@@ -6,5 +6,6 @@ void main()
 	application app;
 	main_menu this_menu("MAIN MENU", &app);
 
-	// TODO: app.Save(); save required data and close data.txt
+	// TODO: fully implement
+	app.save();
 }

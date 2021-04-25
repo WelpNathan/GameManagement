@@ -86,6 +86,11 @@ void application::log_out()
 	user_is_logged_in_ = false;
 }
 
+void application::save()
+{
+	std::cout << "TODO: SAVE APPLICATION DATA.";
+}
+
 void application::setup_data()
 {
 	store_ = new store();
@@ -121,5 +126,3 @@ void application::setup_data()
 		plr->library.addAtEnd(saved_lib_items[i]);
 	}
 }
-
-
