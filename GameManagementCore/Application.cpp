@@ -91,41 +91,35 @@ void application::setup_data()
 	store_ = new store();
 	data_ = new data();
 
-	// get stored game memory list
-	auto& store_games = store_->games;
-
-	// loop through data.txt and add games from
+	// add saved games from data
 	List<game*> saved_games = data_->get_games();
 	for (int i = 0; i < saved_games.length(); ++i)
 	{
-		const auto new_game = saved_games[i];
-		const std::string& name = new_game->get_name();
-		const std::string& desc = new_game->get_description();
-		const int cost = new_game->get_cost();
-		const int rating = new_game->get_rating();
-		store_games.addInFront(new game(name, desc, cost, rating));
+		store_->games.addInFront(saved_games[i]);
 	}
 
-	// Create some users
-	player* u1 = new admin("Alice", "password", "2018-06-16", 5.00);
-	auto* u2 = new player("Bob", "password", "2018-09-19", 6.00);
-	auto* u3 = new player("Charlie", "password", "2018-09-24", 7.00);
+	// add accounts from data
+	List<account*> saved_accounts = data_->get_accounts();
+	for (int i = 0; i < saved_accounts.length(); ++i)
+	{
+		this->accounts.addInFront(saved_accounts[i]);
+	}
 
-	// With some games in their library
-	u1->library.addAtEnd(new library_item("2018-06-17", store_games[7]));
-	u1->library.addAtEnd(new library_item("2018-06-18", store_games[1]));
+	// add players from data
+	List<player*> saved_players = data_->get_players();
+	for (int i = 0; i < saved_players.length(); ++i)
+	{
+		this->accounts[0]->users.addAtEnd(saved_players[i]);
+	}
 
-	u2->library.addAtEnd(new library_item("2018-09-19", store_games[2]));
-	u2->library.addAtEnd(new library_item("2018-09-19", store_games[3]));
-
-	u3->library.addAtEnd(new library_item("2018-09-24", store_games[3]));
-	u3->library.addAtEnd(new library_item("2018-09-30", store_games[6]));
-
-	// Make an account and attach the users
-	this->accounts.addInFront(new account("alice@shu.com", "password", "2018-06-16"));
-	this->accounts[0]->users.addAtEnd(u1);
-	this->accounts[0]->users.addAtEnd(u2);
-	this->accounts[0]->users.addAtEnd(u3);
+	// add library data
+	// TODO: not sure if dynamic_casting actually works?
+	List<library_item*> saved_lib_items = data_->get_library_items();
+	for (int i = 0; i < saved_lib_items.length(); ++i)
+	{
+		auto plr = dynamic_cast<player*>(this->accounts[0]->users[0]);
+		plr->library.addAtEnd(saved_lib_items[i]);
+	}
 }
 
 

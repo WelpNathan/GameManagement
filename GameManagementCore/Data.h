@@ -1,6 +1,7 @@
 #pragma once
 #include <fstream>
 
+#include "Account.h"
 #include "Game.h"
 #include "ListT.h"
 
@@ -10,7 +11,9 @@ public:
 	data();
 	~data();
 	List<game*> get_games();
-	void get_accounts();
+	List<account*> get_accounts();
+	List<player*> get_players();
+	List<library_item*> get_library_items();
 private:
 	std::ofstream filew_;
 	std::ifstream filer_;
