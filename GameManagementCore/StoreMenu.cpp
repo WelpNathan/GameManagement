@@ -7,10 +7,11 @@ store_menu::store_menu(const std::string& title, application* app) : menu(title,
 
 void store_menu::output_options()
 {
-	for (int i = 0; i < games.size(); i++)
+	int game_size = app_->get_store()->games.length();
+	for (int i = 0; i < game_size; i++)
 	{
-		// adding 1 so the display is nicer for the user
-		option(i + 1, games[i]);
+		std::string game_title = app_->get_store()->games[i]->get_name();
+		option(i + 1, game_title);
 	}
 }
 
@@ -20,8 +21,8 @@ bool store_menu::handle_choice(const char choice)
 	// this puts '1' as 0, '2' as 1, '3' as 2, '4' as 3, etc.
 	// this reverses the + 1 above and lets us do the range check below
 	const int index = choice - '1';
-
-	if (index >= 0 && index < games.size())
+	int game_size = app_->get_store()->games.length();
+	if (index >= 0 && index < game_size)
 	{
 		blocking_message("Not implemented, press return to continue");
 		// go to game detail page

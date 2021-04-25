@@ -26,7 +26,7 @@ void profile::output_options()
 
 	//list of library items
 	std::cout << app_->get_current_user(); // library is listed as part of current_user_
-
+	
 
 	std::cout << "\n\n";
 
