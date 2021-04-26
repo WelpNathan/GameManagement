@@ -1,10 +1,7 @@
 #include "Application.h"
-
 #include <iostream>
 
-#include "Admin.h"
-
-application::application() : current_account_(get_current_account()), current_user_(get_current_user()),
+application::application() : current_account_(get_current_account()), current_user_(get_current_user()), 
                              user_is_logged_in_(false)
 {
 	setup_data();
@@ -36,7 +33,6 @@ bool application::is_user_admin() const
 	}
 	return false;
 }
-
 
 account* application::get_current_account() const
 {

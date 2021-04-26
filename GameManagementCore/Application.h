@@ -4,6 +4,7 @@
 #include "Data.h"
 #include "User.h"
 #include "Store.h"
+#include "Admin.h"
 
 class application
 {

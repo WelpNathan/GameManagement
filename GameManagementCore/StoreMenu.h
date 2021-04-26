@@ -12,5 +12,5 @@ public:
 	void output_options() override;
 	bool handle_choice(char choice) override;
 private:
-	//std::vector<std::string> games = {"Factorio", "The Witness", "INSIDE", "Brothers"};
+	
 };
