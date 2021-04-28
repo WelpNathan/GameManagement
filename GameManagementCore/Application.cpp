@@ -85,6 +85,7 @@ void application::log_out()
 void application::save()
 {
 	std::cout << "TODO: SAVE APPLICATION DATA.";
+
 }
 
 void application::setup_data()
