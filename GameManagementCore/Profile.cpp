@@ -25,17 +25,15 @@ void profile::output_options()
 	std::cout << "\n\n" << "  GAMES" << "\n";
 
 	//list of library items
-	user* this_user_ = app_->get_current_user(); //current_user_ memory holds library
+	//user* this_user_ = app_->get_current_user(); //current_user_ memory holds {library}
+	
 
-	
-	
 	//provisional code: to be changed once linked to library[i] list.
-
 	int library_size = 3;
 
 	for (int i = 0; i <= library_size; i++)
 	{
-		std::string this_library_item_title = "Title here";
+		std::string this_library_item_title = "Title";
 		option((i + 1), this_library_item_title);
 	}
 

@@ -2,13 +2,13 @@
 
 #include <string>
 #include "ListT.h"
+#include "LibraryItem.h"
 
 class user
 {
 public:
 	user(std::string, std::string, std::string, float);
 	virtual ~user();
-
 	const std::string& get_username() const;
 	const std::string& get_password() const;
 	const float& get_credbalance() const;
