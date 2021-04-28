@@ -122,3 +122,14 @@ void application::setup_data()
 		plr->library.addAtEnd(saved_lib_items[i]);
 	}
 }
+
+game* application::set_game( int i)
+{
+	game_ = get_store()->games[i];
+	return game_;
+}
+
+game* application::get_game()
+{
+	return game_;
+}

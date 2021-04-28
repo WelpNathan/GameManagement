@@ -21,7 +21,7 @@ bool store_menu::handle_choice(const char choice)
 	int game_size = app_->get_store()->games.length();
 	if (index >= 0 && index < game_size)
 	{
-		std::string gameTitle = app_->get_store()->games[index]->get_name();
+		std::string gameTitle = choice + " " + (app_->set_game(index))->get_name();
 		viewGameMenu this_game(gameTitle, app_);
 	}
 

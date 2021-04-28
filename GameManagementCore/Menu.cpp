@@ -78,7 +78,7 @@ void menu::header() const
 #endif
 
 	std::cout << '\n';
-	std::cout << "  -= " << title_ << " =-  \n";
+	std::cout << "  -= " << utils::string_to_upper(title_) << " =-  \n";
 	std::cout << '\n';
 }
 

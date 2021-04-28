@@ -25,12 +25,15 @@ public:
 	void log_out();
 	List<account*> accounts;
 	void save();
+	game* get_game();
+	game* set_game(int i);
 
 private:
 	store* store_{};
 	account* current_account_;
 	user* current_user_;
 	data* data_;
+	game* game_;
 	bool user_is_logged_in_ = false;
 	bool account_is_logged_in_ = false;
 	void setup_data();

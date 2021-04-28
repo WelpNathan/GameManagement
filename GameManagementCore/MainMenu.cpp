@@ -57,7 +57,7 @@ bool main_menu::handle_choice(const char choice)
 		{
 			if (app_->is_user_logged_in())
 			{
-				std::string profile_title = utils::string_to_upper((app_->get_current_user()->get_username())) +
+				std::string profile_title = (app_->get_current_user()->get_username()) +
 					"'S PROFILE";
 
 				profile this_profile(profile_title, app_);
