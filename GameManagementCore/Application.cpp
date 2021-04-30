@@ -49,6 +49,12 @@ store* application::get_store() const
 	return store_;
 }
 
+player* application::get_current_player() const
+{
+	return current_player_;
+}
+
+
 bool application::login_account(const std::string& email, const std::string& password)
 {
 	// TODO: This currently always logs you in as the first account
@@ -60,6 +66,7 @@ bool application::login_account(const std::string& email, const std::string& pas
 bool application::login_user(int i, const std::string& username, const std::string& password)
 {
 	current_user_ = current_account_->users[i];
+	current_player_ = dynamic_cast<player*>(this->accounts[0]->users[i]);
 	user_is_logged_in_ = true;
 	return true;
 }

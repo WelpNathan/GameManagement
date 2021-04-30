@@ -17,6 +17,9 @@ public:
 	account* get_current_account() const;
 	user* get_current_user() const;
 	store* get_store() const;
+	player* get_current_player() const;
+	game* get_game();
+	game* set_game(int i);
 	bool login_account(const std::string& email, const std::string& password);
 	bool login_user(int i, const std::string& username, const std::string& password);
 	void logout_user();
@@ -25,8 +28,8 @@ public:
 	void log_out();
 	List<account*> accounts;
 	void save();
-	game* get_game();
-	game* set_game(int i);
+
+	
 
 private:
 	store* store_{};
@@ -34,6 +37,7 @@ private:
 	user* current_user_;
 	data* data_;
 	game* game_;
+	player* current_player_;
 	bool user_is_logged_in_ = false;
 	bool account_is_logged_in_ = false;
 	void setup_data();
