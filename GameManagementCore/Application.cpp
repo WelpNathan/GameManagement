@@ -122,7 +122,6 @@ void application::setup_data()
 	}
 
 	// add library data
-	// TODO: not sure if dynamic_casting actually works?
 	List<library_item*> saved_lib_items = data_->get_library_items();
 	for (int i = 0; i < saved_lib_items.length(); ++i)
 	{
@@ -131,7 +130,7 @@ void application::setup_data()
 	}
 }
 
-game* application::set_game( int i)
+game* application::set_game(int i)
 {
 	game_ = get_store()->games[i];
 	return game_;

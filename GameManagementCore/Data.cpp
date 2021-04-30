@@ -3,11 +3,6 @@
 #include <fstream>
 #include <iostream>
 
-#include "Account.h"
-#include "Admin.h"
-#include "Game.h"
-#include "ListT.h"
-#include "Player.h"
 
 /*
  * Data information
@@ -70,7 +65,6 @@ List<game*> data::get_games()
 			games.addAtEnd(new game(name, desc, cost, rating));
 		}
 	}
-
 	return games;
 }
 
@@ -158,8 +152,13 @@ List<library_item*> data::get_library_items()
 			std::getline(filer_, index);
 			std::getline(filer_, date);
 			std::getline(filer_, time_played);
+			
+			//game* this_game = game[index];
+			int index_ = utils::string_to_int(index);
+			int time_played_ = utils::string_to_int(time_played);
+			game* this_game = (get_games())[index_];
 
-			lib_items.addAtEnd(new library_item(date, nullptr));
+			lib_items.addAtEnd(new library_item(date, this_game, time_played_));
 		}
 	}
 

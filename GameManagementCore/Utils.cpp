@@ -26,7 +26,6 @@ std::string utils::string_to_upper(std::string data)
 	return data;
 }
 
-
 //recurrsive string to upper
 std::string string_to_upper_rec(std::string data)
 {
@@ -35,10 +34,16 @@ std::string string_to_upper_rec(std::string data)
 	if (len != 0)
 	{
 		char thisChar = toupper(data[0]);
-
 		std::string rest = data.substr(1);
 		data[0] = thisChar;
 		return data[0] + string_to_upper_rec(rest);
 	}
 	return data;
 }
+
+int utils::string_to_int(std::string input)
+{
+	int output = stoi(input);
+	return output;
+}
+

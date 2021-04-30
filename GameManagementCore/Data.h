@@ -2,8 +2,12 @@
 #include <fstream>
 
 #include "Account.h"
+#include "Admin.h"
 #include "Game.h"
 #include "ListT.h"
+#include "Player.h"
+#include "Utils.h"
+
 
 class data
 {
