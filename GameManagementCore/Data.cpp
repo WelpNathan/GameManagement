@@ -95,6 +95,7 @@ List<account*> data::get_accounts()
 	return accounts;
 }
 
+
 List<player*> data::get_players()
 {
 	filer_.clear();
@@ -111,57 +112,84 @@ List<player*> data::get_players()
 			std::string name;
 			std::string password;
 			std::string credit;
+			std::string text_;
 
 			// set name and description
 			std::getline(filer_, date);
 			std::getline(filer_, name);
 			std::getline(filer_, password);
 			std::getline(filer_, credit);
-
+			std::getline(filer_, text_);
 			if (text == "ACCOUNT-PLAYER")
 			{
-				players.addAtEnd(new player(name, password, date, std::stof(credit)));
+				//create player
+				player* this_player = new player(name, password, date, std::stof(credit));
+
+				//add library items
+				List<library_item*> lib_items;
+				while (text_ == "LIBRARY-ITEM")
+				{
+					std::string index;
+					std::string date_;
+					std::string time_played;
+
+					// set name and description
+					std::getline(filer_, index);
+					std::getline(filer_, date_);
+					std::getline(filer_, time_played);
+
+					int index_ = utils::string_to_int(index);
+					int time_played_ = utils::string_to_int(time_played);
+
+					lib_items.addAtEnd(new library_item(date_, index_, time_played_));
+					std::getline(filer_, text_);
+				}
+				//link library items to this player:
+				List<library_item*> saved_lib_items = lib_items;
+
+				for (int i = 0; i < saved_lib_items.length(); ++i)
+				{
+					auto plr = dynamic_cast<player*>(this_player);
+					plr->library.addAtEnd(saved_lib_items[i]);
+				}
+				players.addAtEnd(this_player);
 			}
 			else
 			{
-				players.addAtEnd(new admin(name, password, date, std::stof(credit)));
+				//create admin player
+				admin* this_admin = new admin(name, password, date, std::stof(credit));
+
+				//add library items
+				List<library_item*> lib_items;
+				while (text_ == "LIBRARY-ITEM")
+				{
+					std::string index;
+					std::string date_;
+					std::string time_played;
+
+					// set name and description
+					std::getline(filer_, index);
+					std::getline(filer_, date_);
+					std::getline(filer_, time_played);
+
+					int index_ = utils::string_to_int(index);
+					int time_played_ = utils::string_to_int(time_played);
+
+					lib_items.addAtEnd(new library_item(date_, index_, time_played_));
+					std::getline(filer_, text_);
+				}
+				//link library items to this player:
+				List<library_item*> saved_lib_items = lib_items;
+
+				for (int i = 0; i < saved_lib_items.length(); ++i)
+				{
+					auto plr = dynamic_cast<player*>(this_admin);
+					plr->library.addAtEnd(saved_lib_items[i]);
+				}
+				players.addAtEnd(this_admin);
 			}
 		}
 	}
-
 	return players;
-}
-
-List<library_item*> data::get_library_items()
-{
-	filer_.clear();
-	filer_.seekg(0);
-
-	List<library_item*> lib_items;
-
-	std::string text;
-	while (std::getline(filer_, text))
-	{
-		if (text == "LIBRARY-ITEM")
-		{
-			std::string index;
-			std::string date;
-			std::string time_played;
-
-			// set name and description
-			std::getline(filer_, index);
-			std::getline(filer_, date);
-			std::getline(filer_, time_played);
-
-			//game* this_game = game[index];
-			int index_ = utils::string_to_int(index);
-			int time_played_ = utils::string_to_int(time_played);
-
-			lib_items.addAtEnd(new library_item(date, index_, time_played_));
-		
-		}
-	}
-
-	return lib_items;
 }
 

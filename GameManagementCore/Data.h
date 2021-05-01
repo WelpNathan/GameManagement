@@ -17,7 +17,7 @@ public:
 	List<game*> get_games();
 	List<account*> get_accounts();
 	List<player*> get_players();
-	List<library_item*> get_library_items();
+	List<admin*> data::get_admins();
 private:
 	std::ofstream filew_;
 	std::ifstream filer_;

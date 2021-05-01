@@ -114,31 +114,11 @@ void application::setup_data()
 		this->accounts.addInFront(saved_accounts[i]);
 	}
 
-	// add players from data
+	// add players from data (with library items)
 	List<player*> saved_players = data_->get_players();
 	for (int i = 0; i < saved_players.length(); ++i)
 	{
 		this->accounts[0]->users.addAtEnd(saved_players[i]);
-	}
-
-	// add library data
-	List<library_item*> saved_lib_items = data_->get_library_items();
-
-	int x = 0; //account index
-	int y = 0; //user index
-	int acc_ind = this->accounts.length()-1;
-	int us_ind = this->accounts[x]->users.length()-1;
-	
-	for (x = 0; x <= acc_ind; x++)
-	{
-		for (y = 0; y <= us_ind; y++)
-		{
-			for (int i = 0; i < saved_lib_items.length(); ++i)
-			{
-				auto plr = dynamic_cast<player*>(this->accounts[x]->users[y]);
-				plr->library.addAtEnd(saved_lib_items[i]);
-			}
-		}
 	}
 }
 
