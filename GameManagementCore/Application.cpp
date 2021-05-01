@@ -123,10 +123,22 @@ void application::setup_data()
 
 	// add library data
 	List<library_item*> saved_lib_items = data_->get_library_items();
-	for (int i = 0; i < saved_lib_items.length(); ++i)
+
+	int x = 0; //account index
+	int y = 0; //user index
+	int acc_ind = this->accounts.length()-1;
+	int us_ind = this->accounts[x]->users.length()-1;
+	
+	for (x = 0; x <= acc_ind; x++)
 	{
-		auto plr = dynamic_cast<player*>(this->accounts[0]->users[0]);
-		plr->library.addAtEnd(saved_lib_items[i]);
+		for (y = 0; y <= us_ind; y++)
+		{
+			for (int i = 0; i < saved_lib_items.length(); ++i)
+			{
+				auto plr = dynamic_cast<player*>(this->accounts[x]->users[y]);
+				plr->library.addAtEnd(saved_lib_items[i]);
+			}
+		}
 	}
 }
 
