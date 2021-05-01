@@ -114,12 +114,25 @@ void application::setup_data()
 		this->accounts.addAtEnd(saved_accounts[i]);
 	}
 
-	// add players from data (with library items)
+	// add players from data (with library items) and admin (with library items) into users[]
 	List<player*> saved_players = data_->get_players();
 	for (int i = 0; i < saved_players.length(); ++i)
 	{
-		this->accounts[0]->users.addAtEnd(saved_players[i]);
+		if (i == 0)
+		{
+			admin* ad = create_admin(saved_players);
+			this->accounts[0]->users.addInFront(ad);
+		}
+		else { this->accounts[0]->users.addAtEnd(saved_players[i]); }
 	}
+}
+
+admin* application::create_admin(List<player*> saved_players)
+{
+	admin* this_admin = new admin(saved_players[0]->get_username(), saved_players[0]->get_password(), 
+			saved_players[0]->get_created_date(),saved_players[0]->get_credbalance());	
+	
+	return this_admin;
 }
 
 game* application::set_game(int i)

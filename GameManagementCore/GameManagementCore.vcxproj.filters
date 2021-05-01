@@ -19,6 +19,12 @@
     <Filter Include="Source Files\User">
       <UniqueIdentifier>{eb2ce069-f216-4bb9-b2c5-e1a1fcdc69d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Admin">
+      <UniqueIdentifier>{5595d271-483e-4d2f-aebf-73d75dd1fb0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Admin">
+      <UniqueIdentifier>{94018570-b808-4125-8e7d-96d16ba6201b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -78,6 +84,9 @@
     <ClCompile Include="viewGameMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AddUserMenu.cpp">
+      <Filter>Source Files\Admin</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User.h">
@@ -136,6 +145,9 @@
     </ClInclude>
     <ClInclude Include="viewGameMenu.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AddUserMenu.h">
+      <Filter>Header Files\Admin</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

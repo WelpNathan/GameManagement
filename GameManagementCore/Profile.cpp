@@ -23,11 +23,8 @@ void profile::output_options()
 
 
 	std::cout << "\n\n" << "  GAMES" << "\n";
-
 	//list of library items
-
 	int len = (app_->get_current_player()->library.length())-1;
-
 
 	for (int i = 0; i <= len; i++)
 	{
@@ -38,7 +35,7 @@ void profile::output_options()
 		option((i + 1), this_library_item_title);
 	}
 
-	std::cout << "\n\n";
+	std::cout << "\n";
 
 	if (app_->is_user_admin() == true)
 	{

@@ -20,6 +20,7 @@ public:
 	player* get_current_player() const;
 	game* get_game();
 	game* set_game(int i);
+	admin* application::create_admin(List<player*> saved_players);
 	bool login_account(const std::string& email, const std::string& password);
 	bool login_user(int i, const std::string& username, const std::string& password);
 	void logout_user();
@@ -29,13 +30,12 @@ public:
 	List<account*> accounts;
 	void save();
 
-	
-
 private:
 	store* store_{};
 	account* current_account_;
 	user* current_user_;
 	data* data_;
+	admin* this_admin;
 	game* game_;
 	player* current_player_;
 	bool user_is_logged_in_ = false;

@@ -11,12 +11,13 @@ public:
 	virtual ~user();
 	const std::string& get_username() const;
 	const std::string& get_password() const;
+	const std::string& user::get_created_date() const;
 	const float& get_credbalance() const;
 	float& set_credbalance(float new_balance);
 
 private:
 	std::string username_;
 	std::string password_;
-	std::string created_;
+	std::string created_date_;
 	float credbalance_;
 };
