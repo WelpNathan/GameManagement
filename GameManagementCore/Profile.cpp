@@ -33,11 +33,8 @@ void profile::output_options()
 	{
 		int index = app_->get_current_player()->library[i]->get_index();
 		game* this_game = app_->set_game(index);
-		
 		std::string this_library_item_title = this_game->get_name();
 		app_->get_current_player()->library[i];
-			
-		
 		option((i + 1), this_library_item_title);
 	}
 
@@ -56,6 +53,16 @@ void profile::output_options()
 
 bool profile::handle_choice(const char choice)
 {
+	//LIBRARY OPTIONS
+	const int index = app_->get_current_player()->library[choice - '1']->get_index();
+	int game_size = app_->get_store()->games.length();
+	if (index >= 0 && index < game_size)
+	{
+		std::string gameTitle = choice + " " + (app_->set_game(index))->get_name();
+		viewGameMenu this_game(gameTitle, app_);
+	}
+
+	//PURCHASE CREDITS
 	switch (choice)
 	{
 	case 'I':
@@ -82,9 +89,6 @@ bool profile::handle_choice(const char choice)
 			balance = new_balance;
 		}
 		break;
-
-		//LIBRARY OPTIONS.
-
 
 		//ADMIN OPTIONS
 		if (app_->is_user_admin() == true)

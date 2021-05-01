@@ -104,14 +104,14 @@ void application::setup_data()
 	List<game*> saved_games = data_->get_games();
 	for (int i = 0; i < saved_games.length(); ++i)
 	{
-		store_->games.addInFront(saved_games[i]);
+		store_->games.addAtEnd(saved_games[i]);
 	}
 
 	// add accounts from data
 	List<account*> saved_accounts = data_->get_accounts();
 	for (int i = 0; i < saved_accounts.length(); ++i)
 	{
-		this->accounts.addInFront(saved_accounts[i]);
+		this->accounts.addAtEnd(saved_accounts[i]);
 	}
 
 	// add players from data (with library items)
