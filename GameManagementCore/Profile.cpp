@@ -31,7 +31,13 @@ void profile::output_options()
 
 	for (int i = 0; i <= len; i++)
 	{
-		std::string this_library_item_title = app_->get_current_player()->library[i]->get_game()->get_name();
+		int index = app_->get_current_player()->library[i]->get_index();
+		game* this_game = app_->set_game(index);
+		
+		std::string this_library_item_title = this_game->get_name();
+		app_->get_current_player()->library[i];
+			
+		
 		option((i + 1), this_library_item_title);
 	}
 
