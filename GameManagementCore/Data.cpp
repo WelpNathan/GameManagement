@@ -88,7 +88,12 @@ List<account*> data::get_accounts()
 			std::getline(filer_, email);
 			std::getline(filer_, password);
 
-			accounts.addAtEnd(new account(email, password, date_));
+			day_ = split_date_string_day(date_);
+			month_ = split_date_string_month(date_);
+			year_ = split_date_string_year(date_);
+			date* this_date = new date(day_, month_, year_);
+
+			accounts.addAtEnd(new account(email, password, this_date));
 		}
 	}
 
@@ -109,31 +114,35 @@ List<player*> data::get_players()
 
 	while (std::getline(filer_, text))
 	{
-		std::string date;
+		std::string date_;
 		std::string name;
 		std::string password;
 		std::string credit;
 
 		if (player_count == 1)
 		{
-			date = text;
+			date_ = text;
 			text = next_;
-
 		}
 		if (text == "ACCOUNT-PLAYER")
 		{
 			// set name and description
 			if (player_count ==0 || player_count == 2 )
 			{
-				std::getline(filer_, date);
+				std::getline(filer_, date_);
 			}
 			std::getline(filer_, name);
 			std::getline(filer_, password);
 			std::getline(filer_, credit);
 			std::getline(filer_, next_);
 
+			day_ = split_date_string_day(date_);
+			month_ = split_date_string_month(date_);
+			year_ = split_date_string_year(date_);
+			date* this_date = new date(day_, month_, year_);
+
 			//create player
-			player* this_player = new player(name, password, date, std::stof(credit));
+			player* this_player = new player(name, password, this_date, std::stof(credit));
 
 			//add library items
 			List<library_item*> lib_items;
@@ -150,8 +159,12 @@ List<player*> data::get_players()
 
 				int index_ = utils::string_to_int(index);
 				int time_played_ = utils::string_to_int(time_played);
+				day_ = split_date_string_day(date_);
+				month_ = split_date_string_month(date_);
+				year_ = split_date_string_year(date_);
+				date* this_date = new date(day_, month_, year_);
 
-				lib_items.addAtEnd(new library_item(date_, index_, time_played_));
+				lib_items.addAtEnd(new library_item(this_date, index_, time_played_));
 				std::getline(filer_, next_);
 			}
 			//link library items to this player:
@@ -169,7 +182,7 @@ List<player*> data::get_players()
 	return players;
 }
 
-int data::split_date_string(std::string input_date)
+int data::split_date_string_year(std::string input_date)
 {
 	//places 0-3 = year
 	const int a = input_date[0] * 1000;
@@ -177,18 +190,23 @@ int data::split_date_string(std::string input_date)
 	const int c = input_date[2] * 10;
 	const int d = input_date[3];
 
-	int year = a + b + c + d;
-
+	int year_ = a + b + c + d;
+	return year_;
+}
+int data::split_date_string_month(std::string input_date)
+{
 	//places 5 and 6 = month
-
 	const int e = input_date[5] * 10;
 	const int f = input_date[6];
 	int month = e + f;
-	//places 8 and 9 = day
+	return month_;
+}
 
+int data::split_date_string_day(std::string input_date)
+{
+	//places 8 and 9 = day
 	const int g = input_date[8] * 10;
 	const int h = input_date[9];
 	int day = g + h;
-
-	return (day, month, year);
+	return day_;
 }

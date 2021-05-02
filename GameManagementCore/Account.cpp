@@ -2,8 +2,8 @@
 
 #include <utility>
 
-account::account(std::string email, std::string password, std::string created)
-	: email_(std::move(email)), password_(std::move(password)), created_(std::move(created))
+account::account(std::string email, std::string password, date* created)
+	: email_(std::move(email)), password_(std::move(password)), created_(created)
 {
 }
 

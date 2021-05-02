@@ -2,8 +2,8 @@
 
 #include <utility>
 
-library_item::library_item(std::string date,int index, int play_time)
-	: index_(index), purchased_(std::move(date)), played_(play_time)
+library_item::library_item(date* date,int index, int play_time)
+	: index_(index), purchased_(date), played_(play_time)
 {
 
 }
@@ -17,7 +17,7 @@ const int library_item::get_index() const
 	return index_;
 }
 
-const std::string library_item::get_purchased_date() const
+const date* library_item::get_purchased_date() const
 {
 	return purchased_;
 }

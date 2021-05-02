@@ -129,9 +129,12 @@ void application::setup_data()
 
 admin* application::create_admin(List<player*> saved_players)
 {
-	admin* this_admin = new admin(saved_players[0]->get_username(), saved_players[0]->get_password(), 
-			saved_players[0]->get_created_date(),saved_players[0]->get_credbalance());	
+	std::string password = saved_players[0]->get_password();
+	std::string username = saved_players[0]->get_username();
+	date* created = saved_players[0]->get_created_date();
+	float credbalance = saved_players[0]->get_credbalance();
 	
+	admin* this_admin = new admin(username, password, created, credbalance);
 	return this_admin;
 }
 

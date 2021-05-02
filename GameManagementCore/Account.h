@@ -8,7 +8,7 @@
 class account
 {
 public:
-	account(std::string, std::string, std::string);
+	account(std::string, std::string, date*);
 	~account();
 	List<user*> users;
 
@@ -17,5 +17,5 @@ public:
 private:
 	std::string email_;
 	std::string password_;
-	std::string created_; // TODO: replace with custom Date class, currently YYYY-MM-DD
+	date* created_;
 };

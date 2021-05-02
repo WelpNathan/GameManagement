@@ -3,21 +3,22 @@
 #include <string>
 #include "ListT.h"
 #include "LibraryItem.h"
+#include "Date.h"
 
 class user
 {
 public:
-	user(std::string, std::string, std::string, float);
+	user(std::string, std::string, date*, float);
 	virtual ~user();
 	const std::string& get_username() const;
 	const std::string& get_password() const;
-	const std::string& user::get_created_date() const;
+	date* user::get_created_date();
 	const float& get_credbalance() const;
 	float& set_credbalance(float new_balance);
 
 private:
 	std::string username_;
 	std::string password_;
-	std::string created_date_;
+	date* created_date_;
 	float credbalance_;
 };
