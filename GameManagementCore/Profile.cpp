@@ -51,18 +51,21 @@ void profile::output_options()
 bool profile::handle_choice(const char choice)
 {
 	//LIBRARY OPTIONS
-	const int index = app_->get_current_player()->library[choice - '1']->get_index();
-	int game_size = app_->get_store()->games.length();
-	if (index >= 0 && index < game_size)
+	if (utils::char_is_num(choice) == true)
 	{
-		std::string gameTitle = choice + " " + (app_->set_game(index))->get_name();
-		viewGameMenu this_game(gameTitle, app_);
+		const int index = app_->get_current_player()->library[choice - '1']->get_index();
+		int game_size = app_->get_store()->games.length();
+		if (index >= 0 && index < game_size)
+		{
+			std::string gameTitle = choice + " " + (app_->set_game(index))->get_name();
+			viewGameMenu this_game(gameTitle, app_);
+		}
 	}
-
-	//PURCHASE CREDITS
-	switch (choice)
-	{
-	case 'I':
+	else {
+		//PURCHASE CREDITS
+		switch (choice)
+		{
+		case 'I':
 		{
 			float add = 1.00;
 			float balance = app_->get_current_user()->get_credbalance();
@@ -70,7 +73,7 @@ bool profile::handle_choice(const char choice)
 			balance = new_balance;
 		}
 		break;
-	case 'O':
+		case 'O':
 		{
 			float add = 10.00;
 			float balance = app_->get_current_user()->get_credbalance();
@@ -78,7 +81,7 @@ bool profile::handle_choice(const char choice)
 			balance = new_balance;
 		}
 		break;
-	case 'P':
+		case 'P':
 		{
 			float add = 100.00;
 			float balance = app_->get_current_user()->get_credbalance();
@@ -91,20 +94,21 @@ bool profile::handle_choice(const char choice)
 		if (app_->is_user_admin() == true)
 		{
 		case 'A':
-			{
-				//add new user
-			}
-			break;
+		{
+			add_new_user();
+		}
+		break;
 		case 'R':
-			{
-				//remove user
-			}
-			break;
+		{
+			//remove user
+		}
+		break;
 		case 'G':
-			{
-				//guest per-game access
-			}
-			break;
+		{
+			//guest per-game access
+		}
+		break;
+		}
 		}
 	}
 
@@ -118,4 +122,44 @@ float profile::purchase_credits(float balance, float add)
 	float new_balance = balance + add;
 	float set_new = app_->get_current_user()->set_credbalance(new_balance);
 	return set_new;
+}
+
+void profile::add_new_user()
+{
+	std::string username_;
+	std::string password_;
+	char answer;
+	bool confirm_user = false;
+
+	while (confirm_user == false)
+	{
+		std::cout << "\n" << "  Enter username for new User: ";
+		std::cin >> username_;
+
+		std::cout << "\n" << "  Enter password for new User: ";
+		std::cin >> password_;
+
+		std::cout << "\n" << "  Are you sure you want to create this new user? >>";
+		std::cin >> answer;
+		if (answer == 'y' || answer == 'Y')
+		{
+			//create user;
+			player* this_player = new player(username_, password_, "01-05-2021", 0.00);
+			app_->get_current_account()->users.addAtEnd(this_player);
+			std::cout << "  New user " << username_ << " has now been created";
+			confirm_user = true;
+		}
+	}
+}
+
+date* profile::get_date_created()
+{
+	std::string date_as_string = "01-05-2021";
+	int day = 1;
+	int month = 5;
+	int year = 2021; //TODO: ammend these values to link to todays day, month and year;
+
+	date* todays_date = new date(day, month, year);
+
+	return todays_date;
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Menu.h"
+#include <ctime>
 
 class profile final : public menu
 {
@@ -9,4 +10,9 @@ public:
 	void output_options() override;
 	bool handle_choice(char choice) override;
 	float purchase_credits(float balance, float add);
+	date* get_date_created();
+	void add_new_user();
+
+private:
+	//date* created_date;
 };

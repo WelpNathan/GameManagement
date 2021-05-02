@@ -149,7 +149,6 @@
   <ItemGroup>
     <ClCompile Include="Account.cpp" />
     <ClCompile Include="AccountMenu.cpp" />
-    <ClCompile Include="AddUserMenu.cpp" />
     <ClCompile Include="Admin.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Data.cpp" />
@@ -171,7 +170,6 @@
   <ItemGroup>
     <ClInclude Include="Account.h" />
     <ClInclude Include="AccountMenu.h" />
-    <ClInclude Include="AddUserMenu.h" />
     <ClInclude Include="Admin.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Data.h" />

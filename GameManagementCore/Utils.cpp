@@ -47,3 +47,12 @@ int utils::string_to_int(std::string input)
 	return output;
 }
 
+bool utils::char_is_num(char c)
+{
+	if (isdigit(c))
+	{
+		return true;
+	}
+	return false;
+}
+
