@@ -13,6 +13,7 @@ public:
 	List<user*> users;
 
 	const std::string& get_account_name() const;
+	const std::string& get_account_password() const;
 
 private:
 	std::string email_;

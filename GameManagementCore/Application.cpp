@@ -55,10 +55,9 @@ player* application::get_current_player() const
 }
 
 
-bool application::login_account(const std::string& email, const std::string& password)
+bool application::login_account(int i, const std::string& email, const std::string& password)
 {
-	// TODO: This currently always logs you in as the first account
-	current_account_ = accounts[0];
+	current_account_ = accounts[i];
 	account_is_logged_in_ = true;
 	return true;
 }

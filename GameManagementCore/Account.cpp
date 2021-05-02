@@ -20,3 +20,8 @@ const std::string& account::get_account_name() const
 {
 	return email_;
 }
+
+const std::string& account::get_account_password() const
+{
+	return password_;
+}
