@@ -29,6 +29,7 @@ public:
 	void log_out();
 	List<account*> accounts;
 	void save();
+	int get_game_index(game* this_game);
 
 private:
 	store* store_{};
@@ -41,4 +42,5 @@ private:
 	bool user_is_logged_in_ = false;
 	bool account_is_logged_in_ = false;
 	void setup_data();
+	int index_;
 };

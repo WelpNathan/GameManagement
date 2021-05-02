@@ -29,3 +29,5 @@ int game::get_rating() const
 {
 	return age_rating_;
 }
+
+

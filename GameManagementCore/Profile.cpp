@@ -24,9 +24,9 @@ void profile::output_options()
 
 	std::cout << "\n\n" << "  GAMES" << "\n";
 	//list of library items
-	int len = (app_->get_current_player()->library.length())-1;
+	int len = (app_->get_current_player()->library.length());
 
-	for (int i = 0; i <= len; i++)
+	for (int i = 0; i < len; i++)
 	{
 		int index = app_->get_current_player()->library[i]->get_index();
 		game* this_game = app_->set_game(index);
@@ -35,7 +35,7 @@ void profile::output_options()
 		option((i + 1), this_library_item_title);
 	}
 
-	std::cout << "\n";
+	std::cout << "\n\n";
 
 	if (app_->is_user_admin() == true)
 	{
@@ -89,7 +89,7 @@ bool profile::handle_choice(const char choice)
 			balance = new_balance;
 		}
 		break;
-
+		
 		//ADMIN OPTIONS
 		if (app_->is_user_admin() == true)
 		{
@@ -144,7 +144,7 @@ void profile::add_new_user()
 		if (answer == 'y' || answer == 'Y')
 		{
 			//create user;
-			player* this_player = new player(username_, password_, "01-05-2021", 0.00);
+			player* this_player = new player(username_, password_, get_date_created(), 0.00);
 			app_->get_current_account()->users.addAtEnd(this_player);
 			std::cout << "  New user " << username_ << " has now been created";
 			confirm_user = true;
@@ -154,7 +154,7 @@ void profile::add_new_user()
 
 date* profile::get_date_created()
 {
-	std::string date_as_string = "01-05-2021";
+	char* asctime(const struct tm* time);
 	int day = 1;
 	int month = 5;
 	int year = 2021; //TODO: ammend these values to link to todays day, month and year;

@@ -17,7 +17,7 @@ const int library_item::get_index() const
 	return index_;
 }
 
-const date* library_item::get_purchased_date() const
+date* library_item::get_purchased_date()
 {
 	return purchased_;
 }

@@ -133,8 +133,24 @@ admin* application::create_admin(List<player*> saved_players)
 	std::string username = saved_players[0]->get_username();
 	date* created = saved_players[0]->get_created_date();
 	float credbalance = saved_players[0]->get_credbalance();
-	
 	admin* this_admin = new admin(username, password, created, credbalance);
+
+	//add admin's library items
+	List<library_item*> lib_items;
+	for (int i = 0; i < (saved_players[0]->library.length()); i++)
+	{
+		int index = saved_players[0]->library[i]->get_index();
+		int played_time = saved_players[0]->library[i]->get_played_time();
+		date* purchased = saved_players[0]->library[i]->get_purchased_date();
+		lib_items.addAtEnd(new library_item(purchased, index, played_time));
+	}
+	//link library items to admin/player
+	List<library_item*> saved_lib_items = lib_items;
+	for (int i = 0; i < saved_lib_items.length(); ++i)
+	{
+		auto plr = dynamic_cast<admin*>(this_admin);
+		plr->library.addAtEnd(saved_lib_items[i]);
+	}
 	return this_admin;
 }
 
@@ -147,4 +163,24 @@ game* application::set_game(int i)
 game* application::get_game()
 {
 	return game_;
+}
+
+int application::get_game_index(game* this_game)
+{
+	int len = this->get_store()->games.length();
+	std::string this_game_name = this_game->get_name();
+	index_ = 0;
+	for (int i = 0; i < len; i++)
+	{
+		std::string store_game_name = this->get_store()->games[i]->get_name();
+		if (this_game_name == store_game_name)
+		{
+			index_ = i;
+		}
+		else
+		{
+			index_ = 0;
+		}
+	}
+	return index_;
 }
