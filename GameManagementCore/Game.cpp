@@ -2,8 +2,8 @@
 
 #include <utility>
 
-game::game(std::string name, std::string desc, const int cost, const int rating)
-	: name_(std::move(name)), description_(std::move(desc)), cost_(cost), age_rating_(rating)
+game::game(std::string name, std::string desc, const int cost, const int rating, const int id)
+	: name_(std::move(name)), description_(std::move(desc)), cost_(cost), age_rating_(rating), id_(id)
 {
 }
 
@@ -28,6 +28,11 @@ int game::get_cost() const
 int game::get_rating() const
 {
 	return age_rating_;
+}
+
+int game::get_id() const
+{
+	return id_;
 }
 
 

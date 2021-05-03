@@ -10,6 +10,7 @@ public:
 	const int get_day() const;
 	const int get_month() const;
 	const int get_year() const;
+	const std::string get_formatted() const;
 
 private:
 	int day_;

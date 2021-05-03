@@ -31,13 +31,14 @@ List<game*> data::get_games()
 	{
 		if (text == "GAME")
 		{
+			std::string temp_index;
 			std::string name;
 			std::string desc;
 			std::string cost_temp;
 			std::string rating_temp;
 
 			// remove index
-			std::getline(filer_, text);
+			std::getline(filer_, temp_index);
 
 			// set name and description
 			std::getline(filer_, name);
@@ -48,10 +49,11 @@ List<game*> data::get_games()
 			std::getline(filer_, rating_temp);
 
 			// convert string to int
+			const int index= std::stoi(temp_index);
 			const int cost = std::stoi(cost_temp);
 			const int rating = std::stoi(rating_temp);
 
-			games.addAtEnd(new game(name, desc, cost, rating));
+			games.addAtEnd(new game(name, desc, cost, rating, index));
 		}
 	}
 	return games;
@@ -87,7 +89,7 @@ List<account*> data::get_accounts()
 			year_ = split_date_string_year(date_);
 			date* this_date = new date(day_, month_, year_);
 
-			accounts.addAtEnd(new account(email, password, this_date));
+			accounts.addAtEnd(new account(email, password, this_date, index));
 		}
 	}
 
@@ -121,7 +123,6 @@ List<player*> data::get_players()
 			std::getline(filer_, password);
 			std::getline(filer_, credit);
 
-			// TODO: use account-index
 			const int index = std::stoi(temp_index);
 
 			day_ = split_date_string_day(date_);
@@ -180,7 +181,7 @@ int data::split_date_string_year(std::string input_date)
 	int year_ = a + b + c + d;
 	return year_;
 }
-int data::split_date_string_month(std::string input_date)
+int data::split_date_string_month(std::string input_date) const
 {
 	//places 5 and 6 = month
 	const int e = input_date[5] * 10;
@@ -189,11 +190,59 @@ int data::split_date_string_month(std::string input_date)
 	return month_;
 }
 
-int data::split_date_string_day(std::string input_date)
+int data::split_date_string_day(std::string input_date) const
 {
 	//places 8 and 9 = day
 	const int g = input_date[8] * 10;
 	const int h = input_date[9];
 	int day = g + h;
 	return day_;
+}
+
+std::string data::save_accounts(List<account*> accounts) const
+{
+	std::string final_string;
+	for (int i = 0; i < accounts.length(); ++i)
+	{
+		const auto account = accounts[i];
+
+		final_string += "ACCOUNT\n";
+		final_string += std::to_string(account->get_id()) + "\n";
+		final_string += account->get_date()->get_formatted() + "\n";
+		final_string += account->get_account_name() + "\n";
+		final_string += account->get_account_password() + "\n";
+
+		for (int y = 0; y < account->users.length(); ++y)
+		{
+			const auto player = account->users[y];
+			final_string += "ACCOUNT-PLAYER\n";
+			final_string += std::to_string(player->get_id()) + "\n";
+			final_string += player->get_created_date()->get_formatted() + "\n";
+			final_string += player->get_username() + "\n";
+			final_string += player->get_password() + "\n";
+			final_string += std::to_string(player->get_credbalance()) + "\n";
+		}
+
+		// TODO: Library items
+	}
+	
+	return final_string;
+}
+
+std::string data::save_games(List<game*> games) const
+{
+	std::string final_string;
+	for (int i = 0; i < games.length(); ++i)
+	{
+		const auto game = games[i];
+
+		final_string += "GAME\n";
+		final_string += std::to_string(game->get_id()) + "\n";
+		final_string += game->get_name() + "\n";
+		final_string += game->get_description() + "\n";
+		final_string += std::to_string(game->get_cost()) + "\n";
+		final_string += std::to_string(game->get_rating()) + "\n";
+	}
+
+	return final_string;
 }

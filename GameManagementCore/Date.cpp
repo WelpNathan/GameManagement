@@ -23,3 +23,8 @@ const int date::get_year() const
 {
 	return year_;
 }
+
+const std::string date::get_formatted() const
+{
+	return std::to_string(year_) + "-" + std::to_string(month_) + "-" + std::to_string(day_);
+}

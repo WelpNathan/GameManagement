@@ -91,7 +91,12 @@ void application::log_out()
 void application::save()
 {
 	std::cout << "TODO: SAVE APPLICATION DATA.";
+	std::string account_data = data_->save_accounts(this->accounts);
+	std::string game_data = data_->save_games(data_->get_games());
 
+	std::cout << "FINAL DATA.TXT FILE:\n\nACCOUNT\n\n";
+	std::cout << account_data << "\n\nGAME\n\n";
+	std::cout << game_data;
 }
 
 void application::setup_data()
