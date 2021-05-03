@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include "Date.h"
+#include <ctime>
 
 class utils
 {
