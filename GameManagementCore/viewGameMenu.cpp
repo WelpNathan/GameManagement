@@ -107,7 +107,10 @@ bool viewGameMenu::check_enough_credits(float balance, int cost)
 
 void viewGameMenu::purchase_game(game* thisGame, float balance, int cost) {
 	
-	date* today = new date(2, 5, 2021); //TODO: link to todays date functions in utils.
+	int day = utils::get_current_day();
+	int month = utils:: get_current_month();
+	int year = utils::get_current_year();
+	date* today = new date(day,month,year);
 
 	//add game to library
 	int index = app_->get_game_index(thisGame);

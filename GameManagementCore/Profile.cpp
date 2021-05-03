@@ -155,9 +155,9 @@ void profile::add_new_user()
 date* profile::get_date_created()
 {
 	char* asctime(const struct tm* time);
-	int day = 2;
-	int month = 5;
-	int year = 2021; //TODO: ammend these values to link to todays day, month and year;
+	int day = utils::get_current_day();
+	int month = utils::get_current_month();
+	int year = utils::get_current_year(); 
 
 	date* todays_date = new date(day, month, year);
 

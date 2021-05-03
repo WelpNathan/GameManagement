@@ -13,5 +13,8 @@ public:
 	static std::string utils::string_to_upper(std::string data); //standard
 	static std::string utils::string_to_upper_rec(std::string data); //recurrsive
 	static bool char_is_num(char c);
+	static int get_current_day();
+	static int get_current_month();
+	static int get_current_year();
 	
 };
