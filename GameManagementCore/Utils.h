@@ -17,5 +17,6 @@ public:
 	static int get_current_day();
 	static int get_current_month();
 	static int get_current_year();
+	static int char_to_int(char c);
 	
 };

@@ -74,3 +74,9 @@ int utils::get_current_year() {
 	int year = 1900 + ltm->tm_year;
 	return year;
 }
+
+int utils::char_to_int(char c)
+{
+	int i = c - 48;
+	return i;
+}
