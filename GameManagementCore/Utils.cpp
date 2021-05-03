@@ -57,20 +57,25 @@ bool utils::char_is_num(char c)
 	return false;
 }
 
-int utils::get_current_day() {
-	time_t now = time(0);
+int utils::get_current_day()
+{
+	time_t now = time(nullptr);
 	tm* ltm = localtime(&now);
 	int day = ltm->tm_mday;
 	return day;
 }
-int utils::get_current_month() {
-	time_t now = time(0);
+
+int utils::get_current_month()
+{
+	time_t now = time(nullptr);
 	tm* ltm = localtime(&now);
 	int month = 1 + ltm->tm_mon;
 	return month;
 }
-int utils::get_current_year() {
-	time_t now = time(0);
+
+int utils::get_current_year()
+{
+	time_t now = time(nullptr);
 	tm* ltm = localtime(&now);
 	int year = 1900 + ltm->tm_year;
 	return year;

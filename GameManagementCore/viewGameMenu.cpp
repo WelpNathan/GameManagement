@@ -25,13 +25,15 @@ void viewGameMenu::output_options()
 			std::cout << "- - - - - - - - - - - - - -" << "\n";
 			option('L', "View in library");
 		}
-		else {
+		else
+		{
 			if (check_enough_credits(balance, cost) == true)
 			{
 				std::cout << "- - - - - - - - - - - - - -" << "\n";
 				option('G', "Purchase this game");
 			}
-			else {
+			else
+			{
 				std::cout << "- - - - - - - - - - - - - -" << "\n";
 				std::cout << "  Not enough credits" << "\n\n";
 				std::cout << "- - - - - - - - - - - - - -" << "\n";
@@ -39,7 +41,8 @@ void viewGameMenu::output_options()
 			}
 		}
 	}
-	else {
+	else
+	{
 		std::cout << "  Login to purchase games." << "\n\n";
 	}
 }
@@ -49,14 +52,14 @@ bool viewGameMenu::handle_choice(char choice)
 {
 	switch (choice)
 	{
-		case 'L':
+	case 'L':
 		{
 			std::string profile_title = (app_->get_current_user()->get_username()) +
 				"'S PROFILE";
 			profile this_profile(profile_title, app_);
 		}
 		break;
-		case 'G':
+	case 'G':
 		{
 			game* thisGame = app_->get_game();
 			int cost = app_->get_game()->get_cost();
@@ -64,7 +67,7 @@ bool viewGameMenu::handle_choice(char choice)
 			purchase_game(thisGame, balance, cost);
 		}
 		break;
-		case 'P':
+	case 'P':
 		{
 			std::string profile_title = (app_->get_current_user()->get_username()) +
 				"'S PROFILE";
@@ -105,24 +108,24 @@ bool viewGameMenu::check_enough_credits(float balance, int cost)
 	return false;
 }
 
-void viewGameMenu::purchase_game(game* thisGame, float balance, int cost) {
-	
+void viewGameMenu::purchase_game(game* thisGame, float balance, int cost)
+{
 	int day = utils::get_current_day();
-	int month = utils:: get_current_month();
+	int month = utils::get_current_month();
 	int year = utils::get_current_year();
-	date* today = new date(day,month,year);
+	auto today = new date(day, month, year);
 
 	//add game to library
 	int index = app_->get_game_index(thisGame);
-	library_item* new_item = new library_item(today,index,0);
+	auto new_item = new library_item(today, index, 0);
 	app_->get_current_player()->library.addAtEnd(new_item);
-	
+
 	//update balance
 	float new_balance = (balance - cost);
 	app_->get_current_user()->set_credbalance(new_balance);
 
 	//display confirmation message and option to go to profile - y/n question.
-	std::cout << "  "<< app_->get_game()->get_name() <<" has been purchased."<<"\n";
+	std::cout << "  " << app_->get_game()->get_name() << " has been purchased." << "\n";
 	const std::string answer = question("View game in library?");
 	if (answer == "y" || answer == "Y")
 	{
@@ -131,5 +134,3 @@ void viewGameMenu::purchase_game(game* thisGame, float balance, int cost) {
 		profile this_profile(profile_title, app_);
 	}
 }
-
-

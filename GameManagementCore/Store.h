@@ -9,5 +9,4 @@ public:
 	store();
 	~store();
 	List<game*> games;
-
 };

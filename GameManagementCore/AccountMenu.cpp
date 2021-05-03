@@ -13,7 +13,7 @@ void account_menu::output_options()
 	for (int i = 0; i < app_->accounts.length(); i++)
 	{
 		std::string this_accountname = app_->accounts[i]->get_account_name();
-		option((i+1), this_accountname);
+		option((i + 1), this_accountname);
 	}
 }
 
@@ -32,7 +32,7 @@ bool account_menu::handle_choice(const char choice)
 			check_password(index, this_username, stored_password);
 		}
 	}
-	
+
 	return false;
 }
 

@@ -49,7 +49,7 @@ List<game*> data::get_games()
 			std::getline(filer_, rating_temp);
 
 			// convert string to int
-			const int index= std::stoi(temp_index);
+			const int index = std::stoi(temp_index);
 			const int cost = std::stoi(cost_temp);
 			const int rating = std::stoi(rating_temp);
 
@@ -87,7 +87,7 @@ List<account*> data::get_accounts()
 			day_ = split_date_string_day(date_);
 			month_ = split_date_string_month(date_);
 			year_ = split_date_string_year(date_);
-			date* this_date = new date(day_, month_, year_);
+			auto this_date = new date(day_, month_, year_);
 
 			accounts.addAtEnd(new account(email, password, this_date, index));
 		}
@@ -114,7 +114,7 @@ List<player*> data::get_players()
 		std::string name;
 		std::string password;
 		std::string credit;
-		
+
 		if (text == "ACCOUNT-PLAYER")
 		{
 			std::getline(filer_, temp_index);
@@ -163,7 +163,7 @@ List<player*> data::get_players()
 			{
 				this_player->library.addAtEnd(saved_lib_items[i]);
 			}
-			
+
 			players.addAtEnd(this_player);
 		}
 	}
@@ -181,6 +181,7 @@ int data::split_date_string_year(std::string input_date)
 	int year_ = a + b + c + d;
 	return year_;
 }
+
 int data::split_date_string_month(std::string input_date) const
 {
 	//places 5 and 6 = month
@@ -225,7 +226,7 @@ std::string data::save_accounts(List<account*> accounts) const
 
 		// TODO: Library items
 	}
-	
+
 	return final_string;
 }
 

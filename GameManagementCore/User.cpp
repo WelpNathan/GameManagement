@@ -2,11 +2,11 @@
 #include <utility>
 
 user::user(std::string username, std::string password, date* created, float credbalance, int player_id) :
-username_(std::move(username)),
-password_(std::move(password)),
-created_date_(created),
-credbalance_(credbalance),
-player_id_(player_id)
+	username_(std::move(username)),
+	password_(std::move(password)),
+	created_date_(created),
+	credbalance_(credbalance),
+	player_id_(player_id)
 {
 }
 

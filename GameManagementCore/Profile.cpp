@@ -61,54 +61,55 @@ bool profile::handle_choice(const char choice)
 			viewGameMenu this_game(gameTitle, app_);
 		}
 	}
-	else {
+	else
+	{
 		//PURCHASE CREDITS
 		switch (choice)
 		{
 		case 'I':
-		{
-			float add = 1.00;
-			float balance = app_->get_current_user()->get_credbalance();
-			float new_balance = purchase_credits(balance, add);
-			balance = new_balance;
-		}
-		break;
+			{
+				float add = 1.00;
+				float balance = app_->get_current_user()->get_credbalance();
+				float new_balance = purchase_credits(balance, add);
+				balance = new_balance;
+			}
+			break;
 		case 'O':
-		{
-			float add = 10.00;
-			float balance = app_->get_current_user()->get_credbalance();
-			float new_balance = purchase_credits(balance, add);
-			balance = new_balance;
-		}
-		break;
+			{
+				float add = 10.00;
+				float balance = app_->get_current_user()->get_credbalance();
+				float new_balance = purchase_credits(balance, add);
+				balance = new_balance;
+			}
+			break;
 		case 'P':
-		{
-			float add = 100.00;
-			float balance = app_->get_current_user()->get_credbalance();
-			float new_balance = purchase_credits(balance, add);
-			balance = new_balance;
-		}
-		break;
-		
-		//ADMIN OPTIONS
-		if (app_->is_user_admin() == true)
-		{
-		case 'A':
-		{
-			add_new_user();
-		}
-		break;
-		case 'R':
-		{
-			//remove user
-		}
-		break;
-		case 'G':
-		{
-			//guest per-game access
-		}
-		break;
-		}
+			{
+				float add = 100.00;
+				float balance = app_->get_current_user()->get_credbalance();
+				float new_balance = purchase_credits(balance, add);
+				balance = new_balance;
+			}
+			break;
+
+			//ADMIN OPTIONS
+			if (app_->is_user_admin() == true)
+			{
+			case 'A':
+				{
+					add_new_user();
+				}
+				break;
+			case 'R':
+				{
+					//remove user
+				}
+				break;
+			case 'G':
+				{
+					//guest per-game access
+				}
+				break;
+			}
 		}
 	}
 
@@ -144,7 +145,8 @@ void profile::add_new_user()
 		if (answer == 'y' || answer == 'Y')
 		{
 			// create user;
-			player* this_player = new player(username_, password_, get_date_created(), 0.00, app_->get_current_account()->users.length() + 1);
+			auto this_player = new player(username_, password_, get_date_created(), 0.00,
+			                              app_->get_current_account()->users.length() + 1);
 			app_->get_current_account()->users.addAtEnd(this_player);
 			std::cout << "  New user " << username_ << " has now been created";
 			confirm_user = true;
@@ -157,9 +159,9 @@ date* profile::get_date_created()
 	char* asctime(const struct tm* time);
 	int day = utils::get_current_day();
 	int month = utils::get_current_month();
-	int year = utils::get_current_year(); 
+	int year = utils::get_current_year();
 
-	date* todays_date = new date(day, month, year);
+	auto todays_date = new date(day, month, year);
 
 	return todays_date;
 }

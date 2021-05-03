@@ -13,5 +13,4 @@ public:
 	void output_options() override;
 	bool handle_choice(char choice) override;
 private:
-	
 };

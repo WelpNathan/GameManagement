@@ -34,5 +34,3 @@ int game::get_id() const
 {
 	return id_;
 }
-
-

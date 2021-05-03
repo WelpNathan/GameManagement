@@ -17,6 +17,4 @@ private:
 	int index_;
 	date* purchased_;
 	int played_;
-	
-
 };

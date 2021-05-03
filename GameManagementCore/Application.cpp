@@ -1,7 +1,7 @@
 #include "Application.h"
 #include <iostream>
 
-application::application() : current_account_(get_current_account()), current_user_(get_current_user()), 
+application::application() : current_account_(get_current_account()), current_user_(get_current_user()),
                              user_is_logged_in_(false)
 {
 	setup_data();
@@ -142,7 +142,7 @@ admin* application::create_admin(List<player*> saved_players)
 	float credbalance = saved_players[0]->get_credbalance();
 
 	// TODO: add index?
-	admin* this_admin = new admin(username, password, created, credbalance, 0);
+	auto this_admin = new admin(username, password, created, credbalance, 0);
 
 	//add admin's library items
 	List<library_item*> lib_items;
@@ -157,7 +157,7 @@ admin* application::create_admin(List<player*> saved_players)
 	List<library_item*> saved_lib_items = lib_items;
 	for (int i = 0; i < saved_lib_items.length(); ++i)
 	{
-		auto plr = dynamic_cast<admin*>(this_admin);
+		auto plr = this_admin;
 		plr->library.addAtEnd(saved_lib_items[i]);
 	}
 	return this_admin;
