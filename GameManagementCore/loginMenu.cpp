@@ -8,10 +8,14 @@ login_menu::login_menu(const std::string& title, application* app) : menu(title,
 
 void login_menu::output_options()
 {
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < app_->get_current_account()->users.length(); i++)
 	{
-		std::string this_username = app_->get_current_account()->users[i]->get_username();
-		option((i + 1), this_username);
+		const auto user = app_->get_current_account()->users[i];
+		if (user != nullptr)
+		{
+			auto username = user->get_username();
+			option((i + 1), username);
+		}
 	}
 }
 

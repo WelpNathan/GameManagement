@@ -7,6 +7,6 @@
 class admin final : public player
 {
 public:
-	admin(const std::string&, const std::string&, date*, float);
+	admin(const std::string&, const std::string&, date*, float, int);
 	~admin() override;
 };

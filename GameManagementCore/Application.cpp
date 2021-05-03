@@ -120,9 +120,12 @@ void application::setup_data()
 		if (i == 0)
 		{
 			admin* ad = create_admin(saved_players);
-			this->accounts[0]->users.addInFront(ad);
+			this->accounts[saved_players[i]->get_id()]->users.addInFront(ad);
 		}
-		else { this->accounts[0]->users.addAtEnd(saved_players[i]); }
+		else
+		{
+			this->accounts[saved_players[i]->get_id()]->users.addAtEnd(saved_players[i]);
+		}
 	}
 }
 
@@ -132,7 +135,9 @@ admin* application::create_admin(List<player*> saved_players)
 	std::string username = saved_players[0]->get_username();
 	date* created = saved_players[0]->get_created_date();
 	float credbalance = saved_players[0]->get_credbalance();
-	admin* this_admin = new admin(username, password, created, credbalance);
+
+	// TODO: add index?
+	admin* this_admin = new admin(username, password, created, credbalance, 0);
 
 	//add admin's library items
 	List<library_item*> lib_items;

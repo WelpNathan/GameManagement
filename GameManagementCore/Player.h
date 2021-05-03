@@ -8,7 +8,7 @@
 
 class player : public user{
 public:
-	player(const std::string&, const std::string&, date*, float);
+	player(const std::string&, const std::string&, date*, float, int);
 	~player() override;
 	List<library_item*> library;
 };

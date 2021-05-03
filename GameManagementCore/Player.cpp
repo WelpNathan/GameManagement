@@ -1,8 +1,8 @@
 #include "Player.h"
 
 player::player(const std::string& username, const std::string& password, date* created,
-               float credit_balance)
-	: user(username, password, created, credit_balance)
+               float credit_balance, int id)
+	: user(username, password, created, credit_balance, id)
 {
 }
 

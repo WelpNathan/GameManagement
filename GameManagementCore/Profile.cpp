@@ -143,8 +143,8 @@ void profile::add_new_user()
 		std::cin >> answer;
 		if (answer == 'y' || answer == 'Y')
 		{
-			//create user;
-			player* this_player = new player(username_, password_, get_date_created(), 0.00);
+			// create user;
+			player* this_player = new player(username_, password_, get_date_created(), 0.00, app_->get_current_account()->users.length() + 1);
 			app_->get_current_account()->users.addAtEnd(this_player);
 			std::cout << "  New user " << username_ << " has now been created";
 			confirm_user = true;

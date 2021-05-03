@@ -3,17 +3,6 @@
 #include <fstream>
 #include <iostream>
 
-
-/*
- * Data information
- * -----
- * Can be saved as:
- * - GAME
- * - ACCOUNT
- * - ACCOUNT-PLAYER
- * - ACCOUNT-ADMIN
- */
-
 data::data()
 {
 	filew_.open("C:\\data\\data.txt", std::ios_base::app);
@@ -79,14 +68,19 @@ List<account*> data::get_accounts()
 	{
 		if (text == "ACCOUNT")
 		{
+			std::string temp_index;
 			std::string date_;
 			std::string email;
 			std::string password;
 
 			// set name and description
+			std::getline(filer_, temp_index);
 			std::getline(filer_, date_);
 			std::getline(filer_, email);
 			std::getline(filer_, password);
+
+			// TODO: use account-index
+			const int index = std::stoi(temp_index);
 
 			day_ = split_date_string_day(date_);
 			month_ = split_date_string_month(date_);
@@ -110,39 +104,33 @@ List<player*> data::get_players()
 
 	std::string text;
 	std::string next_;
-	int player_count = 0;
 
 	while (std::getline(filer_, text))
 	{
+		std::string temp_index;
 		std::string date_;
 		std::string name;
 		std::string password;
 		std::string credit;
-
-		if (player_count == 1)
-		{
-			date_ = text;
-			text = next_;
-		}
+		
 		if (text == "ACCOUNT-PLAYER")
 		{
-			// set name and description
-			if (player_count ==0 || player_count == 2 )
-			{
-				std::getline(filer_, date_);
-			}
+			std::getline(filer_, temp_index);
+			std::getline(filer_, date_);
 			std::getline(filer_, name);
 			std::getline(filer_, password);
 			std::getline(filer_, credit);
-			std::getline(filer_, next_);
+
+			// TODO: use account-index
+			const int index = std::stoi(temp_index);
 
 			day_ = split_date_string_day(date_);
 			month_ = split_date_string_month(date_);
 			year_ = split_date_string_year(date_);
-			date* this_date = new date(day_, month_, year_);
+			auto this_date = new date(day_, month_, year_);
 
 			//create player
-			player* this_player = new player(name, password, this_date, std::stof(credit));
+			auto this_player = new player(name, password, this_date, std::stof(credit), index);
 
 			//add library items
 			List<library_item*> lib_items;
@@ -162,7 +150,7 @@ List<player*> data::get_players()
 				day_ = split_date_string_day(date_);
 				month_ = split_date_string_month(date_);
 				year_ = split_date_string_year(date_);
-				date* this_date = new date(day_, month_, year_);
+				auto this_date = new date(day_, month_, year_);
 
 				lib_items.addAtEnd(new library_item(this_date, index_, time_played_));
 				std::getline(filer_, next_);
@@ -172,11 +160,10 @@ List<player*> data::get_players()
 
 			for (int i = 0; i < saved_lib_items.length(); ++i)
 			{
-				auto plr = dynamic_cast<player*>(this_player);
-				plr->library.addAtEnd(saved_lib_items[i]);
+				this_player->library.addAtEnd(saved_lib_items[i]);
 			}
+			
 			players.addAtEnd(this_player);
-			player_count++;
 		}
 	}
 	return players;

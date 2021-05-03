@@ -19,15 +19,20 @@ void account_menu::output_options()
 
 bool account_menu::handle_choice(const char choice)
 {
-	const int index = choice - '1';
-	std::string stored_password = app_->accounts[index]->get_account_password();
+	const int index = utils::char_to_int(choice) - 1;
 
-	int size = app_->accounts.length();
-	if (index >= 0 && index < size)
+	if (index >= 0)
 	{
-		std::string this_username = app_->accounts[0]->get_account_name();
-		check_password(index, this_username, stored_password);
+		std::string stored_password = app_->accounts[index]->get_account_password();
+
+		int size = app_->accounts.length();
+		if (index >= 0 && index < size)
+		{
+			std::string this_username = app_->accounts[index]->get_account_name();
+			check_password(index, this_username, stored_password);
+		}
 	}
+	
 	return false;
 }
 
