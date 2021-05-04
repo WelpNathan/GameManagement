@@ -51,9 +51,9 @@ List<game*> data::get_games()
 			// convert string to int
 			const int index = std::stoi(temp_index);
 			const int cost = std::stoi(cost_temp);
-			const int rating = std::stoi(rating_temp);
+			const int age_rating = std::stoi(rating_temp);
 
-			games.addAtEnd(new game(name, desc, cost, rating, index));
+			games.addAtEnd(new game(name, desc, cost, age_rating, index, 0, 0));
 		}
 	}
 	return games;

@@ -8,8 +8,10 @@ viewGameMenu::viewGameMenu(const std::string& title, application* app) : menu(ti
 void viewGameMenu::output_options()
 {
 	std::string description = app_->get_game()->get_description();
-	int rating = app_->get_game()->get_rating();
+	int rating = app_->get_game()->get_age_rating();
 	int cost = app_->get_game()->get_cost();
+	bool has_been_rated = false;
+	bool game_liked = true;
 
 	std::cout << "  " << description << "\n\n"
 		<< "  Rating: " << rating << "\n"
@@ -24,6 +26,23 @@ void viewGameMenu::output_options()
 			std::cout << "  Game already purchased" << "\n\n";
 			std::cout << "- - - - - - - - - - - - - -" << "\n";
 			option('L', "View in library");
+			if(has_been_rated==false)
+			{
+				option('R', "Rate this Game");
+			}
+			else
+			{
+				if (game_liked == true)
+				{
+					std::cout << "  You LIKED this game";
+					option('C', "Change Rating for this game");
+				}
+				else
+				{
+					std::cout << "  You DISLIKED this game";
+					option('C', "Change Rating for this game");
+				}
+			}
 		}
 		else
 		{
@@ -72,6 +91,35 @@ bool viewGameMenu::handle_choice(char choice)
 			std::string profile_title = (app_->get_current_user()->get_username()) +
 				"'S PROFILE";
 			profile this_profile(profile_title, app_);
+		}
+		break;
+	case 'R':
+		{
+			//rate game
+			bool has_been_rated = false;
+
+			while (has_been_rated == false)
+			{
+				std::cout << "  Do you LIKE (L) or DISLIKE (D) this game? >> ";
+				char reply;
+				std::cin >> reply;
+
+				if (reply == 'L')
+				{
+					int likes = (app_->get_game()->get_likes())+1;
+					//set likes
+				}
+				else if(reply =='D') {
+					int dislikes = (app_->get_game()->get_dislikes()) + 1;
+					//set dislikes
+				}
+			}
+		}
+		break;
+	case 'C':
+		{
+			//change rating
+		bool has_been_rated = true;
 		}
 		break;
 	}
