@@ -30,6 +30,7 @@ public:
 	List<account*> accounts;
 	void save();
 	int get_game_index(game* this_game);
+	void exit(bool);
 
 private:
 	store* store_{};

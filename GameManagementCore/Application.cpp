@@ -151,7 +151,8 @@ admin* application::create_admin(List<player*> saved_players)
 		int index = saved_players[0]->library[i]->get_index();
 		int played_time = saved_players[0]->library[i]->get_played_time();
 		date* purchased = saved_players[0]->library[i]->get_purchased_date();
-		lib_items.addAtEnd(new library_item(purchased, index, played_time));
+		char rating = saved_players[0]->library[i]->get_rating();
+		lib_items.addAtEnd(new library_item(purchased, index, played_time, rating));
 	}
 	//link library items to admin/player
 	List<library_item*> saved_lib_items = lib_items;
@@ -192,4 +193,14 @@ int application::get_game_index(game* this_game)
 		}
 	}
 	return index_;
+}
+
+
+void application::exit(bool ready_to_exit)
+{
+	while (ready_to_exit == true)
+	{
+		//save();
+		//close//
+	}
 }

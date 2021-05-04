@@ -11,6 +11,7 @@ menu::menu(std::string title, application* app) : app_(app), title_(std::move(ti
 void menu::paint()
 {
 	bool ready_to_go_back = false;
+	bool ready_to_exit = false;
 
 	while (!ready_to_go_back)
 	{
@@ -18,6 +19,7 @@ void menu::paint()
 		output_options();
 		line();
 		option('B', "Back");
+		option('X', "Exit");
 		footer();
 
 		const char choice = utils::get_char_from_user();
@@ -25,6 +27,11 @@ void menu::paint()
 		if (choice == 'B')
 		{
 			ready_to_go_back = true;
+		}
+		else if(choice=='X')
+		{ 
+			ready_to_exit = true;
+			app_->exit(ready_to_exit);
 		}
 		else
 		{
