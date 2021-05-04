@@ -2,8 +2,8 @@
 
 #include <utility>
 
-library_item::library_item(date* date, int index, int play_time)
-	: index_(index), purchased_(date), played_(play_time)
+library_item::library_item(date* date, int index, int play_time, char rating)
+	: index_(index), purchased_(date), played_(play_time), rating_(rating)
 {
 }
 
@@ -24,4 +24,25 @@ date* library_item::get_purchased_date()
 const int library_item::get_played_time() const
 {
 	return played_;
+}
+
+char library_item::get_rating()
+{
+	//rating L = Like, D = dislike
+	return rating_;
+}
+char library_item::set_rating(char rating_, char new_rating)
+{
+	char *ptr= &rating_;
+	*ptr = new_rating;
+	return rating_;
+}
+
+bool library_item::has_been_rated(char rating)
+{
+	if (rating == 'L' || rating == 'D')
+	{
+		return true;
+	}
+	return false;
 }

@@ -242,7 +242,6 @@ std::string data::save_games(List<game*> games) const
 		final_string += game->get_name() + "\n";
 		final_string += game->get_description() + "\n";
 		final_string += std::to_string(game->get_cost()) + "\n";
-		final_string += std::to_string(game->get_rating()) + "\n";
 	}
 
 	return final_string;

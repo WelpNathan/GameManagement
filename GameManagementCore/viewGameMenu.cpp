@@ -11,8 +11,9 @@ void viewGameMenu::output_options()
 	int age_rating = app_->get_game()->get_age_rating();
 	int cost = app_->get_game()->get_cost();
 	float rating = app_->get_game()->calculate_rating((app_->get_game()->get_likes()), (app_->get_game()->get_dislikes()));
-	bool has_been_rated = false;
-	bool game_liked = true;
+	char game_rating = app_->get_current_player()->library[app_->get_game()->get_id()]->get_rating();
+	bool has_been_rated = app_->get_current_player()->library[app_->get_game()->get_id()]->has_been_rated(game_rating);
+	
 
 	std::cout << "  " << description << "\n\n"
 		<< "  Age Rating: " << age_rating << "\n"
@@ -35,12 +36,12 @@ void viewGameMenu::output_options()
 			}
 			else
 			{
-				if (game_liked == true)
+				if (game_rating == 'L')
 				{
 					std::cout << "  You LIKED this game";
 					option('C', "Change Rating for this game");
 				}
-				else
+				else if (game_rating =='D')
 				{
 					std::cout << "  You DISLIKED this game";
 					option('C', "Change Rating for this game");
@@ -110,10 +111,14 @@ bool viewGameMenu::handle_choice(char choice)
 				if (reply == 'L')
 				{
 					app_->get_game()->set_likes((app_->get_game()->get_likes())+1, (app_->get_game()->get_likes()));
+					char game_rating = app_->get_current_player()->library[app_->get_game()->get_id()]->get_rating();
+					app_->get_current_player()->library[app_->get_game()->get_id()]->set_rating(game_rating, reply);
 				}
 				else if(reply =='D') {
 					int dislikes = (app_->get_game()->get_dislikes()) + 1;
 					app_->get_game()->set_dislikes((app_->get_game()->get_dislikes()) + 1, (app_->get_game()->get_dislikes()));
+					char game_rating = app_->get_current_player()->library[app_->get_game()->get_id()]->get_rating();
+					app_->get_current_player()->library[app_->get_game()->get_id()]->set_rating(game_rating, reply);
 				}
 			}
 		}
@@ -121,7 +126,7 @@ bool viewGameMenu::handle_choice(char choice)
 	case 'C':
 		{
 			//change rating
-		bool has_been_rated = true;
+			bool has_been_rated = true;
 		}
 		break;
 	}
@@ -167,7 +172,7 @@ void viewGameMenu::purchase_game(game* thisGame, float balance, int cost)
 
 	//add game to library
 	int index = app_->get_game_index(thisGame);
-	auto new_item = new library_item(today, index, 0);
+	auto new_item = new library_item(today, index, 0,false);
 	app_->get_current_player()->library.addAtEnd(new_item);
 
 	//update balance
