@@ -8,14 +8,17 @@ viewGameMenu::viewGameMenu(const std::string& title, application* app) : menu(ti
 void viewGameMenu::output_options()
 {
 	std::string description = app_->get_game()->get_description();
-	int rating = app_->get_game()->get_age_rating();
+	int age_rating = app_->get_game()->get_age_rating();
 	int cost = app_->get_game()->get_cost();
+	float rating = app_->get_game()->calculate_rating((app_->get_game()->get_likes()), (app_->get_game()->get_dislikes()));
 	bool has_been_rated = false;
 	bool game_liked = true;
 
 	std::cout << "  " << description << "\n\n"
-		<< "  Rating: " << rating << "\n"
-		<< "  Cost: " << cost << "\n\n";
+		<< "  Age Rating: " << age_rating << "\n"
+		<< "  Cost: " << cost << "\n"
+		<< "  Rating: " << rating <<"\n\n";
+
 
 	if (app_->is_user_logged_in())
 	{
@@ -106,12 +109,11 @@ bool viewGameMenu::handle_choice(char choice)
 
 				if (reply == 'L')
 				{
-					int likes = (app_->get_game()->get_likes())+1;
-					//set likes
+					app_->get_game()->set_likes((app_->get_game()->get_likes())+1, (app_->get_game()->get_likes()));
 				}
 				else if(reply =='D') {
 					int dislikes = (app_->get_game()->get_dislikes()) + 1;
-					//set dislikes
+					app_->get_game()->set_dislikes((app_->get_game()->get_dislikes()) + 1, (app_->get_game()->get_dislikes()));
 				}
 			}
 		}

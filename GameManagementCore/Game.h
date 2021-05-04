@@ -15,7 +15,8 @@ public:
 	int get_id() const;
 	int get_likes();
 	int get_dislikes();
-	float get_rating();
+	int set_likes(int, int);
+	int set_dislikes(int, int);
 	float calculate_rating(int likes, int dislikes);
 
 private:
@@ -24,7 +25,6 @@ private:
 	int cost_;
 	int age_rating_;
 	int id_;
-	float rating_;
 	int likes_;
 	int dislikes_;
 };
