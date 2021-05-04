@@ -73,6 +73,8 @@ void viewGameMenu::output_options()
 
 bool viewGameMenu::handle_choice(char choice)
 {
+	char game_rating = app_->get_current_player()->library[app_->get_game()->get_id()]->get_rating();
+
 	switch (choice)
 	{
 	case 'L':
@@ -111,23 +113,26 @@ bool viewGameMenu::handle_choice(char choice)
 				if (reply == 'L')
 				{
 					app_->get_game()->set_likes((app_->get_game()->get_likes())+1, (app_->get_game()->get_likes()));
-					char game_rating = app_->get_current_player()->library[app_->get_game()->get_id()]->get_rating();
 					app_->get_current_player()->library[app_->get_game()->get_id()]->set_rating(game_rating, reply);
 				}
 				else if(reply =='D') {
 					int dislikes = (app_->get_game()->get_dislikes()) + 1;
 					app_->get_game()->set_dislikes((app_->get_game()->get_dislikes()) + 1, (app_->get_game()->get_dislikes()));
-					char game_rating = app_->get_current_player()->library[app_->get_game()->get_id()]->get_rating();
 					app_->get_current_player()->library[app_->get_game()->get_id()]->set_rating(game_rating, reply);
 				}
 			}
 		}
 		break;
 	case 'C':
+	{
+		std::cout << "  Do you LIKE (L) or DISLIKE (D) this game? >> ";
+		char input;
+		std::cin >> input;
+		if (input == 'L' || input == 'D')
 		{
-			//change rating
-			bool has_been_rated = true;
+			app_->get_current_player()->library[app_->get_game()->get_id()]->set_rating(game_rating, input);
 		}
+	}
 		break;
 	}
 	return false;
