@@ -2,8 +2,8 @@
 
 #include <utility>
 
-library_item::library_item(date* date, int index, int play_time, char rating)
-	: index_(index), purchased_(date), played_(play_time), rating_(rating)
+library_item::library_item(date* date, int index, int play_time, char ind_rating)
+	: index_(index), purchased_(date), played_(play_time), rating_(ind_rating)
 {
 }
 

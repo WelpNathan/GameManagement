@@ -20,5 +20,5 @@ private:
 	int index_;
 	date* purchased_;
 	int played_;
-	char rating_;
+	char ind_rating_;
 };
