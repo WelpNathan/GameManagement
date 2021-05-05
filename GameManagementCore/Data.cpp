@@ -112,6 +112,7 @@ List<player*> data::get_players()
 
 	std::string text;
 	std::string next_;
+	int player_count = 0;
 
 	while (std::getline(filer_, text))
 	{
@@ -121,13 +122,27 @@ List<player*> data::get_players()
 		std::string password;
 		std::string credit;
 
+		if (player_count > 0 && player_count<5)
+		{
+			temp_index = text;
+			while (next_ != "ACCOUNT-PLAYER")
+			{ 
+				std::getline(filer_, next_);
+			}
+			text = next_;
+		}
+
 		if (text == "ACCOUNT-PLAYER")
 		{
-			std::getline(filer_, temp_index);
+			if (player_count == 0 || player_count ==3)
+			{
+				std::getline(filer_, temp_index);
+			}
 			std::getline(filer_, date_);
 			std::getline(filer_, name);
 			std::getline(filer_, password);
 			std::getline(filer_, credit);
+			std::getline(filer_, next_);
 
 			const int index = std::stoi(temp_index);
 
@@ -175,6 +190,7 @@ List<player*> data::get_players()
 			}
 
 			players.addAtEnd(this_player);
+			player_count++;
 		}
 	}
 	return players;
@@ -183,10 +199,10 @@ List<player*> data::get_players()
 int data::split_date_string_year(std::string input_date)
 {
 	//places 0-3 = year
-	const int a = input_date[0] * 1000;
-	const int b = input_date[1] * 100;
-	const int c = input_date[2] * 10;
-	const int d = input_date[3];
+	const int a = (input_date[0]-48) * 1000;
+	const int b = (input_date[1] - 48) * 100;
+	const int c = (input_date[2] - 48) * 10;
+	const int d = (input_date[3] - 48);
 
 	int year_ = a + b + c + d;
 	return year_;
@@ -195,18 +211,18 @@ int data::split_date_string_year(std::string input_date)
 int data::split_date_string_month(std::string input_date) const
 {
 	//places 5 and 6 = month
-	const int e = input_date[5] * 10;
-	const int f = input_date[6];
-	int month = e + f;
+	const int e = (input_date[5]-48) * 10;
+	const int f = (input_date[6]-48);
+	int month_ = e + f;
 	return month_;
 }
 
 int data::split_date_string_day(std::string input_date) const
 {
 	//places 8 and 9 = day
-	const int g = input_date[8] * 10;
-	const int h = input_date[9];
-	int day = g + h;
+	const int g = (input_date[8]-48) * 10;
+	const int h = (input_date[9])-48;
+	int day_ = g + h;
 	return day_;
 }
 
