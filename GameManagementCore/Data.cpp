@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <vector>
 
 data::data()
 {
@@ -161,13 +162,11 @@ List<player*> data::get_players()
 				std::string index;
 				std::string date_;
 				std::string time_played;
-				std::string rating_temp;
 
 				// set name and description
 				std::getline(filer_, index);
 				std::getline(filer_, date_);
 				std::getline(filer_, time_played);
-				std::getline(filer_, rating_temp);
 
 				int index_ = utils::string_to_int(index);
 				int time_played_ = utils::string_to_int(time_played);
@@ -178,7 +177,7 @@ List<player*> data::get_players()
 				year_ = split_date_string_year(date_);
 				auto this_date = new date(day_, month_, year_);
 
-				lib_items.addAtEnd(new library_item(this_date, index_, time_played_,rating_));
+				lib_items.addAtEnd(new library_item(this_date, index_, time_played_));
 				std::getline(filer_, next_);
 			}
 			//link library items to this player:

@@ -24,6 +24,7 @@ public:
 
 	std::string save_accounts(List<account*> accounts) const;
 	std::string save_games(List<game*> games) const;
+	std::string data::save_lib_items(List<library_item*>) const;
 
 private:
 	std::ofstream filew_;
