@@ -3,7 +3,7 @@
 #include <utility>
 
 library_item::library_item(date* date, int index, int play_time, char ind_rating)
-	: index_(index), purchased_(date), played_(play_time), rating_(ind_rating)
+	: index_(index), purchased_(date), played_(play_time), ind_rating_(ind_rating)
 {
 }
 
@@ -29,7 +29,7 @@ const int library_item::get_played_time() const
 char library_item::get_rating()
 {
 	//rating L = Like, D = dislike
-	return rating_;
+	return ind_rating_;
 }
 char library_item::set_rating(char rating_, char new_rating)
 {

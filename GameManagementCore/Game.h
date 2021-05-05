@@ -17,7 +17,8 @@ public:
 	int get_dislikes();
 	int set_likes(int, int);
 	int set_dislikes(int, int);
-	float calculate_rating(int likes, int dislikes);
+	std::string calculate_rating(int likes, int dislikes);
+	
 
 private:
 	std::string name_;
@@ -26,5 +27,5 @@ private:
 	int age_rating_;
 	int id_;
 	int likes_;
-	int dislikes_;
+	int dislikes_;	
 };

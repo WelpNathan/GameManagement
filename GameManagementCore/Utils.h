@@ -19,4 +19,5 @@ public:
 	static int get_current_month();
 	static int get_current_year();
 	static int char_to_int(char c);
+	static std::string spaces_in_menu_list(int, int);
 };

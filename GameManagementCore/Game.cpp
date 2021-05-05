@@ -58,12 +58,23 @@ int game::set_dislikes(int new_val, int dislikes)
 	return dislikes;
 }
 
-float game::calculate_rating(int likes, int dislikes)
+std::string game::calculate_rating(int likes, int dislikes)
 {
 	int total_number_of_ratings = likes + dislikes;
-	float rating = (100 / total_number_of_ratings)* likes;
+	std::string rating_;
+	float rating;
 
-	return rating;
+	if (total_number_of_ratings == 0)
+	{
+		rating = 0.00;
+	}
+	else { rating = (100 / total_number_of_ratings) * likes; }
+
+	std::string rating_temp = std::to_string(rating);
+
+	rating_ = rating_temp.substr(0, 4);
+
+	return rating_;
 }
 
 

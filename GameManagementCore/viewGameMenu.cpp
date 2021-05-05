@@ -10,7 +10,7 @@ void viewGameMenu::output_options()
 	std::string description = app_->get_game()->get_description();
 	int age_rating = app_->get_game()->get_age_rating();
 	int cost = app_->get_game()->get_cost();
-	float rating = app_->get_game()->calculate_rating((app_->get_game()->get_likes()), (app_->get_game()->get_dislikes()));
+	std::string rating = app_->get_game()->calculate_rating((app_->get_game()->get_likes()), (app_->get_game()->get_dislikes()));
 	char game_rating = app_->get_current_player()->library[app_->get_game()->get_id()]->get_rating();
 	bool has_been_rated = app_->get_current_player()->library[app_->get_game()->get_id()]->has_been_rated(game_rating);
 	

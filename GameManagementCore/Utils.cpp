@@ -93,3 +93,17 @@ char utils::string_to_char(std::string input)
 	
 	return *c;
 }
+
+std::string utils::spaces_in_menu_list(int len, int gap)
+{
+	int num_spaces = gap - len;
+	std::string space = " ";
+	std::string old_string = "-  ";
+	std::string new_string;
+
+	for (int x = 0; x <= num_spaces; x++)
+	{
+		new_string =old_string.insert(0, space);
+	}
+	return new_string;
+}
