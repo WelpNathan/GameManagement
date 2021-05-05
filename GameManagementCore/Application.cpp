@@ -90,13 +90,30 @@ void application::log_out()
 
 void application::save()
 {
-	std::cout << "TODO: SAVE APPLICATION DATA.";
 	std::string account_data = data_->save_accounts(this->accounts);
 	std::string game_data = data_->save_games(data_->get_games());
+	std::string final_lib_data;
+
+	// there's multiple accounts
+	for (int i = 0; i < this->accounts.length(); ++i)
+	{
+		auto account = this->accounts[i];
+		// every account has a user
+		for (int y = 0; y < account->users.length(); ++y)
+		{
+			auto user = account->users[0];
+			// if the user can cast to a player, get their library
+			if (auto plr = dynamic_cast<player*>(user)) {
+				// add data to output string
+				final_lib_data += data_->save_lib_items(plr->library) + "\n";
+			}
+		}
+	}
 
 	std::cout << "FINAL DATA.TXT FILE:\n\nACCOUNT\n\n";
 	std::cout << account_data << "\n\nGAME\n\n";
-	std::cout << game_data;
+	std::cout << game_data << "\n\LIB_DATA\n\n";
+	std::cout << final_lib_data;
 }
 
 void application::setup_data()

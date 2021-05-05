@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <vector>
 
 data::data()
 {
@@ -146,13 +147,11 @@ List<player*> data::get_players()
 				std::string index;
 				std::string date_;
 				std::string time_played;
-				std::string rating_temp;
 
 				// set name and description
 				std::getline(filer_, index);
 				std::getline(filer_, date_);
 				std::getline(filer_, time_played);
-				std::getline(filer_, rating_temp);
 
 				int index_ = utils::string_to_int(index);
 				int time_played_ = utils::string_to_int(time_played);
@@ -163,7 +162,7 @@ List<player*> data::get_players()
 				year_ = split_date_string_year(date_);
 				auto this_date = new date(day_, month_, year_);
 
-				lib_items.addAtEnd(new library_item(this_date, index_, time_played_,rating_));
+				lib_items.addAtEnd(new library_item(this_date, index_, time_played_));
 				std::getline(filer_, next_);
 			}
 			//link library items to this player:
@@ -233,8 +232,23 @@ std::string data::save_accounts(List<account*> accounts) const
 			final_string += player->get_password() + "\n";
 			final_string += std::to_string(player->get_credbalance()) + "\n";
 		}
+	}
 
-		// TODO: Library items
+	return final_string;
+}
+
+std::string data::save_lib_items(List<library_item*> items) const
+{
+	std::string final_string;
+	for (int i = 0; i < items.length(); ++i)
+	{
+		const auto item = items[i];
+
+		final_string += "LIBRARY-ITEM\n";
+		final_string += std::to_string(item->get_index()) + "\n";
+		final_string += item->get_purchased_date()->get_formatted() + "\n";
+		final_string += std::to_string(item->get_played_time()) + "\n";
+		final_string += std::to_string(item->get_rating()) + "\n";
 	}
 
 	return final_string;
@@ -252,6 +266,9 @@ std::string data::save_games(List<game*> games) const
 		final_string += game->get_name() + "\n";
 		final_string += game->get_description() + "\n";
 		final_string += std::to_string(game->get_cost()) + "\n";
+		final_string += std::to_string(game->get_age_rating()) + "\n";
+		final_string += std::to_string(game->get_likes()) + "\n";
+		final_string += std::to_string(game->get_dislikes()) + "\n";
 	}
 
 	return final_string;
