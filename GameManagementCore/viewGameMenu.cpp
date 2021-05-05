@@ -7,18 +7,24 @@ viewGameMenu::viewGameMenu(const std::string& title, application* app) : menu(ti
 
 void viewGameMenu::output_options()
 {
+	bool has_been_rated = false;
+	char game_rating = 32;
 	std::string description = app_->get_game()->get_description();
 	int age_rating = app_->get_game()->get_age_rating();
 	int cost = app_->get_game()->get_cost();
 	std::string rating = app_->get_game()->calculate_rating((app_->get_game()->get_likes()), (app_->get_game()->get_dislikes()));
-	char game_rating = app_->get_current_player()->library[app_->get_game()->get_id()]->get_rating();
-	bool has_been_rated = app_->get_current_player()->library[app_->get_game()->get_id()]->has_been_rated(game_rating);
-	
+	int id = app_->get_game()->get_id();
+
+	if (already_purchased() == true)
+	{
+		char game_rating = app_->get_current_player()->library[id]->get_rating();
+		bool has_been_rated = app_->get_current_player()->library[app_->get_game()->get_id()]->has_been_rated(game_rating);
+	}
 
 	std::cout << "  " << description << "\n\n"
 		<< "  Age Rating: " << age_rating << "\n"
 		<< "  Cost: " << cost << "\n"
-		<< "  Rating: " << rating <<"\n\n";
+		<< "  Average Rating: " << rating <<"\n\n";
 
 
 	if (app_->is_user_logged_in())
@@ -73,8 +79,12 @@ void viewGameMenu::output_options()
 
 bool viewGameMenu::handle_choice(char choice)
 {
-	char game_rating = app_->get_current_player()->library[app_->get_game()->get_id()]->get_rating();
-
+	char game_rating = 32;
+	
+	if (already_purchased() == true)
+	{
+		char game_rating = app_->get_current_player()->library[app_->get_game()->get_id()]->get_rating();
+	}
 	switch (choice)
 	{
 	case 'L':
@@ -140,7 +150,6 @@ bool viewGameMenu::handle_choice(char choice)
 
 bool viewGameMenu::already_purchased()
 {
-	//if (game[i] exists in library[] return true)
 	std::string this_game = app_->get_game()->get_name();
 
 	int len = (app_->get_current_player()->library.length()) - 1;
