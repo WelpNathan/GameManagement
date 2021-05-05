@@ -36,6 +36,8 @@ List<game*> data::get_games()
 			std::string desc;
 			std::string cost_temp;
 			std::string rating_temp;
+			std::string likes_temp;
+			std::string  dislikes_temp;
 
 			// remove index
 			std::getline(filer_, temp_index);
@@ -47,13 +49,17 @@ List<game*> data::get_games()
 			// set cost and rating
 			std::getline(filer_, cost_temp);
 			std::getline(filer_, rating_temp);
+			std::getline(filer_, likes_temp);
+			std::getline(filer_, dislikes_temp);
 
 			// convert string to int
 			const int index = std::stoi(temp_index);
 			const int cost = std::stoi(cost_temp);
 			const int age_rating = std::stoi(rating_temp);
+			const int likes = std::stoi(likes_temp);
+			const int dislikes = std::stoi(dislikes_temp);
 
-			games.addAtEnd(new game(name, desc, cost, age_rating, index, 0, 0));
+			games.addAtEnd(new game(name, desc, cost, age_rating, index, likes, dislikes));
 		}
 	}
 	return games;
@@ -140,20 +146,24 @@ List<player*> data::get_players()
 				std::string index;
 				std::string date_;
 				std::string time_played;
+				std::string rating_temp;
 
 				// set name and description
 				std::getline(filer_, index);
 				std::getline(filer_, date_);
 				std::getline(filer_, time_played);
+				std::getline(filer_, rating_temp);
 
 				int index_ = utils::string_to_int(index);
 				int time_played_ = utils::string_to_int(time_played);
+				char rating_ = utils::string_to_char(rating_temp);
+
 				day_ = split_date_string_day(date_);
 				month_ = split_date_string_month(date_);
 				year_ = split_date_string_year(date_);
 				auto this_date = new date(day_, month_, year_);
 
-				lib_items.addAtEnd(new library_item(this_date, index_, time_played_));
+				lib_items.addAtEnd(new library_item(this_date, index_, time_played_,rating_));
 				std::getline(filer_, next_);
 			}
 			//link library items to this player:

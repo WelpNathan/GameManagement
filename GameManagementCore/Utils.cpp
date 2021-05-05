@@ -86,3 +86,10 @@ int utils::char_to_int(char c)
 	int i = c - 48;
 	return i;
 }
+
+char utils::string_to_char(std::string input)
+{
+	const char* c = input.c_str();
+	
+	return *c;
+}
