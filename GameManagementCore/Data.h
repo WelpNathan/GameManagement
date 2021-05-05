@@ -31,4 +31,5 @@ private:
 	int day_;
 	int month_;
 	int year_;
+	player* player_;
 };

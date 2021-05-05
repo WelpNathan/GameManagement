@@ -241,16 +241,27 @@ std::string data::save_accounts(List<account*> accounts) const
 
 		for (int y = 0; y < account->users.length(); ++y)
 		{
-			const auto player = account->users[y];
+			player* player_ = dynamic_cast<player*>(account->users[y]);
+			
 			final_string += "ACCOUNT-PLAYER\n";
-			final_string += std::to_string(player->get_id()) + "\n";
-			final_string += player->get_created_date()->get_formatted() + "\n";
-			final_string += player->get_username() + "\n";
-			final_string += player->get_password() + "\n";
-			final_string += std::to_string(player->get_credbalance()) + "\n";
-		}
+			final_string += std::to_string(player_->get_id()) + "\n";
+			final_string += player_->get_created_date()->get_formatted() + "\n";
+			final_string += player_->get_username() + "\n";
+			final_string += player_->get_password() + "\n";
+			final_string += std::to_string(player_->get_credbalance()) + "\n";
 
-		// TODO: Library items
+			for (int z=0; z < 4; z++)
+			{
+				//library items
+				library_item* lib = player_->library[z];
+
+				final_string += "LIBRARY-ITEM\n";
+				final_string += lib->get_index();
+				final_string += lib->get_played_time();
+				final_string += lib->get_purchased_date()->get_formatted() + "\n";;
+				final_string += lib->get_rating();
+			}
+		}
 	}
 
 	return final_string;
@@ -268,6 +279,8 @@ std::string data::save_games(List<game*> games) const
 		final_string += game->get_name() + "\n";
 		final_string += game->get_description() + "\n";
 		final_string += std::to_string(game->get_cost()) + "\n";
+		final_string += game->get_likes() + "\n";
+		final_string += game->get_dislikes() + "\n";
 	}
 
 	return final_string;

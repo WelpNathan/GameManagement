@@ -9,7 +9,7 @@ public:
 	login_menu(const std::string& title, application* app);
 	void output_options() override;
 	bool handle_choice(char choice) override;
-	bool check_password(int i, std::string this_username, std::string stored_password);
+	bool check_password(int i, int j, std::string this_username, std::string stored_password);
 
 private:
 };

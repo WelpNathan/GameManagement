@@ -62,10 +62,10 @@ bool application::login_account(int i, const std::string& email, const std::stri
 	return true;
 }
 
-bool application::login_user(int i, const std::string& username, const std::string& password)
+bool application::login_user(int i, int j, const std::string& username, const std::string& password)
 {
 	current_user_ = current_account_->users[i];
-	current_player_ = dynamic_cast<player*>(this->accounts[0]->users[i]);
+	current_player_ = dynamic_cast<player*>(this->accounts[j]->users[i]);
 	user_is_logged_in_ = true;
 	return true;
 }
@@ -90,13 +90,22 @@ void application::log_out()
 
 void application::save()
 {
-	std::cout << "TODO: SAVE APPLICATION DATA.";
+	//save games
 	std::string account_data = data_->save_accounts(this->accounts);
-	std::string game_data = data_->save_games(data_->get_games());
+	
 
-	std::cout << "FINAL DATA.TXT FILE:\n\nACCOUNT\n\n";
-	std::cout << account_data << "\n\nGAME\n\n";
-	std::cout << game_data;
+	//save account[0]
+		//save player [0]
+			//save library of player[0]
+
+	
+	//std::cout << "TODO: SAVE APPLICATION DATA.";
+
+	//std::string game_data = data_->save_games(data_->get_games());
+
+	//std::cout << "FINAL DATA.TXT FILE:\n\nACCOUNT\n\n";
+	//std::cout << account_data << "\n\nGAME\n\n";
+	//std::cout << game_data;
 }
 
 void application::setup_data()

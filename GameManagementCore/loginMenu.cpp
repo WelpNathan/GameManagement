@@ -26,25 +26,28 @@ bool login_menu::handle_choice(const char choice)
 	case '1':
 		{
 			int i = 0;
+			int j = app_->get_current_account()->get_id();
 			std::string this_username = app_->get_current_account()->users[i]->get_username();
 			std::string stored_password = app_->get_current_account()->users[i]->get_password();
-			check_password(i, this_username, stored_password);
+			check_password(i, j, this_username, stored_password);
 		}
 		break;
 	case '2':
 		{
 			int i = 1;
+			int j = app_->get_current_account()->get_id();
 			std::string this_username = app_->get_current_account()->users[i]->get_username();
 			std::string stored_password = app_->get_current_account()->users[i]->get_password();
-			check_password(i, this_username, stored_password);
+			check_password(i, j, this_username, stored_password);
 		}
 		break;
 	case '3':
 		{
 			int i = 2;
+			int j = app_->get_current_account()->get_id();
 			std::string this_username = app_->get_current_account()->users[i]->get_username();
 			std::string stored_password = app_->get_current_account()->users[i]->get_password();
-			check_password(i, this_username, stored_password);
+			check_password(i, j, this_username, stored_password);
 		}
 		break;
 	default: ;
@@ -54,7 +57,7 @@ bool login_menu::handle_choice(const char choice)
 }
 
 
-bool login_menu::check_password(int i, std::string this_username, std::string stored_password)
+bool login_menu::check_password(int i, int j, std::string this_username, std::string stored_password)
 {
 	int count = 0;
 	std::string entered_password;
@@ -64,7 +67,7 @@ bool login_menu::check_password(int i, std::string this_username, std::string st
 
 	if (entered_password == stored_password)
 	{
-		app_->login_user(i, this_username, entered_password);
+		app_->login_user(i, j, this_username, entered_password);
 		app_->get_current_user();
 		main_menu this_menu("MAIN MENU", app_);
 		return true;
