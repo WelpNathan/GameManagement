@@ -6,6 +6,4 @@ void main()
 	application app;
 	main_menu this_menu("MAIN MENU", &app);
 
-	// TODO: fully implement
-	app.save();
 }

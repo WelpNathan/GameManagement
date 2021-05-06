@@ -153,3 +153,13 @@ void utils::format_playing_time(int input)
 		std::cout << "  Game played for : " << d << " hours" << "\n\n"; // us utils:
 	}
 }
+
+
+bool utils::check_password(std::string entered_password, std::string stored_password)
+{
+	if (entered_password == stored_password)
+	{
+		return true;
+	}
+	return false;
+}

@@ -22,33 +22,50 @@ void login_menu::output_options()
 
 bool login_menu::handle_choice(const char choice)
 {
+	std::string entered_password;
 	switch (choice)
 	{
 	case '1':
 	{
-		const int i = 0;
-		const int j = app_->get_current_account()->get_id();
-		const std::string this_username = app_->get_current_account()->users[i]->get_username();
-		const std::string stored_password = app_->get_current_account()->users[i]->get_password();
-		check_password(i, j, this_username, stored_password);
+		const std::string this_username = app_->get_current_account()->users[0]->get_username();
+		const std::string stored_password = app_->get_current_account()->users[0]->get_password();
+		std::string entered_password;
+		std::cout << "  Enter password for " << this_username << ": ";
+		std::cin >> entered_password;
+		if (utils::check_password(entered_password, stored_password) == true)
+		{
+			app_->login_user(0, this_username, stored_password);
+			main_menu this_menu("MAIN MENU", app_);
+		}
+
 	}
 	break;
 	case '2':
 	{
-		const int i = 1;
-		const int j = app_->get_current_account()->get_id();
-		const std::string this_username = app_->get_current_account()->users[i]->get_username();
-		const std::string stored_password = app_->get_current_account()->users[i]->get_password();
-		check_password(i, j, this_username, stored_password);
+		const std::string this_username = app_->get_current_account()->users[1]->get_username();
+		const std::string stored_password = app_->get_current_account()->users[1]->get_password();
+		std::cout << "  Enter password for " << this_username << ": ";
+		std::cin >> entered_password;
+		utils::check_password(entered_password, stored_password);
+		if (utils::check_password(entered_password, stored_password) == true)
+		{
+			app_->login_user(0, this_username, stored_password);
+			main_menu this_menu("MAIN MENU", app_);
+		}
 	}
 	break;
 	case '3':
 	{
-		const int i = 2;
-		const int j = app_->get_current_account()->get_id();
-		const std::string this_username = app_->get_current_account()->users[i]->get_username();
-		const std::string stored_password = app_->get_current_account()->users[i]->get_password();
-		check_password(i, j, this_username, stored_password);
+		const std::string this_username = app_->get_current_account()->users[2]->get_username();
+		const std::string stored_password = app_->get_current_account()->users[2]->get_password();
+		std::cout << "  Enter password for " << this_username << ": ";
+		std::cin >> entered_password;
+		utils::check_password(entered_password, stored_password);
+		if (utils::check_password(entered_password, stored_password) == true)
+		{
+			app_->login_user(0, this_username, stored_password);
+			main_menu this_menu("MAIN MENU", app_);
+		}
 	}
 	break;
 	default:;
@@ -57,17 +74,4 @@ bool login_menu::handle_choice(const char choice)
 	return false;
 }
 
-bool login_menu::check_password(const std::string& this_username,
-	const std::string stored_password) const
-{
-	std::string entered_password;
-	std::cout << "  Enter password for " << this_username << ": ";
-	std::cin >> entered_password;
-
-	if (entered_password == stored_password)
-	{
-		return true;
-	}
-	return false; //invalid password
-}
 

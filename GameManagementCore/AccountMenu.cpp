@@ -24,6 +24,7 @@ bool account_menu::handle_choice(const char choice)
 {
 	const int index = utils::char_to_int(choice) - 1;
 	int count = 0;
+	std::string entered_password;
 
 	while (count <3)
 	{
@@ -35,7 +36,10 @@ bool account_menu::handle_choice(const char choice)
 			if (index >= 0 && index < size)
 			{
 				const std::string this_username = app_->accounts[index]->get_account_name();
-				if (check_password(index, this_username, stored_password) == true)
+				std::cout << "  Enter password for " << this_username << ": ";
+				std::cin >> entered_password;
+
+				if (utils::check_password(entered_password, stored_password) == true)
 				{
 					app_->login_account(index, this_username, stored_password);
 					login_menu this_login_menu("LOGIN - USER", app_);
@@ -54,19 +58,4 @@ bool account_menu::handle_choice(const char choice)
 	
 
 	return false;
-}
-
-
-bool account_menu::check_password(const int index, const std::string& this_username,
-                                  const std::string& stored_password) const
-{
-	std::string entered_password;
-	std::cout << "  Enter password for " << this_username << ": ";
-	std::cin >> entered_password;
-
-	if (entered_password == stored_password)
-	{
-		return true;
-	}
-	return false; //invalid password
 }

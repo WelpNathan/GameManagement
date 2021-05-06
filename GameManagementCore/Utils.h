@@ -22,4 +22,5 @@ public:
 	static std::string to_lower(std::string);
 	static int utils::random_integer(int a, int b);
 	static void format_playing_time(int input);
+	static bool check_password(std::string entered_password, std::string stored_password);
 };
