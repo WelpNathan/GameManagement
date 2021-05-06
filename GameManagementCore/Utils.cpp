@@ -1,4 +1,6 @@
 #include "Utils.h"
+
+#include <algorithm>
 #pragma warning(disable : 4996) //_CRT_SECURE_NO_WARNINGS
 
 std::string utils::get_line_from_user()
@@ -20,7 +22,7 @@ std::string utils::string_to_upper(std::string data)
 
 	while (data[i])
 	{
-		char c = data[i];
+		const char c = data[i];
 		data[i] = (toupper(c));
 		i++;
 	}
@@ -30,25 +32,25 @@ std::string utils::string_to_upper(std::string data)
 //recurrsive string to upper
 std::string string_to_upper_rec(std::string data)
 {
-	size_t len = data.length();
+	const size_t len = data.length();
 
 	if (len != 0)
 	{
-		char thisChar = toupper(data[0]);
-		std::string rest = data.substr(1);
-		data[0] = thisChar;
+		const char this_char = toupper(data[0]);
+		const std::string rest = data.substr(1);
+		data[0] = this_char;
 		return data[0] + string_to_upper_rec(rest);
 	}
 	return data;
 }
 
-int utils::string_to_int(std::string input)
+int utils::string_to_int(const std::string& input)
 {
-	int output = stoi(input);
+	const int output = stoi(input);
 	return output;
 }
 
-bool utils::char_is_num(char c)
+bool utils::char_is_num(const char c)
 {
 	if (isdigit(c))
 	{
@@ -61,7 +63,7 @@ int utils::get_current_day()
 {
 	time_t now = time(nullptr);
 	tm* ltm = localtime(&now);
-	int day = ltm->tm_mday;
+	const int day = ltm->tm_mday;
 	return day;
 }
 
@@ -69,7 +71,7 @@ int utils::get_current_month()
 {
 	time_t now = time(nullptr);
 	tm* ltm = localtime(&now);
-	int month = 1 + ltm->tm_mon;
+	const int month = 1 + ltm->tm_mon;
 	return month;
 }
 
@@ -77,27 +79,27 @@ int utils::get_current_year()
 {
 	time_t now = time(nullptr);
 	tm* ltm = localtime(&now);
-	int year = 1900 + ltm->tm_year;
+	const int year = 1900 + ltm->tm_year;
 	return year;
 }
 
-int utils::char_to_int(char c)
+int utils::char_to_int(const char c)
 {
-	int i = c - 48;
+	const int i = c - 48;
 	return i;
 }
 
-char utils::string_to_char(std::string input)
+char utils::string_to_char(const std::string& input)
 {
 	const char* c = input.c_str();
 	
 	return *c;
 }
 
-std::string utils::spaces_in_menu_list(int len, int gap)
+std::string utils::spaces_in_menu_list(const int len, const int gap)
 {
-	int num_spaces = gap - len;
-	std::string space = " ";
+	const int num_spaces = gap - len;
+	const std::string space = " ";
 	std::string old_string = "-  ";
 	std::string new_string;
 
@@ -106,4 +108,18 @@ std::string utils::spaces_in_menu_list(int len, int gap)
 		new_string =old_string.insert(0, space);
 	}
 	return new_string;
+}
+
+bool utils::starts_with(const std::string& main, const std::string& search)
+{
+	const std::string new_main = to_lower(main);
+	const std::string new_search = to_lower(search);
+	return (new_main.rfind(new_search, 0) == 0);
+}
+
+std::string utils::to_lower(std::string data)
+{
+	std::transform(data.begin(), data.end(), data.begin(),
+		[](const unsigned char c) { return std::tolower(c); });
+	return data;
 }
