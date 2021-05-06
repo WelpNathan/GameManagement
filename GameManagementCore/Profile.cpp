@@ -19,17 +19,20 @@ void profile::output_options()
 	option('O', "Purchase 10 credits");
 	option('P', "Purchase 100 credits");
 
+	std::cout << "\n\n" << "  SORTING" << "\n";
+	option('M', "Sort by date");
+	option('Z', "Sort by name");
 
 	std::cout << "\n\n" << "  GAMES" << "\n";
 	//list of library items
-	const int len = (app_->get_current_player()->library.length());
+	const size_t len = (app_->get_current_player()->library.size());
 
 	for (int i = 0; i < len; i++)
 	{
 		const int index = app_->get_current_player()->library[i]->get_index();
 		game* this_game = app_->set_game(index);
 		const std::string& this_library_item_title = this_game->get_name();
-		app_->get_current_player()->library[i];
+		// app_->get_current_player()->library[i];
 		option((i + 1), this_library_item_title);
 	}
 
@@ -56,14 +59,28 @@ bool profile::handle_choice(const char choice)
 		if (index >= 0 && index < game_size)
 		{
 			const std::string game_title = choice + " " + (app_->set_game(index))->get_name();
-			view_library_item this_lib(game_title, app_);
+			//view_game_menu this_game(game_title, app_);
+			view_library_item(game_title, app_);
 		}
 	}
 	else
 	{
-		//PURCHASE CREDITS
 		switch (choice)
 		{
+			// SORT THINGS
+		case 'M':
+			// BY DATE
+			{
+				std::cout << "LOL IT'S A DATE";
+				break;
+			}
+		case 'Z':
+			// BY NAME
+			{
+				std::cout << "LOL IT'S A NAME";
+				break;
+			}
+			//PURCHASE CREDITS
 		case 'I':
 			{
 				const float add = 1.00;

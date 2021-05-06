@@ -91,7 +91,7 @@ bool view_game_menu::already_purchased()
 {
 	std::string this_game = app_->get_game()->get_name();
 
-	int len = (app_->get_current_player()->library.length()) - 1;
+	size_t len = (app_->get_current_player()->library.size()) - 1;
 
 	for (int i = 0; i <= len; i++)
 	{
@@ -126,7 +126,7 @@ void view_game_menu::purchase_game(game* thisGame, float balance, int cost)
 	//add game to library
 	int index = app_->get_game_index(thisGame);
 	auto new_item = new library_item(today, index, 0, false);
-	app_->get_current_player()->library.addAtEnd(new_item);
+	app_->get_current_player()->library.push_back(new_item);
 
 	//update balance
 	float new_balance = (balance - cost);
