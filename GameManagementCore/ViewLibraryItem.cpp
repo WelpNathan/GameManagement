@@ -7,8 +7,10 @@ view_library_item::view_library_item(const std::string& title, application* app)
 
 void view_library_item::output_options()
 {
-	int g = app_->get_game()->get_id();
-	library_item* lib = app_->match_lib_item_to_game(g);
+	//const float balance = app_->get_current_user()->get_credit_balance();
+	int id = app_->get_game()->get_id();
+	library_item* lib = app_->match_lib_item_to_game(id);
+
 	bool has_been_rated = lib->has_been_rated(lib->get_rating());
 	char game_rating = lib->get_rating();
 	std::string description = app_->get_game()->get_description();
@@ -16,14 +18,13 @@ void view_library_item::output_options()
 	int cost = app_->get_game()->get_cost();
 	std::string rating = app_->get_game()->calculate_rating((app_->get_game()->get_likes()),
 		(app_->get_game()->get_dislikes()));
-	int played_ = lib->get_played_time();
-	int id = app_->get_game()->get_id();
 
 	std::cout << "  " << description << "\n\n"
 		<< "  Age Rating: " << age_rating << "\n"
 		<< "  Cost: " << cost << "\n"
 		<< "  Average Rating: " << rating << "\n\n";
 
+	const int played_ = lib->get_played_time();
 	utils::format_playing_time(played_);
 
 	option('P', "Play this game");

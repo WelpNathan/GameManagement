@@ -85,7 +85,8 @@ bool profile::handle_choice(const char choice)
 				const float add = 1.00;
 				float balance = app_->get_current_user()->get_credit_balance();
 				const float new_balance = purchase_credits(balance, add);
-				balance = new_balance;
+				balance = app_->get_current_user()->set_credit_balance(new_balance);
+				
 			}
 			break;
 		case 'O':
@@ -93,7 +94,7 @@ bool profile::handle_choice(const char choice)
 				const float add = 10.00;
 				float balance = app_->get_current_user()->get_credit_balance();
 				const float new_balance = purchase_credits(balance, add);
-				balance = new_balance;
+				balance = app_->get_current_user()->set_credit_balance(new_balance);
 			}
 			break;
 		case 'P':
@@ -101,7 +102,7 @@ bool profile::handle_choice(const char choice)
 				const float add = 100.00;
 				float balance = app_->get_current_user()->get_credit_balance();
 				const float new_balance = purchase_credits(balance, add);
-				balance = new_balance;
+				balance = app_->get_current_user()->set_credit_balance(new_balance);
 			}
 			break;
 
