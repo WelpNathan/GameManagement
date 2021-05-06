@@ -124,3 +124,10 @@ std::string utils::to_lower(std::string data)
 	               [](const unsigned char c) { return std::tolower(c); });
 	return data;
 }
+
+
+int utils:: random_integer(int a, int b)
+{
+	int output = rand() % (b - a) + a;
+	return output;
+}

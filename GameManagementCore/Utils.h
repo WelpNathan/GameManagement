@@ -19,4 +19,5 @@ public:
 	static std::string spaces_in_menu_list(int, int);
 	static bool starts_with(const std::string&, const std::string&);
 	static std::string to_lower(std::string);
+	static int utils::random_integer(int a, int b);
 };
