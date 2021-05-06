@@ -166,6 +166,7 @@
     <ClCompile Include="User.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="viewGameMenu.cpp" />
+    <ClCompile Include="ViewLibraryItem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h" />
@@ -187,6 +188,7 @@
     <ClInclude Include="User.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="viewGameMenu.h" />
+    <ClInclude Include="ViewLibraryItem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

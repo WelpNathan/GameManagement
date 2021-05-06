@@ -56,7 +56,8 @@ bool profile::handle_choice(const char choice)
 		if (index >= 0 && index < game_size)
 		{
 			const std::string game_title = choice + " " + (app_->set_game(index))->get_name();
-			view_game_menu this_game(game_title, app_);
+			//view_game_menu this_game(game_title, app_);
+			view_library_item(game_title, app_);
 		}
 	}
 	else
@@ -90,24 +91,24 @@ bool profile::handle_choice(const char choice)
 			break;
 
 			//ADMIN OPTIONS
-			//if (app_->is_user_admin() == true)
-			//{
-			//case 'A':
-			//	{
-			//		add_new_user();
-			//	}
-			//	break;
-			//case 'R':
-			//	{
-			//		//remove user
-			//	}
-			//	break;
-			//case 'G':
-			//	{
-			//		//guest per-game access
-			//	}
-			//	break;
-			//}
+			if (app_->is_user_admin() == true)
+			{
+			case 'A':
+				{
+					add_new_user();
+				}
+				break;
+			case 'R':
+				{
+					//remove user
+				}
+				break;
+			case 'G':
+				{
+					//guest per-game access
+				}
+				break;
+			}
 		default: ;
 		}
 	}

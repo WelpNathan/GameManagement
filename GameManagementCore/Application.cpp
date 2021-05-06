@@ -202,3 +202,18 @@ void application::exit(const bool ready_to_exit) const
 		//close//
 	}
 }
+
+library_item* application::match_lib_item_to_game(int id)
+{
+	int len = this->get_current_player()->library.length();
+	for (int i = 0; i < len; i++)
+	{
+		library_item* this_library_item = this->get_current_player()->library[i];
+		int index = this->get_current_player()->library[i]->get_index();
+
+		if (index = id)
+		{
+			return this_library_item;
+		}
+	}
+}

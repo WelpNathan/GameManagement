@@ -2,6 +2,7 @@
 
 #include "Menu.h"
 #include "Utils.h"
+#include "ViewLibraryItem.h"
 
 class profile final : public menu
 {
@@ -14,5 +15,4 @@ public:
 	void add_new_user();
 
 private:
-	//date* created_date;
 };

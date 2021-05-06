@@ -1,9 +1,8 @@
 #pragma once
 
 #include "Menu.h"
-
 #include <string>
-#include "viewGameMenu.h"
+#include "ViewGameMenu.h"
 
 class store_menu final : public menu
 {

@@ -31,6 +31,7 @@ public:
 	void save() const;
 	int get_game_index(game* this_game);
 	void exit(bool) const;
+	library_item* match_lib_item_to_game(int);
 
 private:
 	store* store_{};

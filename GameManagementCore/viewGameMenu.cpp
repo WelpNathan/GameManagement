@@ -16,25 +16,10 @@ void view_game_menu::output_options()
 	                                                        (app_->get_game()->get_dislikes()));
 	int id = app_->get_game()->get_id();
 
-	if (already_purchased() == true)
-	{
-		char game_rating = app_->get_current_player()->library[id]->get_rating();
-		bool has_been_rated = app_->get_current_player()->library[app_->get_game()->get_id()]->has_been_rated(
-			game_rating);
-
-	}
-
 	std::cout << "  " << description << "\n\n"
-		<< "  Age Rating: " << age_rating << "\n"
-		<< "  Cost: " << cost << "\n"
-		<< "  Average Rating: " << rating << "\n";
-
-	if (already_purchased() == true)
-	{
-		int play_time = app_->get_current_player()->library[app_->get_game()->get_id()]->get_played_time();
-		utils::format_playing_time(play_time);
-	}
-
+	<< "  Age Rating: " << age_rating << "\n"
+	<< "  Cost: " << cost << "\n"
+	<< "  Average Rating: " << rating << "\n";
 
 	if (app_->is_user_logged_in())
 	{
@@ -44,24 +29,8 @@ void view_game_menu::output_options()
 			std::cout << "- - - - - - - - - - - - - -" << "\n";
 			std::cout << "  Game already purchased" << "\n\n";
 			std::cout << "- - - - - - - - - - - - - -" << "\n";
-			option('L', "Play this game");
-			if (has_been_rated == false)
-			{
-				option('R', "Rate this Game");
-			}
-			else
-			{
-				if (game_rating == 'L')
-				{
-					std::cout << "  You LIKED this game";
-					option('C', "Change Rating for this game");
-				}
-				else if (game_rating == 'D')
-				{
-					std::cout << "  You DISLIKED this game";
-					option('C', "Change Rating for this game");
-				}
-			}
+			option('L', "View game in library");
+			
 		}
 		else
 		{
@@ -90,21 +59,13 @@ bool view_game_menu::handle_choice(char choice)
 {
 	char game_rating = 32;
 
-	if (already_purchased() == true)
-	{
-		char game_rating = app_->get_current_player()->library[app_->get_game()->get_id()]->get_rating();
-	}
 	switch (choice)
 	{
 	case 'L':
 		{
-		//play this game
-		int play_time = app_->get_current_player()->library[app_->get_game()->get_id()]->get_played_time();
-		int random = utils::random_integer(0, 60);
-		int new_play_time = random + play_time;
-
-		int play_time_ = app_->get_current_player()->library[app_->get_game()->get_id()]->set_played_time(play_time, new_play_time);
-		utils::format_playing_time(play_time_);
+		const std::string profile_title = (app_->get_current_user()->get_username()) +
+			"'S PROFILE";
+		profile this_profile(profile_title, app_);
 		}
 		break;
 	case 'G':
@@ -120,43 +81,6 @@ bool view_game_menu::handle_choice(char choice)
 			std::string profile_title = (app_->get_current_user()->get_username()) +
 				"'S PROFILE";
 			profile this_profile(profile_title, app_);
-		}
-		break;
-	case 'R':
-		{
-			//rate game
-			bool has_been_rated = false;
-
-			while (has_been_rated == false)
-			{
-				std::cout << "  Do you LIKE (L) or DISLIKE (D) this game? >> ";
-				char reply;
-				std::cin >> reply;
-
-				if (reply == 'L')
-				{
-					app_->get_game()->set_likes((app_->get_game()->get_likes()) + 1, (app_->get_game()->get_likes()));
-					app_->get_current_player()->library[app_->get_game()->get_id()]->set_rating(game_rating, reply);
-				}
-				else if (reply == 'D')
-				{
-					int dislikes = (app_->get_game()->get_dislikes()) + 1;
-					app_->get_game()->set_dislikes((app_->get_game()->get_dislikes()) + 1,
-					                               (app_->get_game()->get_dislikes()));
-					app_->get_current_player()->library[app_->get_game()->get_id()]->set_rating(game_rating, reply);
-				}
-			}
-		}
-		break;
-	case 'C':
-		{
-			std::cout << "  Do you LIKE (L) or DISLIKE (D) this game? >> ";
-			char input;
-			std::cin >> input;
-			if (input == 'L' || input == 'D')
-			{
-				app_->get_current_player()->library[app_->get_game()->get_id()]->set_rating(game_rating, input);
-			}
 		}
 		break;
 	}
