@@ -189,7 +189,7 @@ List<player*> data::get_players()
 
 			for (int i = 0; i < saved_lib_items.length(); ++i)
 			{
-				this_player->library.addAtEnd(saved_lib_items[i]);
+				this_player->library.push_back(saved_lib_items[i]);
 			}
 
 			players.addAtEnd(this_player);

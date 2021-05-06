@@ -144,12 +144,13 @@ admin* application::create_admin(List<player*> saved_players)
 
 	//add admin library items
 	List<library_item*> lib_items;
-	for (int i = 0; i < (saved_players[0]->library.length()); i++)
+	for (int i = 0; i < (saved_players[0]->library.size()); i++)
 	{
-		const int index = saved_players[0]->library[i]->get_index();
-		const int played_time = saved_players[0]->library[i]->get_played_time();
-		date* purchased = saved_players[0]->library[i]->get_purchased_date();
-		const char rating = saved_players[0]->library[i]->get_rating();
+		auto item = saved_players[0]->library[0];
+		const int index = item->get_index();
+		const int played_time = item->get_played_time();
+		date* purchased = item->get_purchased_date();
+		const char rating = item->get_rating();
 		lib_items.addAtEnd(new library_item(purchased, index, played_time, rating));
 	}
 	//link library items to admin/player
@@ -157,7 +158,7 @@ admin* application::create_admin(List<player*> saved_players)
 	for (int i = 0; i < saved_lib_items.length(); ++i)
 	{
 		auto plr = this_admin;
-		plr->library.addAtEnd(saved_lib_items[i]);
+		plr->library.push_back(saved_lib_items[i]);
 	}
 	return this_admin;
 }
@@ -205,7 +206,7 @@ void application::exit(const bool ready_to_exit) const
 
 library_item* application::match_lib_item_to_game(int id)
 {
-	int len = this->get_current_player()->library.length();
+	size_t len = this->get_current_player()->library.size();
 	for (int i = 0; i < len; i++)
 	{
 		library_item* this_library_item = this->get_current_player()->library[i];

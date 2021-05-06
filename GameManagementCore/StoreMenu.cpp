@@ -58,7 +58,7 @@ void store_menu::output_options()
 		for (int i = 0; i < game_size; i++)
 		{
 			std::string game_title = app_->get_store()->games[i]->get_name();
-			const int len = game_title.length();
+			const size_t len = game_title.length();
 			const int likes = app_->get_store()->games[i]->get_likes();
 			const int dislikes = app_->get_store()->games[i]->get_likes();
 			std::string game_rating = app_->get_store()->games[i]->calculate_rating(likes, dislikes);
