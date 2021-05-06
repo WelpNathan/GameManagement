@@ -12,4 +12,7 @@ public:
 	void output_options() override;
 	bool handle_choice(char choice) override;
 private:
+	std::string search_data_name_;
+	int search_data_price_ = -1;
+	int search_data_rating_ = -1;
 };
