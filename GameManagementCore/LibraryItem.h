@@ -11,6 +11,7 @@ public:
 	date* get_purchased_date() const;
 	int get_played_time() const;
 	int set_played_time(int, int) const;
+	int add_play_time(int);
 	char get_rating() const;
 	static char set_rating(char, char);
 	static bool has_been_rated(char rating);
