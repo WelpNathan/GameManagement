@@ -6,8 +6,6 @@
 #include "Game.h"
 #include "ListT.h"
 #include "Player.h"
-#include "Utils.h"
-#include "Date.h"
 
 
 class data
@@ -19,18 +17,18 @@ public:
 	List<account*> get_accounts();
 	List<player*> get_players();
 	static int split_date_string_year(std::string input_date);
-	int split_date_string_month(std::string input_date) const;
-	int split_date_string_day(std::string input_date) const;
+	static int split_date_string_month(std::string input_date);
+	static int split_date_string_day(std::string input_date);
 
 	std::string save_accounts(List<account*> accounts) const;
 	std::string save_games(List<game*> games) const;
-	std::string data::save_lib_items(List<library_item*>) const;
+	std::string save_lib_items(List<library_item*>) const;
 
 private:
 	std::ofstream filew_;
 	std::ifstream filer_;
-	int day_;
-	int month_;
-	int year_;
-	player* player_;
+	int day_{};
+	int month_{};
+	int year_{};
+	player* player_{};
 };

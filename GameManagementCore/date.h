@@ -7,10 +7,10 @@ public:
 	date(int, int, int);
 	//~date();
 
-	const int get_day() const;
-	const int get_month() const;
-	const int get_year() const;
-	const std::string get_formatted() const;
+	int get_day() const;
+	int get_month() const;
+	int get_year() const;
+	std::string get_formatted() const;
 
 private:
 	int day_;

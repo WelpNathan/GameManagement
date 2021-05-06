@@ -2,8 +2,10 @@
 
 #include <utility>
 
-game::game(std::string name, std::string desc, const int cost, const int age_rating, const int id, int likes, int dislikes)
-	: name_(std::move(name)), description_(std::move(desc)), cost_(cost), age_rating_(age_rating), id_(id), likes_(likes), dislikes_(dislikes)
+game::game(std::string name, std::string desc, const int cost, const int age_rating, const int id, const int likes,
+           const int dislikes)
+	: name_(std::move(name)), description_(std::move(desc)), cost_(cost), age_rating_(age_rating), id_(id),
+	  likes_(likes), dislikes_(dislikes)
 {
 }
 
@@ -35,33 +37,34 @@ int game::get_id() const
 	return id_;
 }
 
-int game::get_likes()
+int game::get_likes() const
 {
 	return likes_;
 }
-int game::set_likes(int new_val, int likes)
+
+int game::set_likes(const int new_val, const int likes)
 {
 	int* ptr = &likes_;
 	*ptr = new_val;
 	return likes;
 }
 
-int game::get_dislikes()
+int game::get_dislikes() const
 {
 	return dislikes_;
 }
 
-int game::set_dislikes(int new_val, int dislikes)
+int game::set_dislikes(const int new_val, const int dislikes)
 {
 	int* ptr = &dislikes_;
 	*ptr = new_val;
 	return dislikes;
 }
 
-std::string game::calculate_rating(int likes, int dislikes)
+std::string game::calculate_rating(const int likes, const int dislikes) const
 {
-	int total_number_of_ratings = likes + dislikes;
-	std::string rating_;
+	const int total_number_of_ratings = likes + dislikes;
+
 	float rating;
 
 	if (total_number_of_ratings == 0)
@@ -70,11 +73,9 @@ std::string game::calculate_rating(int likes, int dislikes)
 	}
 	else { rating = (100 / total_number_of_ratings) * likes; }
 
-	std::string rating_temp = std::to_string(rating);
+	const std::string rating_temp = std::to_string(rating);
 
-	rating_ = rating_temp.substr(0, 4);
+	std::string rating_ = rating_temp.substr(0, 4);
 
 	return rating_;
 }
-
-

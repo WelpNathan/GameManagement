@@ -11,7 +11,6 @@ menu::menu(std::string title, application* app) : app_(app), title_(std::move(ti
 void menu::paint()
 {
 	bool ready_to_go_back = false;
-	bool ready_to_exit = false;
 
 	while (!ready_to_go_back)
 	{
@@ -28,10 +27,9 @@ void menu::paint()
 		{
 			ready_to_go_back = true;
 		}
-		else if(choice=='X')
-		{ 
-			ready_to_exit = true;
-			app_->exit(ready_to_exit);
+		else if (choice == 'X')
+		{
+			app_->exit(true);
 		}
 		else
 		{

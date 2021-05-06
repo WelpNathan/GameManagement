@@ -5,10 +5,10 @@
 #include <string>
 #include <vector>
 
-class viewGameMenu : public menu
+class view_game_menu final : public menu
 {
 public:
-	viewGameMenu(const std::string& title, application* app);
+	view_game_menu(const std::string& title, application* app);
 	void output_options() override;
 	bool handle_choice(char choice) override;
 

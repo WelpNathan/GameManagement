@@ -1,8 +1,7 @@
 #include "Application.h"
 #include <iostream>
 
-application::application() : current_account_(get_current_account()), current_user_(get_current_user()),
-                             user_is_logged_in_(false)
+application::application() : current_account_(get_current_account()), current_user_(get_current_user())
 {
 	setup_data();
 }
@@ -88,11 +87,11 @@ void application::log_out()
 	user_is_logged_in_ = false;
 }
 
-void application::save()
+void application::save() const
 {
-	std::string game_data = data_->save_games(data_->get_games());
-	std::string account_data = data_->save_accounts(this->accounts);
-		//save_accounts saves account->player->library-items.
+	const std::string game_data = data_->save_games(data_->get_games());
+	const std::string account_data = data_->save_accounts(this->accounts);
+	//save_accounts saves account->player->library-items.
 	std::cout << "FINAL DATA.TXT FILE:\n\nACCOUNT\n\n";
 	std::cout << account_data << "\n\nGAME\n\n";
 	std::cout << game_data;
@@ -135,22 +134,22 @@ void application::setup_data()
 
 admin* application::create_admin(List<player*> saved_players)
 {
-	std::string password = saved_players[0]->get_password();
-	std::string username = saved_players[0]->get_username();
+	const std::string password = saved_players[0]->get_password();
+	const std::string username = saved_players[0]->get_username();
 	date* created = saved_players[0]->get_created_date();
-	float credbalance = saved_players[0]->get_credbalance();
+	const float credit_balance = saved_players[0]->get_credit_balance();
 
 	// TODO: add index?
-	auto this_admin = new admin(username, password, created, credbalance, 0);
+	const auto this_admin = new admin(username, password, created, credit_balance, 0);
 
-	//add admin's library items
+	//add admin library items
 	List<library_item*> lib_items;
 	for (int i = 0; i < (saved_players[0]->library.length()); i++)
 	{
-		int index = saved_players[0]->library[i]->get_index();
-		int played_time = saved_players[0]->library[i]->get_played_time();
+		const int index = saved_players[0]->library[i]->get_index();
+		const int played_time = saved_players[0]->library[i]->get_played_time();
 		date* purchased = saved_players[0]->library[i]->get_purchased_date();
-		char rating = saved_players[0]->library[i]->get_rating();
+		const char rating = saved_players[0]->library[i]->get_rating();
 		lib_items.addAtEnd(new library_item(purchased, index, played_time, rating));
 	}
 	//link library items to admin/player
@@ -169,15 +168,15 @@ game* application::set_game(int i)
 	return game_;
 }
 
-game* application::get_game()
+game* application::get_game() const
 {
 	return game_;
 }
 
 int application::get_game_index(game* this_game)
 {
-	int len = this->get_store()->games.length();
-	std::string this_game_name = this_game->get_name();
+	const int len = this->get_store()->games.length();
+	const std::string& this_game_name = this_game->get_name();
 	index_ = 0;
 	for (int i = 0; i < len; i++)
 	{
@@ -195,7 +194,7 @@ int application::get_game_index(game* this_game)
 }
 
 
-void application::exit(bool ready_to_exit)
+void application::exit(const bool ready_to_exit) const
 {
 	while (ready_to_exit == true)
 	{

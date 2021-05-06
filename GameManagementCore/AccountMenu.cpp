@@ -1,5 +1,6 @@
 #include "AccountMenu.h"
 #include "loginMenu.h"
+#include "Utils.h"
 
 
 account_menu::account_menu(const std::string& title, application* app) : menu(title, app)
@@ -12,8 +13,8 @@ void account_menu::output_options()
 {
 	for (int i = 0; i < app_->accounts.length(); i++)
 	{
-		std::string this_accountname = app_->accounts[i]->get_account_name();
-		option((i + 1), this_accountname);
+		std::string this_account_name = app_->accounts[i]->get_account_name();
+		option((i + 1), this_account_name);
 	}
 }
 
@@ -23,12 +24,12 @@ bool account_menu::handle_choice(const char choice)
 
 	if (index >= 0)
 	{
-		std::string stored_password = app_->accounts[index]->get_account_password();
+		const std::string stored_password = app_->accounts[index]->get_account_password();
 
-		int size = app_->accounts.length();
+		const int size = app_->accounts.length();
 		if (index >= 0 && index < size)
 		{
-			std::string this_username = app_->accounts[index]->get_account_name();
+			const std::string this_username = app_->accounts[index]->get_account_name();
 			check_password(index, this_username, stored_password);
 		}
 	}
@@ -37,7 +38,8 @@ bool account_menu::handle_choice(const char choice)
 }
 
 
-bool account_menu::check_password(int index, std::string this_username, std::string stored_password)
+bool account_menu::check_password(const int index, const std::string& this_username,
+                                  const std::string& stored_password) const
 {
 	std::string entered_password;
 	std::cout << "  Enter password for " << this_username << ": ";

@@ -1,9 +1,7 @@
 #pragma once
 
 #include <string>
-#include "ListT.h"
-#include "LibraryItem.h"
-#include "Date.h"
+#include "date.h"
 
 class user
 {
@@ -12,15 +10,15 @@ public:
 	virtual ~user();
 	const std::string& get_username() const;
 	const std::string& get_password() const;
-	date* user::get_created_date();
-	const float& get_credbalance() const;
-	float& set_credbalance(float new_balance);
+	date* get_created_date();
+	const float& get_credit_balance() const;
+	float& set_credit_balance(float new_balance);
 	const int& get_id();
 
 private:
 	std::string username_;
 	std::string password_;
 	date* created_date_;
-	float credbalance_;
+	float credit_balance_;
 	int player_id_;
 };

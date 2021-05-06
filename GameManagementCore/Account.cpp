@@ -2,7 +2,7 @@
 
 #include <utility>
 
-account::account(std::string email, std::string password, date* created, int id)
+account::account(std::string email, std::string password, date* created, const int id)
 	: email_(std::move(email)), password_(std::move(password)), created_(created), id_(id)
 {
 }

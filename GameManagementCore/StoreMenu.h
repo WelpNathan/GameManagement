@@ -3,7 +3,6 @@
 #include "Menu.h"
 
 #include <string>
-#include <vector>
 #include "viewGameMenu.h"
 
 class store_menu final : public menu

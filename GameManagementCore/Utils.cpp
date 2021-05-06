@@ -1,6 +1,7 @@
 #include "Utils.h"
 
 #include <algorithm>
+#include <iostream>
 #pragma warning(disable : 4996) //_CRT_SECURE_NO_WARNINGS
 
 std::string utils::get_line_from_user()
@@ -30,7 +31,7 @@ std::string utils::string_to_upper(std::string data)
 }
 
 //recurrsive string to upper
-std::string string_to_upper_rec(std::string data)
+std::string utils::string_to_upper_rec(std::string data)
 {
 	const size_t len = data.length();
 
@@ -92,7 +93,7 @@ int utils::char_to_int(const char c)
 char utils::string_to_char(const std::string& input)
 {
 	const char* c = input.c_str();
-	
+
 	return *c;
 }
 
@@ -105,7 +106,7 @@ std::string utils::spaces_in_menu_list(const int len, const int gap)
 
 	for (int x = 0; x <= num_spaces; x++)
 	{
-		new_string =old_string.insert(0, space);
+		new_string = old_string.insert(0, space);
 	}
 	return new_string;
 }
@@ -120,6 +121,6 @@ bool utils::starts_with(const std::string& main, const std::string& search)
 std::string utils::to_lower(std::string data)
 {
 	std::transform(data.begin(), data.end(), data.begin(),
-		[](const unsigned char c) { return std::tolower(c); });
+	               [](const unsigned char c) { return std::tolower(c); });
 	return data;
 }

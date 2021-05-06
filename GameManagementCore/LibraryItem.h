@@ -1,20 +1,18 @@
 #pragma once
 
-#include "Game.h"
-#include "Store.h"
 #include "Date.h"
 
 class library_item
 {
 public:
 	library_item(date*, int, int, char);
-	~library_item();
-	const int get_index() const;
-	date* get_purchased_date();
-	const int get_played_time() const;
-	char get_rating();
-	char set_rating(char,char);
-	bool has_been_rated(char rating);	
+	~library_item() = default;
+	int get_index() const;
+	date* get_purchased_date() const;
+	int get_played_time() const;
+	char get_rating() const;
+	static char set_rating(char, char);
+	static bool has_been_rated(char rating);
 
 private:
 	int index_;

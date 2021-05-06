@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Application.h"
-#include "utils.h"
 
 #include <iostream>
 #include <string>

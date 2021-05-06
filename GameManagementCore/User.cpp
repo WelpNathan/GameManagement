@@ -1,11 +1,11 @@
 #include "User.h"
 #include <utility>
 
-user::user(std::string username, std::string password, date* created, float credbalance, int player_id) :
+user::user(std::string username, std::string password, date* created, const float credbalance, const int player_id) :
 	username_(std::move(username)),
 	password_(std::move(password)),
 	created_date_(created),
-	credbalance_(credbalance),
+	credit_balance_(credbalance),
 	player_id_(player_id)
 {
 }
@@ -18,16 +18,16 @@ const std::string& user::get_username() const
 	return username_;
 }
 
-const float& user::get_credbalance() const
+const float& user::get_credit_balance() const
 {
-	return credbalance_;
+	return credit_balance_;
 }
 
-float& user::set_credbalance(float new_balance)
+float& user::set_credit_balance(float new_balance)
 {
 	//set credbalance as new value
-	credbalance_ = new_balance;
-	return credbalance_;
+	credit_balance_ = new_balance;
+	return credit_balance_;
 }
 
 const int& user::get_id()

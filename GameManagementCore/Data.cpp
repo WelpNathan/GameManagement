@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 
+#include "Utils.h"
+
 data::data()
 {
 	filew_.open("C:\\data\\data.txt", std::ios_base::app);
@@ -38,7 +40,7 @@ List<game*> data::get_games()
 			std::string cost_temp;
 			std::string rating_temp;
 			std::string likes_temp;
-			std::string  dislikes_temp;
+			std::string dislikes_temp;
 
 			// remove index
 			std::getline(filer_, temp_index);
@@ -78,23 +80,23 @@ List<account*> data::get_accounts()
 		if (text == "ACCOUNT")
 		{
 			std::string temp_index;
-			std::string date_;
+			std::string main_date;
 			std::string email;
 			std::string password;
 
 			// set name and description
 			std::getline(filer_, temp_index);
-			std::getline(filer_, date_);
+			std::getline(filer_, main_date);
 			std::getline(filer_, email);
 			std::getline(filer_, password);
 
 			// TODO: use account-index
 			const int index = std::stoi(temp_index);
 
-			day_ = split_date_string_day(date_);
-			month_ = split_date_string_month(date_);
-			year_ = split_date_string_year(date_);
-			auto this_date = new date(day_, month_, year_);
+			day_ = split_date_string_day(main_date);
+			month_ = split_date_string_month(main_date);
+			year_ = split_date_string_year(main_date);
+			const auto this_date = new date(day_, month_, year_);
 
 			accounts.addAtEnd(new account(email, password, this_date, index));
 		}
@@ -123,11 +125,11 @@ List<player*> data::get_players()
 		std::string password;
 		std::string credit;
 
-		if (player_count > 0 && player_count<5)
+		if (player_count > 0 && player_count < 5)
 		{
 			temp_index = text;
 			while (next_ != "ACCOUNT-PLAYER")
-			{ 
+			{
 				std::getline(filer_, next_);
 			}
 			text = next_;
@@ -135,7 +137,7 @@ List<player*> data::get_players()
 
 		if (text == "ACCOUNT-PLAYER")
 		{
-			if (player_count == 0 || player_count ==3)
+			if (player_count == 0 || player_count == 3)
 			{
 				std::getline(filer_, temp_index);
 			}
@@ -200,31 +202,31 @@ List<player*> data::get_players()
 int data::split_date_string_year(std::string input_date)
 {
 	//places 0-3 = year
-	const int a = (input_date[0]-48) * 1000;
+	const int a = (input_date[0] - 48) * 1000;
 	const int b = (input_date[1] - 48) * 100;
 	const int c = (input_date[2] - 48) * 10;
 	const int d = (input_date[3] - 48);
 
-	int year_ = a + b + c + d;
-	return year_;
+	const int year = a + b + c + d;
+	return year;
 }
 
-int data::split_date_string_month(std::string input_date) const
+int data::split_date_string_month(std::string input_date)
 {
 	//places 5 and 6 = month
-	const int e = (input_date[5]-48) * 10;
-	const int f = (input_date[6]-48);
-	int month_ = e + f;
-	return month_;
+	const int e = (input_date[5] - 48) * 10;
+	const int f = (input_date[6] - 48);
+	const int month = e + f;
+	return month;
 }
 
-int data::split_date_string_day(std::string input_date) const
+int data::split_date_string_day(std::string input_date)
 {
 	//places 8 and 9 = day
-	const int g = (input_date[8]-48) * 10;
-	const int h = (input_date[9])-48;
-	int day_ = g + h;
-	return day_;
+	const int g = (input_date[8] - 48) * 10;
+	const int h = (input_date[9]) - 48;
+	const int day = g + h;
+	return day;
 }
 
 std::string data::save_accounts(List<account*> accounts) const
@@ -242,24 +244,24 @@ std::string data::save_accounts(List<account*> accounts) const
 
 		for (int y = 0; y < account->users.length(); ++y)
 		{
-			player* player_ = dynamic_cast<player*>(account->users[y]);
-			
-			final_string += "ACCOUNT-PLAYER\n";
-			final_string += std::to_string(player_->get_id()) + "\n";
-			final_string += player_->get_created_date()->get_formatted() + "\n";
-			final_string += player_->get_username() + "\n";
-			final_string += player_->get_password() + "\n";
-			final_string += std::to_string(player_->get_credbalance()) + "\n";
+			auto plr = dynamic_cast<player*>(account->users[y]);
 
-			for (int z=0; z < 4; z++)
+			final_string += "ACCOUNT-PLAYER\n";
+			final_string += std::to_string(plr->get_id()) + "\n";
+			final_string += plr->get_created_date()->get_formatted() + "\n";
+			final_string += plr->get_username() + "\n";
+			final_string += plr->get_password() + "\n";
+			final_string += std::to_string(plr->get_credit_balance()) + "\n";
+
+			for (int z = 0; z < 4; z++)
 			{
 				//library items
-				library_item* lib = player_->library[z];
+				library_item* lib = plr->library[z];
 
 				final_string += "LIBRARY-ITEM\n";
-				final_string += lib->get_index();
-				final_string += lib->get_played_time();
-				final_string += lib->get_purchased_date()->get_formatted() + "\n";;
+				final_string += std::to_string(lib->get_index()) + "\n";
+				final_string += std::to_string(lib->get_played_time()) + "\n";
+				final_string += lib->get_purchased_date()->get_formatted() + "\n";
 				final_string += lib->get_rating();
 			}
 		}
@@ -280,8 +282,8 @@ std::string data::save_games(List<game*> games) const
 		final_string += game->get_name() + "\n";
 		final_string += game->get_description() + "\n";
 		final_string += std::to_string(game->get_cost()) + "\n";
-		final_string += game->get_likes() + "\n";
-		final_string += game->get_dislikes() + "\n";
+		final_string += std::to_string(game->get_likes()) + "\n";
+		final_string += std::to_string(game->get_dislikes()) + "\n";
 	}
 
 	return final_string;

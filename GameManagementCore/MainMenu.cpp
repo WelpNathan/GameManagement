@@ -1,6 +1,5 @@
 #include "MainMenu.h"
 #include "AccountMenu.h"
-#include "LoginMenu.h"
 #include "StoreMenu.h"
 #include "Profile.h"
 
@@ -15,7 +14,7 @@ void main_menu::output_options()
 
 	if (app_->is_user_logged_in())
 	{
-		std::string this_username = app_->get_current_user()->get_username();
+		const std::string this_username = app_->get_current_user()->get_username();
 
 		option('P', "View Profile for " + this_username);
 
@@ -57,7 +56,7 @@ bool main_menu::handle_choice(const char choice)
 		{
 			if (app_->is_user_logged_in())
 			{
-				std::string profile_title = (app_->get_current_user()->get_username()) +
+				const std::string profile_title = (app_->get_current_user()->get_username()) +
 					"'S PROFILE";
 
 				profile this_profile(profile_title, app_);
