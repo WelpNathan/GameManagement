@@ -23,7 +23,7 @@ public:
 	game* set_game(int i);
 	static admin* create_admin(List<player*> saved_players);
 	bool login_account(int i, const std::string& email, const std::string& password);
-	bool login_user(int i, int j, const std::string& username, const std::string& password);
+	bool login_user(int i, const std::string& username, const std::string& password);
 	void logout_user();
 	void logout_account();
 	bool is_user_admin() const;

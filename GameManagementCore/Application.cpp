@@ -62,7 +62,7 @@ bool application::login_account(int i, const std::string& email, const std::stri
 	return true;
 }
 
-bool application::login_user(int i, int j, const std::string& username, const std::string& password)
+bool application::login_user(int i, const std::string& username, const std::string& password)
 {
 	current_user_ = current_account_->users[i];
 	current_player_ = dynamic_cast<player*>(current_user_);
@@ -220,4 +220,6 @@ library_item* application::match_lib_item_to_game(int id)
 			return this_library_item;
 		}
 	}
+	library_item* this_library_item = nullptr;
+	return this_library_item;
 }

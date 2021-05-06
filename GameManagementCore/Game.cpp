@@ -64,7 +64,7 @@ int game::set_dislikes(const int new_val, const int dislikes)
 std::string game::calculate_rating(const int likes, const int dislikes) const
 {
 	const int total_number_of_ratings = likes + dislikes;
-
+	float total = total_number_of_ratings;
 	float rating;
 
 	if (total_number_of_ratings == 0)
