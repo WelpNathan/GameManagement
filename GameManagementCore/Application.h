@@ -5,6 +5,7 @@
 #include "User.h"
 #include "Store.h"
 #include "Admin.h"
+#include "Player.h"
 
 class application
 {

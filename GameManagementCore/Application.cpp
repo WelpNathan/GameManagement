@@ -1,6 +1,7 @@
 #include "Application.h"
 #include <iostream>
 
+
 application::application() : current_account_(get_current_account()), current_user_(get_current_user())
 {
 	setup_data();
@@ -64,7 +65,7 @@ bool application::login_account(int i, const std::string& email, const std::stri
 bool application::login_user(int i, int j, const std::string& username, const std::string& password)
 {
 	current_user_ = current_account_->users[i];
-	current_player_ = dynamic_cast<player*>(this->accounts[j]->users[i]);
+	current_player_ = dynamic_cast<player*>(current_user_);
 	user_is_logged_in_ = true;
 	return true;
 }
@@ -118,12 +119,14 @@ void application::setup_data()
 
 	// add players from data (with library items) and admin (with library items) into users[]
 	List<player*> saved_players = data_->get_players();
+
 	for (int i = 0; i < saved_players.length(); ++i)
 	{
 		if (i == 0)
 		{
 			admin* ad = create_admin(saved_players);
-			this->accounts[saved_players[i]->get_id()]->users.addInFront(ad);
+			int id = saved_players[i]->get_id();
+			this->accounts[id]->users.addInFront(ad);
 		}
 		else
 		{
@@ -146,7 +149,7 @@ admin* application::create_admin(List<player*> saved_players)
 	List<library_item*> lib_items;
 	for (int i = 0; i < (saved_players[0]->library.size()); i++)
 	{
-		auto item = saved_players[0]->library[0];
+		auto item = saved_players[0]->library[i];
 		const int index = item->get_index();
 		const int played_time = item->get_played_time();
 		date* purchased = item->get_purchased_date();

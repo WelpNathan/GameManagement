@@ -59,8 +59,7 @@ bool profile::handle_choice(const char choice)
 		if (index >= 0 && index < game_size)
 		{
 			const std::string game_title = choice + " " + (app_->set_game(index))->get_name();
-			//view_game_menu this_game(game_title, app_);
-			view_library_item(game_title, app_);
+			view_library_item this_lib(game_title, app_);
 		}
 	}
 	else
