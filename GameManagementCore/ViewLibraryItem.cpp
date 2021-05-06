@@ -54,8 +54,8 @@ void view_library_item::output_options()
 
 bool view_library_item::handle_choice(char choice)
 {
-	int g = app_->get_game()->get_id();
-	library_item* lib = app_->match_lib_item_to_game(g);
+	int id = app_->get_game()->get_id();
+	library_item* lib = app_->match_lib_item_to_game(id);
 	char game_rating = lib->get_rating();
 
 	switch (choice)
