@@ -16,9 +16,12 @@ void menu::paint()
 	{
 		header();
 		output_options();
-		line();
-		option('B', "Back");
-		option('X', "Exit");
+		line(); 
+		if(app_->is_account_logged_in()==true)
+		{
+			option('B', "Back");
+			option('X', "Exit");
+		}
 		footer();
 
 		const char choice = utils::get_char_from_user();
