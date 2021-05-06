@@ -136,19 +136,19 @@ void utils::format_playing_time(int input)
 {
 	if (input < 60)
 	{
-		std::cout << "  Game played for : " << input << "mins" << "\n\n"; // us utils:
+		std::cout << "  Game played for : " << input << " mins" << "\n\n"; // us utils:
 	}
 	else if (input >= 300)
 	{
 		double d = input / 60;
 		int output = rint(d);
-		std::cout << "  Game played for : " << output << "hours" << "\n\n"; // us utils:
+		std::cout << "  Game played for : " << output << " hours" << "\n\n"; // us utils:
 	}
 	else
 	{
 		double d = input / 60;
 		std::cout << std::fixed;
 		std::cout << std::setprecision(1);
-		std::cout << "  Game played for : " << d << "hours" << "\n\n"; // us utils:
+		std::cout << "  Game played for : " << d << " hours" << "\n\n"; // us utils:
 	}
 }

@@ -7,16 +7,16 @@ view_library_item::view_library_item(const std::string& title, application* app)
 
 void view_library_item::output_options()
 {
-	char game_rating = 32;
 	int g = app_->get_game()->get_id();
 	library_item* lib = app_->match_lib_item_to_game(g);
 	bool has_been_rated = lib->has_been_rated(lib->get_rating());
+	char game_rating = lib->get_rating();
 	std::string description = app_->get_game()->get_description();
 	int age_rating = app_->get_game()->get_age_rating();
 	int cost = app_->get_game()->get_cost();
 	std::string rating = app_->get_game()->calculate_rating((app_->get_game()->get_likes()),
 		(app_->get_game()->get_dislikes()));
-	
+	int played_ = lib->get_played_time();
 	int id = app_->get_game()->get_id();
 
 	std::cout << "  " << description << "\n\n"
@@ -24,8 +24,11 @@ void view_library_item::output_options()
 		<< "  Cost: " << cost << "\n"
 		<< "  Average Rating: " << rating << "\n\n";
 
+	utils::format_playing_time(played_);
+
 	option('P', "Play this game");
-	std::cout << "\n";
+	std::cout << "\n\n";
+	
 
 	if (has_been_rated == false)
 	{
@@ -50,18 +53,20 @@ void view_library_item::output_options()
 
 bool view_library_item::handle_choice(char choice)
 {
-	char game_rating = app_->get_current_player()->library[app_->get_game()->get_id()]->get_rating();
+	int g = app_->get_game()->get_id();
+	library_item* lib = app_->match_lib_item_to_game(g);
+	char game_rating = lib->get_rating();
 
 	switch (choice)
 	{
 		case 'P':
 		{
 			//play this game
-			int play_time = app_->get_current_player()->library[app_->get_game()->get_id()]->get_played_time();
+			int play_time = lib->get_played_time();
 			int random = utils::random_integer(0, 60);
 			int new_play_time = random + play_time;
 
-			int play_time_ = app_->get_current_player()->library[app_->get_game()->get_id()]->set_played_time(play_time, new_play_time);
+			int play_time_ = lib->set_played_time(play_time, new_play_time);
 			utils::format_playing_time(play_time_);
 		}
 		break;
