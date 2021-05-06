@@ -67,8 +67,7 @@ bool view_library_item::handle_choice(char choice)
 			int random = utils::random_integer(0, 60);
 			int new_play_time = random + play_time;
 
-			//int play_time_ = lib->set_played_time(play_time, new_play_time);
-			int play_time_ = lib->add_play_time(random);
+			int play_time_ = lib->set_played_time(play_time, new_play_time);
 			utils::format_playing_time(play_time_);
 		}
 		break;
