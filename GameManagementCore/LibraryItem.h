@@ -15,7 +15,6 @@ public:
 	char get_rating() const;
 	static char set_rating(char, char);
 	static bool has_been_rated(char);
-	int add_play_time(const int);
 
 private:
 	int index_;
