@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <iomanip>
 
 class utils
 {
@@ -20,4 +21,5 @@ public:
 	static bool starts_with(const std::string&, const std::string&);
 	static std::string to_lower(std::string);
 	static int utils::random_integer(int a, int b);
+	static void format_playing_time(int input);
 };

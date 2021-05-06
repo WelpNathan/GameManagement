@@ -10,6 +10,7 @@ public:
 	int get_index() const;
 	date* get_purchased_date() const;
 	int get_played_time() const;
+	int set_played_time(int, int) const;
 	char get_rating() const;
 	static char set_rating(char, char);
 	static bool has_been_rated(char rating);

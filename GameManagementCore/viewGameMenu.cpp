@@ -21,12 +21,19 @@ void view_game_menu::output_options()
 		char game_rating = app_->get_current_player()->library[id]->get_rating();
 		bool has_been_rated = app_->get_current_player()->library[app_->get_game()->get_id()]->has_been_rated(
 			game_rating);
+
 	}
 
 	std::cout << "  " << description << "\n\n"
 		<< "  Age Rating: " << age_rating << "\n"
 		<< "  Cost: " << cost << "\n"
-		<< "  Average Rating: " << rating << "\n\n";
+		<< "  Average Rating: " << rating << "\n";
+
+	if (already_purchased() == true)
+	{
+		int play_time = app_->get_current_player()->library[app_->get_game()->get_id()]->get_played_time();
+		utils::format_playing_time(play_time);
+	}
 
 
 	if (app_->is_user_logged_in())
@@ -37,7 +44,7 @@ void view_game_menu::output_options()
 			std::cout << "- - - - - - - - - - - - - -" << "\n";
 			std::cout << "  Game already purchased" << "\n\n";
 			std::cout << "- - - - - - - - - - - - - -" << "\n";
-			option('L', "View in library");
+			option('L', "Play this game");
 			if (has_been_rated == false)
 			{
 				option('R', "Rate this Game");
@@ -91,9 +98,13 @@ bool view_game_menu::handle_choice(char choice)
 	{
 	case 'L':
 		{
-			std::string profile_title = (app_->get_current_user()->get_username()) +
-				"'S PROFILE";
-			profile this_profile(profile_title, app_);
+		//play this game
+		int play_time = app_->get_current_player()->library[app_->get_game()->get_id()]->get_played_time();
+		int random = utils::random_integer(0, 60);
+		int new_play_time = random + play_time;
+
+		int play_time_ = app_->get_current_player()->library[app_->get_game()->get_id()]->set_played_time(play_time, new_play_time);
+		utils::format_playing_time(play_time_);
 		}
 		break;
 	case 'G':

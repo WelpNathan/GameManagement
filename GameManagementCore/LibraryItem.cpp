@@ -21,6 +21,13 @@ int library_item::get_played_time() const
 	return played_;
 }
 
+int library_item::set_played_time(int played, int new_playtime) const
+{
+	int* ptr = &played;
+	*ptr = new_playtime;
+	return played;
+}
+
 char library_item::get_rating() const
 {
 	//rating L = Like, D = dislike
